@@ -1,49 +1,846 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — PodWizard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-/* Use same base styles as about.html */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#05070d;--surf:#0d1020;--b1:rgba(255,255,255,0.06);--t1:#eceef4;--t2:#9ba3b8;--acc:#e8ff47;}
-[data-theme="light"] { --bg: #fafafa; --surf: #ffffff; --t1: #09090b; --t2: #52525b; --acc: #a5b800; }
-body{background:var(--bg);color:var(--t1);font-family:'Instrument Sans',sans-serif;line-height:1.7}
-nav{position:fixed;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(var(--bg),0.92);backdrop-filter:blur(28px);border-bottom:1px solid var(--b1);z-index:100}
-.nav-logo{display:flex;align-items:center;gap:9px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.1rem;color:var(--t1)}
-.lm{width:28px;height:28px;border-radius:8px;background:var(--acc)}
-.back-link{font-size:0.9rem;color:var(--t2);text-decoration:none}
-.doc-footer{padding:60px 52px;border-top:1px solid var(--b1);display:flex;justify-content:space-between;align-items:center}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — PodWizard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #05070d;
+      --surf: #0d1020;
+      --surf2: #111628;
+      --b1: rgba(255, 255, 255, 0.06);
+      --b2: rgba(255, 255, 255, 0.11);
+      --t1: #eceef4;
+      --t2: #9ba3b8;
+      --t3: #5c6580;
+      --acc: #e8ff47;
+      --acc2: #cfe800;
+      --grn: #00e5a0;
+      --nav-bg: rgba(5, 7, 13, 0.92);
+    }
+
+    [data-theme="light"] {
+      --bg: #f5f6fa;
+      --surf: #ffffff;
+      --surf2: #f0f2f9;
+      --b1: rgba(0, 0, 0, 0.07);
+      --b2: rgba(0, 0, 0, 0.12);
+      --t1: #0d0f1a;
+      --t2: #4a5070;
+      --t3: #8890aa;
+      --acc: #b8c800;
+      --acc2: #9aaa00;
+      --grn: #00b87a;
+      --nav-bg: rgba(245, 246, 250, 0.95);
+    }
+
+    [data-theme="light"] .lm-outer {
+      background: var(--bg)
+    }
+
+    [data-theme="light"] .lm-mid {
+      background: var(--acc)
+    }
+
+    [data-theme="light"] .lm-inner {
+      background: var(--bg)
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--t1);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--acc)
+    }
+
+    a:hover {
+      text-decoration: underline
+    }
+
+    ::-webkit-scrollbar {
+      width: 3px
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(232, 255, 71, 0.2);
+      border-radius: 99px
+    }
+
+
+  /* ── UPDATED NAV & LOGO ── */
+  nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 52px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-bottom: 1px solid var(--b1)
+    }
+
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232, 255, 71, 0.18), transparent)
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.025em;
+      cursor: pointer;
+      color: var(--t1);
+      text-decoration: none !important;
+    }
+
+    .lm {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--acc);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; flex-shrink: 0
+    }
+
+    .lm::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent)
+    }
+
+    .lm-outer {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--bg); display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1
+    }
+
+    .lm-mid {
+      position: absolute; width: 14px; height: 14px;
+      border-radius: 50%; background: var(--acc); z-index: 2
+    }
+
+    .lm-inner {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--bg); z-index: 3; position: relative;
+      animation: lmpulse 2.2s ease-in-out infinite
+    }
+
+    @keyframes lmpulse {
+      0%, 100% { transform: scale(1) }
+      50% { transform: scale(1.4) }
+    }
+
+    .v6b {
+      background: rgba(232, 255, 71, 0.12);
+      border: 1px solid rgba(232, 255, 71, 0.2);
+      color: var(--acc); font-size: 0.58rem; font-weight: 700;
+      padding: 2.5px 8px; border-radius: 100px; letter-spacing: 0.09em; margin-left: 4px
+    }
+
+    .nav-links {
+      display: flex; gap: 28px; list-style: none
+    }
+
+    .nav-links a {
+      color: var(--t2); font-size: 0.85rem; transition: color 0.2s; letter-spacing: -0.01em
+    }
+
+    .nav-links a:hover { color: var(--t1) }
+
+    .nav-r { display: flex; gap: 8px; align-items: center }
+
+    /* Theme Toggle Style */
+    .theme-toggle {
+      width: 38px; height: 38px; border-radius: 10px;
+      border: 1px solid var(--b2); background: rgba(255,255,255,0.04);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; transition: all 0.2s; flex-shrink: 0; margin-right: 4px
+    }
+
+    .theme-toggle:hover {
+      background: rgba(232, 255, 71, 0.1);
+      border-color: rgba(232, 255, 71, 0.25)
+    }
+
+    .nav-si {
+      color: var(--t2); font-size: 0.83rem; padding: 8px 18px;
+      border-radius: 100px; border: 1px solid var(--b2); transition: all 0.2s
+    }
+
+    .nav-si:hover { color: var(--t1); border-color: rgba(255, 255, 255, 0.2) }
+
+    .nav-trial {
+      background: var(--acc); color: var(--bg); font-weight: 700;
+      font-size: 0.83rem; padding: 8px 20px; border-radius: 100px;
+      font-family: 'Bricolage Grotesque', sans-serif; cursor: pointer;
+      border: none; transition: all 0.2s
+    }
+
+    .nav-trial:hover {
+      background: var(--acc2); transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(232, 255, 71, 0.3)
+    }
+
+    .theme-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      border: 1px solid var(--b2);
+      background: rgba(128, 128, 128, 0.06);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      flex-shrink: 0
+    }
+
+    .theme-btn:hover {
+      border-color: var(--acc)
+    }
+
+
+    .doc-hero {
+      padding: 104px 52px 36px;
+      max-width: 840px;
+      margin: 0 auto
+    }
+
+    .doc-hero-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--acc);
+      font-weight: 700;
+      margin-bottom: 12px
+    }
+
+    .doc-hero-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+      margin-bottom: 12px
+    }
+
+    .doc-hero-meta {
+      font-size: 0.84rem;
+      color: var(--t3);
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--b1)
+    }
+
+    .doc-body {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 32px 52px 100px
+    }
+
+    .doc-intro {
+      font-size: 0.97rem;
+      color: var(--t2);
+      line-height: 1.8;
+      font-weight: 300;
+      padding: 20px 24px;
+      background: rgba(232, 255, 71, 0.04);
+      border: 1px solid rgba(232, 255, 71, 0.12);
+      border-radius: 13px;
+      margin-bottom: 40px
+    }
+
+    [data-theme="light"] .doc-intro {
+      background: rgba(140, 160, 0, 0.05);
+      border-color: rgba(140, 160, 0, 0.15)
+    }
+
+    .toc {
+      background: var(--surf);
+      border: 1px solid var(--b1);
+      border-radius: 13px;
+      padding: 22px 26px;
+      margin-bottom: 40px
+    }
+
+    [data-theme="light"] .toc {
+      background: var(--surf);
+      border-color: var(--b2)
+    }
+
+    .toc-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 13px
+    }
+
+    .toc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      list-style: none
+    }
+
+    .toc-list a {
+      color: var(--t2);
+      font-size: 0.84rem;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .toc-list a::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--acc);
+      flex-shrink: 0
+    }
+
+    .toc-list a:hover {
+      color: var(--acc);
+      text-decoration: none
+    }
+
+    .section {
+      margin-bottom: 44px;
+      scroll-margin-top: 88px
+    }
+
+    .section-num {
+      font-size: 0.64rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--acc);
+      font-weight: 700;
+      margin-bottom: 6px
+    }
+
+    .section h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.32rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 13px
+    }
+
+    .section h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 20px 0 9px
+    }
+
+    .section p {
+      color: var(--t2);
+      font-size: 0.89rem;
+      margin-bottom: 11px;
+      line-height: 1.75;
+      font-weight: 300
+    }
+
+    .section p:last-child {
+      margin-bottom: 0
+    }
+
+    .section ul {
+      color: var(--t2);
+      font-size: 0.89rem;
+      margin: 10px 0 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      list-style: none
+    }
+
+    .section ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      line-height: 1.65
+    }
+
+    .section ul li::before {
+      content: '→';
+      color: var(--acc);
+      font-size: 0.76rem;
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .highlight {
+      background: rgba(232, 255, 71, 0.05);
+      border: 1px solid rgba(232, 255, 71, 0.13);
+      border-radius: 10px;
+      padding: 15px 19px;
+      margin: 16px 0
+    }
+
+    [data-theme="light"] .highlight {
+      background: rgba(140, 160, 0, 0.06);
+      border-color: rgba(140, 160, 0, 0.18)
+    }
+
+    .highlight p {
+      margin: 0;
+      font-size: 0.85rem
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--b1);
+      margin: 44px 0
+    }
+
+
+    .site-footer {
+      border-top: 1px solid var(--b1);
+      background: var(--bg);
+      padding: 40px 52px 28px
+    }
+
+    .footer-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 240px 1fr 1fr;
+      gap: 40px
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--t1);
+      margin-bottom: 10px
+    }
+
+    .footer-tag {
+      color: var(--t3);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      font-weight: 300;
+      max-width: 190px
+    }
+
+    .footer-col-title {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--t3);
+      margin-bottom: 12px;
+      font-weight: 600
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 9px
+    }
+
+    .footer-links a {
+      color: var(--t2);
+      font-size: 0.82rem;
+      transition: color 0.2s;
+      text-decoration: none
+    }
+
+    .footer-links a:hover {
+      color: var(--t1)
+    }
+
+    .footer-bottom {
+      max-width: 1260px;
+      margin: 24px auto 0;
+      padding-top: 18px;
+      border-top: 1px solid var(--b1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.72rem;
+      color: var(--t3)
+    }
+
+
+    @media(max-width:900px) {
+      nav {
+        padding: 0 20px
+      }
+
+      .nav-center {
+        display: none
+      }
+
+      .doc-hero,
+      .doc-body {
+        padding-left: 20px;
+        padding-right: 20px
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .site-footer {
+        padding: 28px 20px
+      }
+
+      .footer-bottom {
+        padding-left: 0;
+        padding-right: 0
+      }
+    }
+
+    @media(max-width:600px) {
+      nav {
+        padding: 0 14px;
+        height: 60px
+      }
+
+      .nav-signin {
+        display: none
+      }
+
+      .doc-hero,
+      .doc-body {
+        padding-left: 14px;
+        padding-right: 14px
+      }
+
+      .doc-hero {
+        padding-top: 76px
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr
+      }
+
+      .site-footer {
+        padding: 24px 14px
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 6px
+      }
+    }
+  </style>
 </head>
+
 <body>
-<nav>
-  <a href="index.html" class="nav-logo">
-    <div class="lm"></div>
-    PodWizard
-  </a>
-  <a href="index.html" class="back-link">← Back to home</a>
-</nav>
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <div class="lm">
+        <div class="lm-outer">
+          <div class="lm-mid"></div>
+          <div class="lm-inner"></div>
+        </div>
+      </div>
+      PodWizard <span class="v6b">V6</span>
+    </a>
+    
+    <ul class="nav-links">
+      <li><a href="index.html#pipeline">How it works</a></li>
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+    </ul>
+    
+    <div class="nav-r">
+      <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌓</button>
+      <a href="https://podpulse-creator-flow.base44.app" class="nav-si" target="_blank">Sign in</a>
+      <a href="index.html#pricing" class="nav-trial">Start free Trial</a>
+    </div>
+  </nav>
 
-<main style="padding:120px 52px; max-width:800px; margin:0 auto;">
-  <h1>Privacy Policy</h1>
-  <p>Last updated: March 2026</p>
-  <p>At PodWizard, your privacy is our priority. We collect only what is necessary to provide our AI services and never sell your data to third parties.</p>
-  </main>
-
-<footer class="doc-footer">
-  <div class="doc-footer-logo">PodWizard</div>
-  <div class="doc-footer-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
-    <a href="mailto:hello@podwizard.com">Contact</a>
+  <div class="doc-hero">
+    <div class="doc-hero-label">Legal</div>
+    <h1 class="doc-hero-title">Privacy Policy</h1>
+    <div class="doc-hero-meta">
+      <span>📅 Effective: 28 March 2026</span>
+      <span>🔄 Last updated: 28 March 2026</span>
+    </div>
   </div>
-</footer>
+
+  <div class="doc-body">
+    <div class="doc-intro">
+      Your privacy matters to us. This policy explains what data PodWizard collects, why we collect it, how we use it,
+      and the choices you have. Written to be human-readable, not lawyer-readable.
+    </div>
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <ol class="toc-list">
+        <li><a href="#s1">Who we are</a></li>
+        <li><a href="#s2">Information we collect</a></li>
+        <li><a href="#s3">How we use your information</a></li>
+        <li><a href="#s4">How we share your information</a></li>
+        <li><a href="#s5">AI-generated content and your data</a></li>
+        <li><a href="#s6">Data retention</a></li>
+        <li><a href="#s7">Your rights</a></li>
+        <li><a href="#s8">Cookies and tracking</a></li>
+        <li><a href="#s9">Data security</a></li>
+        <li><a href="#s10">Children's privacy</a></li>
+        <li><a href="#s11">Changes to this policy</a></li>
+        <li><a href="#s12">Contact us</a></li>
+      </ol>
+    </div>
+    <div class="section" id="s1">
+      <div class="section-num">01</div>
+      <h2>Who we are</h2>
+      <p>PodWizard is an AI-powered podcast production platform that helps creators research, script, and grow their
+        shows. Our service is accessible at <a
+          href="https://podpulse-creator-flow.base44.app">podpulse-creator-flow.base44.app</a>.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="section" id="s2">
+      <div class="section-num">02</div>
+      <h2>Information we collect</h2>
+      <h3>Information you give us directly</h3>
+      <ul>
+        <li><strong>Account information:</strong> your email address, display name, and password when you sign up.</li>
+        <li><strong>Show settings:</strong> your podcast name, niche, RSS feed URL, and show artwork.</li>
+        <li><strong>Content you create:</strong> episode topics, scripts, notes, guest information, and sponsorship
+          details.</li>
+        <li><strong>Payment information:</strong> processed by Stripe. We never see or store your full card details.
+        </li>
+      </ul>
+      <h3>Information collected automatically</h3>
+      <ul>
+        <li><strong>Usage data:</strong> which features you use, how often you generate episodes, and how you navigate
+          the app.</li>
+        <li><strong>Device and browser info:</strong> browser type, OS, IP address, and general location
+          (country/region).</li>
+        <li><strong>Performance data:</strong> errors and crash reports used to improve reliability.</li>
+      </ul>
+    </div>
+    <div class="divider"></div>
+    <div class="section" id="s3">
+      <div class="section-num">03</div>
+      <h2>How we use your information</h2>
+      <ul>
+        <li><strong>To provide the service:</strong> generating your episodes, running the AI agents, storing your
+          history.</li>
+        <li><strong>To improve and personalise:</strong> your ratings and feedback personalise future generations for
+          your show.</li>
+        <li><strong>To send relevant emails:</strong> account confirmations, billing receipts, product updates.
+          Unsubscribe from marketing emails any time.</li>
+        <li><strong>To prevent abuse and meet legal obligations.</strong></li>
+      </ul>
+      <div class="highlight">
+        <p>We do not sell your personal data. We do not use your content to train AI models for other companies. Your
+          episodes are yours.</p>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section" id="s4">
+      <div class="section-num">04</div>
+      <h2>How we share your information</h2>
+      <ul>
+        <li><strong>Service providers:</strong> cloud hosting, Stripe (payments), email delivery, and AI inference APIs
+          — all bound by data processing agreements.</li>
+        <li><strong>Platform integrations:</strong> when you publish to Spotify, Apple Podcasts, or YouTube, your
+          episode data is shared with those platforms.</li>
+        <li><strong>Team members:</strong> members you invite can see your show's content based on their assigned roles.
+        </li>
+        <li><strong>Legal requirements:</strong> if required by law or court order, we will disclose and notify you
+          where permitted.</li>
+      </ul>
+    </div>
+    <div class="divider"></div>
+    <div class="section" id="s5">
+      <div class="section-num">05</div>
+      <h2>AI-generated content and your data</h2>
+      <ul>
+        <li>Your episode topics are sent to AI APIs (such as Claude by Anthropic) to generate content. This is not
+          retained by those APIs for training beyond their own policies.</li>
+        <li>Your star ratings are stored by PodWizard and used to personalise future generations for your show
+          specifically.</li>
+        <li>We do not use your episode content to train our own or third-party AI models.</li>
+      </ul>
+      <div class="highlight">
+        <p>Your creative work belongs to you. Content you generate with PodWizard is yours to publish and own — we make
+          no claim over it.</p>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section" id="s6">
+      <div class="section-num">06</div>
+      <h2>Data retention</h2>
+      <ul>
+        <li><strong>Account data:</strong> kept until you delete your account.</li>
+        <li><strong>Episode content and history:</strong> kept until you delete them or your account.</li>
+        <li><strong>Payment records:</strong> kept for 7 years (financial regulations).</li>
+        <li><strong>Usage logs:</strong> kept for 90 days.</li>
+      </ul>
+      <p>When you delete your account, we permanently delete your personal data within 30 days.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="section" id="s7">
+      <div class="section-num">07</div>
+      <h2>Your rights</h2>
+      <ul>
+        <li><strong>Access:</strong> request a copy of the personal data we hold about you.</li>
+        <li><strong>Correction:</strong> ask us to fix inaccurate or incomplete data.</li>
+        <li><strong>Deletion:</strong> ask us to delete your data.</li>
+        <li><strong>Portability:</strong> receive your data in a machine-readable format.</li>
+        <li><strong>Objection:</strong> object to certain uses including direct marketing.</li>
+      </ul>
+      <p>Email <a href="mailto:privacy@podwizard.io">privacy@podwizard.io</a> to exercise any of these rights. We
+        respond within 30 days.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="section" id="s8">
+      <div class="section-num">08</div>
+      <h2>Cookies and tracking</h2>
+      <ul>
+        <li><strong>Essential cookies:</strong> session tokens that keep you logged in. Cannot be opted out of.</li>
+        <li><strong>Analytics cookies:</strong> anonymous usage analytics. Do not identify you personally.</li>
+        <li><strong>Preference cookies:</strong> remember your settings, such as dark/light mode.</li>
+      </ul>
+      <p>We do not use advertising cookies or sell tracking data to ad networks.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="section" id="s9">
+      <div class="section-num">09</div>
+      <h2>Data security</h2>
+      <ul>
+        <li>All data encrypted in transit using TLS 1.2 or higher.</li>
+        <li>Passwords hashed and never stored in plain text.</li>
+        <li>Payments handled entirely by Stripe (PCI DSS Level 1 certified).</li>
+        <li>Production system access limited to authorised personnel only.</li>
+      </ul>
+      <p>If you believe your account is compromised, contact <a
+          href="mailto:security@podwizard.io">security@podwizard.io</a> immediately.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="section" id="s10">
+      <div class="section-num">10</div>
+      <h2>Children's privacy</h2>
+      <p>PodWizard is not intended for anyone under 16. We do not knowingly collect personal data from children. Contact
+        us to have a child's account deleted promptly.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="section" id="s11">
+      <div class="section-num">11</div>
+      <h2>Changes to this policy</h2>
+      <p>When we make material changes, we will notify you by email and in-app at least 14 days before they take effect.
+        Continued use constitutes acceptance of the revised policy.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="section" id="s12">
+      <div class="section-num">12</div>
+      <h2>Contact us</h2>
+      <ul>
+
+        <li><strong>General:</strong> <a href="mailto:hello@podwizard.io">hello@podwizard.io</a></li>
+
+      </ul>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          <div class="lm" style="width:26px;height:26px;border-radius:7px">
+            <div class="lm-outer" style="width:14px;height:14px">
+              <div class="lm-mid" style="width:11px;height:11px"></div>
+              <div class="lm-inner" style="width:5px;height:5px"></div>
+            </div>
+          </div>
+          PodWizard
+        </div>
+        <p class="footer-tag">The professional podcast studio for creators who want to script, rank, and grow.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Product</div>
+        <div class="footer-links">
+          <a href="index.html#pipeline">How it works</a>
+          <a href="index.html#features">Features</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="https://podpulse-creator-flow.base44.app" target="_blank">Open app</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="about.html">About</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="mailto:hello@podwizard.io">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 PodWizard. All rights reserved.</span>
+      <span>Made for creators who don't settle.</span>
+    </div>
+  </footer>
+  <script>
+    function toggleTheme() {
+      const h = document.documentElement;
+      const isLight = h.getAttribute('data-theme') === 'light';
+      h.setAttribute('data-theme', isLight ? 'dark' : 'light');
+      document.getElementById('themeBtn').textContent = isLight ? '🌓' : '☀️';
+      try { localStorage.setItem('pw-theme', isLight ? 'dark' : 'light'); } catch (e) { }
+    }
+    try {
+      const s = localStorage.getItem('pw-theme');
+      if (s === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.addEventListener('DOMContentLoaded', () => {
+          const b = document.getElementById('themeBtn');
+          if (b) b.textContent = '☀️';
+        });
+      }
+    } catch (e) { }
+  </script>
 </body>
+
 </html>

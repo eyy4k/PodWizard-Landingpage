@@ -1,0 +1,4540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PodWizard v6 — Generate a Perfect Podcast Episode in Minutes</title>
+  <meta name="description"
+    content="PodWizard v6 generates your full podcast episode — AI script, 5 real thumbnails, 15 social clips, full SEO engine, all QA-gated to 9.8/10. Start free, no card needed.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── RESET & VARS ──────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    /* ── DARK MODE (default) ── */
+    :root {
+      --bg: #05070d;
+      --bg2: #05070d;
+      --surf: #0d1020;
+      --surf2: #111628;
+      --b1: rgba(255, 255, 255, 0.06);
+      --b2: rgba(255, 255, 255, 0.11);
+      --t1: #eceef4;
+      --t2: #9ba3b8;
+      --t3: #5c6580;
+      --acc: #e8ff47;
+      --acc2: #cfe800;
+      --grn: #00e5a0;
+      --blu: #4f8dff;
+      --org: #ff6b2b;
+      --pur: #9b6dff;
+      --amb: #f59e0b;
+      --nav-bg: rgba(5, 7, 13, 0.92);
+      --card-bg: rgba(255, 255, 255, 0.025);
+      --pill-bg: rgba(255, 255, 255, 0.04);
+      --pill-border: rgba(255, 255, 255, 0.07);
+      --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.6);
+      --app-win-shadow: 0 80px 200px rgba(0, 0, 0, 0.9);
+    }
+
+    /* ── LIGHT MODE ── */
+    [data-theme="light"] {
+      --bg: #f5f6fa;
+      --bg2: #eef0f7;
+      --surf: #ffffff;
+      --surf2: #f0f2f9;
+      --b1: rgba(0, 0, 0, 0.07);
+      --b2: rgba(0, 0, 0, 0.12);
+      --t1: #0d0f1a;
+      --t2: #4a5070;
+      --t3: #8890aa;
+      --acc: #b8c800;
+      --acc2: #9aaa00;
+      --grn: #00b87a;
+      --blu: #2d6fe8;
+      --org: #e05010;
+      --pur: #6b3fcc;
+      --amb: #d48000;
+      --nav-bg: rgba(245, 246, 250, 0.95);
+      --card-bg: rgba(0, 0, 0, 0.025);
+      --pill-bg: rgba(0, 0, 0, 0.04);
+      --pill-border: rgba(0, 0, 0, 0.08);
+      --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.1);
+      --app-win-shadow: 0 40px 100px rgba(0, 0, 0, 0.15);
+    }
+
+    [data-theme="light"] .lm {
+      background: var(--acc)
+    }
+
+    [data-theme="light"] .lm-outer {
+      background: var(--bg)
+    }
+
+    [data-theme="light"] .lm-mid {
+      background: var(--acc)
+    }
+
+    [data-theme="light"] .lm-inner {
+      background: var(--bg)
+    }
+
+    [data-theme="light"] .hero-grid {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
+    }
+
+    [data-theme="light"] .hero-glow-c {
+      background: radial-gradient(ellipse, rgba(160, 180, 0, 0.12) 0%, transparent 65%)
+    }
+
+    [data-theme="light"] .hero-beam {
+      background: linear-gradient(to bottom, transparent, rgba(140, 160, 0, 0.4) 40%, rgba(140, 160, 0, 0.15) 60%, transparent)
+    }
+
+    [data-theme="light"] .h1-ghost {
+      -webkit-text-stroke: clamp(1px, 0.15vw, 1.5px) rgba(0, 0, 0, 0.18)
+    }
+
+    [data-theme="light"] .hero-badge {
+      background: rgba(140, 160, 0, 0.08);
+      border-color: rgba(140, 160, 0, 0.2)
+    }
+
+    [data-theme="light"] .v6b {
+      background: rgba(140, 160, 0, 0.1);
+      border-color: rgba(140, 160, 0, 0.2)
+    }
+
+    [data-theme="light"] nav {
+      background: var(--nav-bg);
+      border-bottom-color: var(--b1)
+    }
+
+    [data-theme="light"] nav::after {
+      background: linear-gradient(90deg, transparent, rgba(140, 160, 0, 0.25), transparent)
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: .018;
+      /* Hold denne lav */
+      pointer-events: none;
+      z-index: -1;
+      /* ENDRET FRA 9000 TIL -1 */
+      background: url("data:image/svg+xml,...");
+    }
+
+
+
+    [data-theme="light"] .fp {
+      background: var(--pill-bg);
+      border-color: var(--pill-border)
+    }
+
+    [data-theme="light"] .fp:hover {
+      background: rgba(140, 160, 0, 0.1);
+      border-color: rgba(140, 160, 0, 0.25)
+    }
+
+    [data-theme="light"] .btn-ghost {
+      border-color: var(--b2);
+      color: var(--t2)
+    }
+
+    [data-theme="light"] .btn-ghost:hover {
+      border-color: rgba(0, 0, 0, 0.25);
+      color: var(--t1)
+    }
+
+    [data-theme="light"] .fcard {
+      background: #fff;
+      border-color: var(--b2);
+      box-shadow: var(--shadow-card)
+    }
+
+    [data-theme="light"] .app-win {
+      background: #fff;
+      border-color: var(--b2);
+      box-shadow: var(--app-win-shadow)
+    }
+
+    [data-theme="light"] .win-bar {
+      background: rgba(240, 242, 249, 0.9)
+    }
+
+    [data-theme="light"] .onboard-bar {
+      background: rgba(230, 232, 240, 0.8)
+    }
+
+    [data-theme="light"] .win-sb {
+      background: rgba(240, 242, 249, 0.8)
+    }
+
+    [data-theme="light"] .sb-show {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: var(--b1)
+    }
+
+    [data-theme="light"] .sbi {
+      color: var(--t2)
+    }
+
+    [data-theme="light"] .sbi:hover {
+      background: rgba(0, 0, 0, 0.04);
+      color: var(--t1)
+    }
+
+    [data-theme="light"] .sbi.on {
+      background: rgba(140, 160, 0, 0.1);
+      border-left-color: var(--acc)
+    }
+
+    [data-theme="light"] .win-main {
+      background: #fff
+    }
+
+    [data-theme="light"] .dhc {
+      background: linear-gradient(135deg, rgba(140, 160, 0, 0.07), rgba(140, 160, 0, 0.02));
+      border-color: rgba(140, 160, 0, 0.15)
+    }
+
+    [data-theme="light"] .sc {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.06)
+    }
+
+    [data-theme="light"] .stats-bar {
+      background: var(--bg2)
+    }
+
+    
+    [data-theme="light"] .pl-steps::before {
+      background: linear-gradient(to bottom, var(--acc), rgba(140, 160, 0, 0.05))
+    }
+
+    [data-theme="light"] .pl-num {
+      background: var(--surf2);
+      border-color: var(--b2);
+      color: var(--t3)
+    }
+
+    [data-theme="light"] .ws-win {
+      background: #fff;
+      border-color: var(--b2)
+    }
+
+    [data-theme="light"] .ws-bar {
+      background: rgba(240, 242, 249, 0.9)
+    }
+
+    [data-theme="light"] .ws-topic {
+      background: rgba(0, 0, 0, 0.02)
+    }
+
+    [data-theme="light"] .ws-out {
+      background: rgba(140, 160, 0, 0.03)
+    }
+
+    [data-theme="light"] .bento-grid {
+      background: var(--b1)
+    }
+
+    [data-theme="light"] .bc {
+      background: var(--bg)
+    }
+
+    [data-theme="light"] .bc:hover {
+      background: rgba(0, 0, 0, 0.02)
+    }
+
+    [data-theme="light"] .pcard {
+      background: var(--surf);
+      border-color: var(--b2)
+    }
+
+    [data-theme="light"] .pcard.hot {
+      background: linear-gradient(155deg, rgba(140, 160, 0, 0.07), rgba(140, 160, 0, 0.01));
+      border-color: rgba(140, 160, 0, 0.3)
+    }
+
+    [data-theme="light"] .pc-btn-g {
+      border-color: var(--b2);
+      color: var(--t1)
+    }
+
+    [data-theme="light"] .ptog {
+      background: var(--surf2);
+      border-color: var(--b2)
+    }
+
+    [data-theme="light"] .pto {
+      color: var(--t3)
+    }
+
+    [data-theme="light"] .modal-box {
+      background: var(--surf)
+    }
+
+    [data-theme="light"] .modal-input {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: var(--b2);
+      color: var(--t1)
+    }
+
+    [data-theme="light"] .modal-input::placeholder {
+      color: var(--t3)
+    }
+
+    [data-theme="light"] .cta-sec {
+      background: var(--bg)
+    }
+
+    [data-theme="light"] .cta-grid-bg {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px)
+    }
+
+    [data-theme="light"] footer {
+      background: var(--bg2);
+      border-color: var(--b1)
+    }
+
+    [data-theme="light"] .t-item {
+      color: rgba(0, 0, 0, 0.45)
+    }
+
+    [data-theme="light"] ::-webkit-scrollbar-thumb {
+      background: rgba(140, 160, 0, 0.35)
+    }
+
+    [data-theme="light"] .no-card-dot {
+      background: rgba(0, 180, 120, 0.1);
+      border-color: rgba(0, 180, 120, 0.25)
+    }
+
+    [data-theme="light"] .hero-badge .bdot {
+      background: var(--acc)
+    }
+
+    /* ── THEME TOGGLE BUTTON ── */
+    .theme-toggle {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--b2);
+      background: var(--pill-bg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      margin-right: 4px
+    }
+
+    .theme-toggle:hover {
+      background: rgba(232, 255, 71, 0.1);
+      border-color: rgba(232, 255, 71, 0.25)
+    }
+
+    [data-theme="light"] .theme-toggle:hover {
+      background: rgba(140, 160, 0, 0.12);
+      border-color: rgba(140, 160, 0, 0.3)
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--t1);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    ::-webkit-scrollbar {
+      width: 3px
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(232, 255, 71, 0.2);
+      border-radius: 99px
+    }
+
+    /* ── NOISE ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: .018;
+      pointer-events: none;
+      z-index: 9000;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")
+    }
+
+    /* ── EMAIL MODAL ── */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 8000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0);
+      backdrop-filter: blur(0px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease
+    }
+
+    .modal.open {
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(16px);
+      opacity: 1;
+      pointer-events: all
+    }
+
+    .modal-box {
+      background: var(--surf);
+      border: 1px solid var(--b2);
+      border-radius: 24px;
+      padding: 48px 44px;
+      max-width: 460px;
+      width: 100%;
+      position: relative;
+      transform: translateY(28px) scale(0.96);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 60px 120px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.07)
+    }
+
+    .modal-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232, 255, 71, 0.6), transparent)
+    }
+
+    .modal.open .modal-box {
+      transform: translateY(0) scale(1)
+    }
+
+    .modal-x {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--b1);
+      color: var(--t3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all 0.2s
+    }
+
+    .modal-x:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--t1)
+    }
+
+    .modal-ico {
+      width: 54px;
+      height: 54px;
+      border-radius: 15px;
+      background: var(--acc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .modal-ico::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent)
+    }
+
+    .modal h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      margin-bottom: 8px
+    }
+
+    .modal p {
+      font-size: 0.88rem;
+      color: var(--t2);
+      line-height: 1.65;
+      margin-bottom: 26px;
+      font-weight: 300
+    }
+
+    .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .modal-input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--b2);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: var(--t1);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      width: 100%;
+      transition: all 0.2s
+    }
+
+    .modal-input:focus {
+      border-color: rgba(232, 255, 71, 0.45);
+      box-shadow: 0 0 0 4px rgba(232, 255, 71, 0.07)
+    }
+
+    .modal-input::placeholder {
+      color: var(--t3)
+    }
+
+    .modal-submit {
+      background: var(--acc);
+      color: var(--bg);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 15px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: -0.01em
+    }
+
+    .modal-submit:hover {
+      background: var(--acc2);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 30px rgba(232, 255, 71, 0.35)
+    }
+
+    .modal-fine {
+      font-size: 0.72rem;
+      color: var(--t3);
+      text-align: center;
+      margin-top: 2px
+    }
+
+    .modal-fine strong {
+      color: var(--grn)
+    }
+
+    .modal-ok {
+      display: none;
+      text-align: center;
+      padding: 16px 0
+    }
+
+    .modal-ok-icon {
+      font-size: 3.5rem;
+      margin-bottom: 10px
+    }
+
+    .modal-ok h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--grn);
+      margin-bottom: 8px
+    }
+
+    .modal-ok p {
+      font-size: 0.88rem;
+      color: var(--t2);
+      margin-bottom: 20px
+    }
+
+    .modal-ok a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--acc);
+      color: var(--bg);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 13px 26px;
+      border-radius: 100px
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 52px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-bottom: 1px solid var(--b1)
+    }
+
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232, 255, 71, 0.18), transparent)
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.025em;
+      cursor: pointer
+    }
+
+    /* Logo mark - fixed proportions */
+    .lm {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--acc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0
+    }
+
+    .lm::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent)
+    }
+
+    .lm-outer {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1
+    }
+
+    .lm-mid {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--acc);
+      z-index: 2
+    }
+
+    .lm-inner {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--bg);
+      z-index: 3;
+      position: relative;
+      animation: lmpulse 2.2s ease-in-out infinite
+    }
+
+    @keyframes lmpulse {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.4)
+      }
+    }
+
+    .v6b {
+      background: rgba(232, 255, 71, 0.12);
+      border: 1px solid rgba(232, 255, 71, 0.2);
+      color: var(--acc);
+      font-size: 0.58rem;
+      font-weight: 700;
+      padding: 2.5px 8px;
+      border-radius: 100px;
+      letter-spacing: 0.09em
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none
+    }
+
+    .nav-links a {
+      color: var(--t2);
+      font-size: 0.85rem;
+      transition: color 0.2s;
+      letter-spacing: -0.01em
+    }
+
+    .nav-links a:hover {
+      color: var(--t1)
+    }
+
+    .nav-r {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    .nav-si {
+      color: var(--t2);
+      font-size: 0.83rem;
+      padding: 8px 18px;
+      border-radius: 100px;
+      border: 1px solid var(--b2);
+      transition: all 0.2s;
+      cursor: pointer
+    }
+
+    .nav-si:hover {
+      color: var(--t1);
+      border-color: rgba(255, 255, 255, 0.2)
+    }
+
+    .nav-trial {
+      background: var(--acc);
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 0.83rem;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s
+    }
+
+    .nav-trial:hover {
+      background: var(--acc2);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(232, 255, 71, 0.3)
+    }
+
+    /* ── HERO — CINEMATIC ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 0;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      width: 100%
+    }
+
+    /* Animated gradient mesh - contained */
+    .hero-mesh {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: conic-gradient(from 0deg at 50% 50%,
+          transparent 0deg, rgba(232, 255, 71, 0.03) 40deg, transparent 80deg,
+          transparent 160deg, rgba(79, 141, 255, 0.025) 200deg, transparent 240deg,
+          transparent 300deg, rgba(232, 255, 71, 0.02) 340deg, transparent 360deg);
+      animation: mesh-spin 40s linear infinite;
+      transform-origin: center
+    }
+
+    @keyframes mesh-spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    /* Scan lines removed - caused black screen on some mobile browsers */
+
+    /* Grid */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(232, 255, 71, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 255, 71, 0.035) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 20%, transparent 90%)
+    }
+
+    /* Main glows - constrained to viewport */
+    .hero-glow-c {
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, 150vw);
+      height: min(800px, 120vw);
+      pointer-events: none;
+      background: radial-gradient(ellipse, rgba(232, 255, 71, 0.09) 0%, rgba(232, 255, 71, 0.03) 35%, transparent 65%);
+      animation: glow-breathe 7s ease-in-out infinite
+    }
+
+    @keyframes glow-breathe {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1)
+      }
+
+      50% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(1.05)
+      }
+    }
+
+    .hero-glow-r {
+      position: absolute;
+      top: 25%;
+      right: -10%;
+      width: min(600px, 80vw);
+      height: min(600px, 80vw);
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(79, 141, 255, 0.055) 0%, transparent 65%)
+    }
+
+    .hero-glow-l {
+      position: absolute;
+      top: 35%;
+      left: -10%;
+      width: min(500px, 70vw);
+      height: min(500px, 70vw);
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(155, 109, 255, 0.04) 0%, transparent 65%)
+    }
+
+    /* Sweeping beam */
+    .hero-beam {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      pointer-events: none;
+      background: linear-gradient(to bottom, transparent, rgba(232, 255, 71, 0.5) 40%, rgba(232, 255, 71, 0.2) 60%, transparent);
+      filter: blur(2px);
+      animation: beam-sweep 8s ease-in-out infinite;
+      left: -10%
+    }
+
+    @keyframes beam-sweep {
+      0% {
+        left: -5%;
+        opacity: 0
+      }
+
+      15% {
+        opacity: 1
+      }
+
+      85% {
+        opacity: 1
+      }
+
+      100% {
+        left: 105%;
+        opacity: 0
+      }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 980px;
+      width: 100%;
+      margin-bottom: 60px;
+      padding: 0
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232, 255, 71, 0.07);
+      border: 1px solid rgba(232, 255, 71, 0.18);
+      border-radius: 100px;
+      padding: 7px 18px;
+      font-size: 0.74rem;
+      color: var(--acc);
+      margin-bottom: 32px;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      opacity: 0;
+      animation: fu 0.6s 0.1s ease forwards
+    }
+
+    .bdot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--acc);
+      animation: lmpulse 1.6s ease-in-out infinite;
+      flex-shrink: 0
+    }
+
+    /* HEADLINE */
+    .hero h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3.2rem, 8vw, 9.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fu 0.9s 0.2s ease forwards;
+      word-break: break-word;
+      overflow-wrap: break-word
+    }
+
+    .h1-solid {
+      color: var(--t1);
+      display: block
+    }
+
+    .h1-ghost {
+      -webkit-text-stroke: clamp(1px, 0.15vw, 1.5px) rgba(255, 255, 255, 0.22);
+      color: transparent;
+      display: block
+    }
+
+    .h1-acc {
+      color: var(--acc);
+      display: block
+    }
+
+    /* rotating word */
+    .rw {
+      display: inline-block;
+      overflow: hidden;
+      height: 0.9em;
+      vertical-align: bottom
+    }
+
+    .rw-track {
+      display: flex;
+      flex-direction: column;
+      animation: rw 8s cubic-bezier(0.76, 0, 0.24, 1) infinite
+    }
+
+    .rw-w {
+      height: 0.9em;
+      display: flex;
+      align-items: center;
+      color: var(--acc);
+      white-space: nowrap
+    }
+
+    @keyframes rw {
+
+      0%,
+      20% {
+        transform: translateY(0)
+      }
+
+      27%,
+      47% {
+        transform: translateY(-100%)
+      }
+
+      54%,
+      74% {
+        transform: translateY(-200%)
+      }
+
+      81%,
+      100% {
+        transform: translateY(0)
+      }
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+      color: var(--t2);
+      max-width: 640px;
+      margin: 0 auto 36px;
+      line-height: 1.72;
+      font-weight: 300;
+      opacity: 0;
+      animation: fu 0.7s 0.4s ease forwards
+    }
+
+    .hero-sub strong {
+      color: var(--t1);
+      font-weight: 500
+    }
+
+    /* Pill features */
+    .feat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fu 0.7s 0.55s ease forwards
+    }
+
+    .fp {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 100px;
+      font-size: 0.76rem;
+      color: var(--t2);
+      transition: all 0.2s
+    }
+
+    .fp:hover {
+      background: rgba(232, 255, 71, 0.07);
+      border-color: rgba(232, 255, 71, 0.2);
+      color: var(--acc)
+    }
+
+    .fc {
+      color: var(--grn);
+      font-size: 0.68rem
+    }
+
+    /* CTAs */
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fu 0.7s 0.7s ease forwards
+    }
+
+    .btn-acc {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--acc);
+      color: var(--bg);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px 34px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s;
+      letter-spacing: -0.01em;
+      box-shadow: 0 0 50px rgba(232, 255, 71, 0.2)
+    }
+
+    .btn-acc:hover {
+      background: var(--acc2);
+      transform: translateY(-2px);
+      box-shadow: 0 20px 50px rgba(232, 255, 71, 0.35)
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--t2);
+      font-size: 0.9rem;
+      padding: 16px 28px;
+      border-radius: 100px;
+      border: 1px solid var(--b2);
+      cursor: pointer;
+      transition: all 0.2s
+    }
+
+    .btn-ghost:hover {
+      color: var(--t1);
+      border-color: rgba(255, 255, 255, 0.22)
+    }
+
+    .no-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-size: 0.74rem;
+      color: var(--t3);
+      margin-top: 14px;
+      opacity: 0;
+      animation: fu 0.7s 0.85s ease forwards
+    }
+
+    .no-card-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(0, 229, 160, 0.1);
+      border: 1px solid rgba(0, 229, 160, 0.25);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .no-card-dot::after {
+      content: '✓';
+      font-size: 0.5rem;
+      color: var(--grn)
+    }
+
+    .no-card strong {
+      color: var(--grn);
+      font-weight: 600
+    }
+
+    /* ── FLOATING STAT CARDS ── */
+    .float-cards {
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
+      max-width: 980px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0;
+      animation: fu 0.8s 1.1s ease forwards
+    }
+
+    .fcard {
+      background: var(--surf2);
+      border: 1px solid var(--b2);
+      border-radius: 14px;
+      padding: 14px 18px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      animation: fcard-float 6s ease-in-out infinite;
+      pointer-events: none
+    }
+
+    .fcard:nth-child(2) {
+      animation-delay: -2s
+    }
+
+    .fcard:nth-child(3) {
+      animation-delay: -4s
+    }
+
+    @keyframes fcard-float {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-10px)
+      }
+    }
+
+    .fcard-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--t3);
+      margin-bottom: 5px;
+      font-weight: 600
+    }
+
+    .fcard-val {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--acc)
+    }
+
+    .fcard-sub {
+      font-size: 0.62rem;
+      color: var(--t3);
+      margin-top: 2px
+    }
+
+    .fcard-green .fcard-val {
+      color: var(--grn)
+    }
+
+    /* ── APP SHOWCASE ── */
+    .showcase {
+      padding: 0 52px 0;
+      position: relative;
+      overflow: hidden
+    }
+
+    .showcase-label {
+      text-align: center;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--t3);
+      font-weight: 600;
+      padding: 20px 0 28px
+    }
+
+    .app-wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden
+    }
+
+    /* Glow under window */
+    .app-wrap::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      right: 10%;
+      height: 200px;
+      background: radial-gradient(ellipse, rgba(232, 255, 71, 0.08) 0%, transparent 70%);
+      transform: translateY(30%);
+      pointer-events: none;
+      filter: blur(20px)
+    }
+
+    .app-win {
+      background: var(--surf);
+      border: 1px solid var(--b2);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 80px 200px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.04);
+      position: relative;
+      opacity: 0;
+      transform: translateY(36px) scale(0.975);
+      transition: all 1s cubic-bezier(0.22, 1, 0.36, 1)
+    }
+
+    .app-win.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1)
+    }
+
+    .app-win::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232, 255, 71, 0.45), transparent);
+      z-index: 2
+    }
+
+    .win-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 13px 18px;
+      background: rgba(0, 0, 0, 0.38);
+      border-bottom: 1px solid var(--b1)
+    }
+
+    .wd {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%
+    }
+
+    .wd.r {
+      background: #ff5f57
+    }
+
+    .wd.y {
+      background: #febc2e
+    }
+
+    .wd.g {
+      background: #28c840
+    }
+
+    .win-t {
+      font-size: 0.67rem;
+      color: var(--t3);
+      margin: 0 auto;
+      letter-spacing: 0.08em;
+      text-transform: uppercase
+    }
+
+    .win-tabs {
+      display: flex;
+      background: rgba(0, 0, 0, 0.22);
+      border-bottom: 1px solid var(--b1);
+      overflow-x: auto
+    }
+
+    .wtab {
+      padding: 9px 15px;
+      font-size: 0.67rem;
+      color: var(--t3);
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      cursor: pointer;
+      letter-spacing: 0.04em
+    }
+
+    .wtab.on {
+      color: var(--acc);
+      border-bottom-color: var(--acc)
+    }
+
+    .win-layout {
+      display: grid;
+      grid-template-columns: 196px 1fr
+    }
+
+    .win-sb {
+      border-right: 1px solid var(--b1);
+      padding: 12px 9px;
+      background: rgba(0, 0, 0, 0.2);
+      min-height: 400px
+    }
+
+    .sb-show {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--b1);
+      border-radius: 10px;
+      margin-bottom: 12px
+    }
+
+    .sb-show-av {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background: rgba(232, 255, 71, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0
+    }
+
+    .sb-show-nm {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--t1)
+    }
+
+    .sb-show-sub {
+      font-size: 0.56rem;
+      color: var(--t3)
+    }
+
+    .sbg {
+      font-size: 0.54rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--t3);
+      padding: 0 7px;
+      margin: 11px 0 5px
+    }
+
+    .sbi {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 9px;
+      border-radius: 8px;
+      font-size: 0.67rem;
+      color: var(--t2);
+      margin-bottom: 1px;
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+      cursor: pointer
+    }
+
+    .sbi:hover {
+      color: var(--t1);
+      background: rgba(255, 255, 255, 0.04)
+    }
+
+    .sbi.on {
+      background: rgba(232, 255, 71, 0.08);
+      color: var(--acc);
+      border-left-color: var(--acc);
+      font-weight: 600
+    }
+
+    .sb-new {
+      background: var(--acc);
+      color: var(--bg);
+      font-size: 0.46rem;
+      font-weight: 800;
+      padding: 1.5px 5px;
+      border-radius: 100px;
+      margin-left: auto;
+      letter-spacing: 0.04em
+    }
+
+    .sb-btm {
+      border-top: 1px solid var(--b1);
+      padding-top: 10px;
+      margin-top: 12px
+    }
+
+    .sb-acc {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 9px
+    }
+
+    .sb-av {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #9b6dff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0
+    }
+
+    .sb-an {
+      font-size: 0.67rem;
+      font-weight: 600
+    }
+
+    .sb-ab {
+      font-size: 0.52rem;
+      background: rgba(232, 255, 71, 0.1);
+      border: 1px solid rgba(232, 255, 71, 0.2);
+      color: var(--acc);
+      padding: 1.5px 6px;
+      border-radius: 100px;
+      display: inline-block;
+      margin-top: 1px
+    }
+
+    .win-main {
+      padding: 18px
+    }
+
+    .dhc {
+      background: linear-gradient(135deg, rgba(232, 255, 71, 0.06), rgba(232, 255, 71, 0.01));
+      border: 1px solid rgba(232, 255, 71, 0.13);
+      border-radius: 13px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .dhc::after {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(232, 255, 71, 0.07) 0%, transparent 70%)
+    }
+
+    .dhc-b {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(232, 255, 71, 0.1);
+      border: 1px solid rgba(232, 255, 71, 0.2);
+      border-radius: 100px;
+      padding: 2px 8px;
+      font-size: 0.55rem;
+      color: var(--acc);
+      letter-spacing: 0.08em;
+      margin-bottom: 5px
+    }
+
+    .dhc-h {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em
+    }
+
+    .dhc-h span {
+      color: var(--acc)
+    }
+
+    .dhc-s {
+      font-size: 0.61rem;
+      color: var(--t2);
+      margin-top: 3px;
+      max-width: 280px;
+      line-height: 1.5
+    }
+
+    .dhc-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-top: 7px
+    }
+
+    .dhchip {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.54rem;
+      padding: 2px 7px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--t3)
+    }
+
+    .dhchip::before {
+      content: '✓';
+      color: var(--grn);
+      font-size: 0.5rem
+    }
+
+    .gen-btn-m {
+      background: var(--acc);
+      color: var(--bg);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 0.68rem;
+      padding: 10px 15px;
+      border-radius: 10px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+      border: none;
+      box-shadow: 0 0 30px rgba(232, 255, 71, 0.4), 0 4px 12px rgba(0, 0, 0, 0.4)
+    }
+
+    .stats-r {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      margin-bottom: 12px
+    }
+
+    .sc {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 10px 11px;
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .sc-ico {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0
+    }
+
+    .sc-n {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1
+    }
+
+    .sc-l {
+      font-size: 0.54rem;
+      color: var(--t3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 1px
+    }
+
+    .sc-s {
+      font-size: 0.52rem;
+      color: var(--t3);
+      margin-top: 1px
+    }
+
+    .ep-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--b1);
+      border-radius: 10px;
+      padding: 12px
+    }
+
+    .ep-ch {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 9px
+    }
+
+    .ep-ct {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.77rem;
+      font-weight: 700
+    }
+
+    .ep-cl {
+      font-size: 0.6rem;
+      color: var(--acc)
+    }
+
+    .ep-i {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04)
+    }
+
+    .ep-i:last-child {
+      border-bottom: none;
+      padding-bottom: 0
+    }
+
+    .ep-n {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: rgba(232, 255, 71, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--acc);
+      flex-shrink: 0
+    }
+
+    .ep-ti {
+      font-size: 0.67rem;
+      font-weight: 500;
+      color: var(--t1);
+      margin-bottom: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 190px
+    }
+
+    .ep-me {
+      font-size: 0.56rem;
+      color: var(--t3)
+    }
+
+    .ep-st {
+      font-size: 0.55rem;
+      padding: 2px 7px;
+      border-radius: 100px;
+      font-weight: 600;
+      margin-left: auto;
+      white-space: nowrap;
+      flex-shrink: 0
+    }
+
+    .s-pub {
+      background: rgba(0, 229, 160, 0.1);
+      color: var(--grn);
+      border: 1px solid rgba(0, 229, 160, 0.2)
+    }
+
+    .s-scr {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--amb);
+      border: 1px solid rgba(245, 158, 11, 0.2)
+    }
+
+    .s-dft {
+      background: rgba(255, 107, 43, 0.1);
+      color: var(--org);
+      border: 1px solid rgba(255, 107, 43, 0.2)
+    }
+
+    .s-res {
+      background: rgba(79, 141, 255, 0.1);
+      color: var(--blu);
+      border: 1px solid rgba(79, 141, 255, 0.2)
+    }
+
+    /* ── ONBOARDING BAR ── */
+    .onboard-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      background: rgba(0, 0, 0, 0.25);
+      border-bottom: 1px solid var(--b1)
+    }
+
+    .ob-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(232, 255, 71, 0.1);
+      border: 1.5px solid rgba(232, 255, 71, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 800;
+      color: var(--acc);
+      flex-shrink: 0
+    }
+
+    .ob-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--t1)
+    }
+
+    .ob-sub {
+      font-size: 0.58rem;
+      color: var(--t3)
+    }
+
+    .ob-prog {
+      flex: 1;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 4px;
+      overflow: hidden
+    }
+
+    .ob-prog-fill {
+      height: 100%;
+      background: var(--acc);
+      border-radius: 4px
+    }
+
+    .ob-x {
+      font-size: 0.7rem;
+      color: var(--t3);
+      cursor: pointer;
+      flex-shrink: 0;
+      width: 18px;
+      text-align: center
+    }
+
+    /* Sidebar unlimited/creator section */
+    .sb-unlimited {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 9px;
+      margin-bottom: 4px
+    }
+
+    .sb-ul-icon {
+      color: var(--acc);
+      font-size: 0.7rem
+    }
+
+    .sb-ul-text {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--acc)
+    }
+
+    .sb-creator-badge {
+      background: rgba(0, 229, 160, 0.15);
+      border: 1px solid rgba(0, 229, 160, 0.25);
+      color: var(--grn);
+      font-size: 0.52rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 100px;
+      letter-spacing: 0.06em;
+      margin-left: auto
+    }
+
+    .sb-buy-packs {
+      margin: 4px 9px 10px;
+      padding: 8px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--b1);
+      text-align: center;
+      font-size: 0.65rem;
+      color: var(--t2);
+      font-weight: 500;
+      cursor: pointer
+    }
+
+    /* Muted stat card for unfilled metrics */
+    .sc-muted {
+      opacity: 0.7
+    }
+
+    .sc-dash {
+      color: var(--t3) !important;
+      font-size: 0.9rem !important
+    }
+
+   
+    /* ── STATS BAR ── */
+    .stats-bar {
+      padding: 72px 52px;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      position: relative;
+      overflow: hidden;
+      flex-wrap: wrap
+    }
+
+    .stats-bar::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(800px, 100vw);
+      height: 200px;
+      background: radial-gradient(ellipse, rgba(232, 255, 71, 0.04) 0%, transparent 70%);
+      pointer-events: none
+    }
+
+    .stat-big {
+      text-align: center;
+      padding: 0 52px;
+      position: relative
+    }
+
+    .stat-big+.stat-big::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 1px;
+      background: var(--b2)
+    }
+
+    .stat-big-num {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--acc);
+      line-height: 1;
+      display: block
+    }
+
+    .stat-big-label {
+      font-size: 0.82rem;
+      color: var(--t3);
+      margin-top: 6px;
+      letter-spacing: 0.02em
+    }
+
+    /* ── 9-STEP SECTION ── */
+    .pipeline {
+      padding: 100px 52px;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg)
+    }
+
+    .pipeline::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(1000px, 100vw);
+      height: min(600px, 80vw);
+      background: radial-gradient(ellipse, rgba(232, 255, 71, 0.025) 0%, transparent 65%);
+      pointer-events: none
+    }
+
+    .wrap {
+      max-width: 1260px;
+      margin: 0 auto;
+      width: 100%
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.67rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--acc);
+      font-weight: 700;
+      margin-bottom: 16px
+    }
+
+    .el {
+      width: 18px;
+      height: 1px;
+      background: var(--acc)
+    }
+
+    .sec-h {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.2rem, 3.5vw, 3.6rem);
+      line-height: 1.04;
+      letter-spacing: -0.038em;
+      margin-bottom: 16px
+    }
+
+    .sec-s {
+      color: var(--t2);
+      font-size: 1rem;
+      max-width: 520px;
+      line-height: 1.75;
+      font-weight: 300
+    }
+
+    .pl-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 56px;
+      align-items: start;
+      margin-top: 52px
+    }
+
+    /* Workshop running mockup */
+    .ws-win {
+      background: var(--surf);
+      border: 1px solid var(--b2);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7)
+    }
+
+    .ws-win::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232, 255, 71, 0.35), transparent)
+    }
+
+    .ws-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border-bottom: 1px solid var(--b1)
+    }
+
+    .ws-bt {
+      font-size: 0.64rem;
+      color: var(--t3);
+      margin: 0 auto;
+      letter-spacing: 0.07em;
+      text-transform: uppercase
+    }
+
+    .ws-topic {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--b1);
+      background: rgba(0, 0, 0, 0.1)
+    }
+
+    .ws-tl {
+      font-size: 0.56rem;
+      color: var(--t3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 5px
+    }
+
+    .ws-tt {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: -0.02em
+    }
+
+    .ws-chips {
+      display: flex;
+      gap: 5px;
+      margin-top: 5px
+    }
+
+    .ws-chip {
+      font-size: 0.57rem;
+      padding: 2px 8px;
+      border-radius: 100px
+    }
+
+    .chip-acc {
+      background: rgba(232, 255, 71, 0.08);
+      border: 1px solid rgba(232, 255, 71, 0.18);
+      color: var(--acc)
+    }
+
+    .chip-pur {
+      background: rgba(155, 109, 255, 0.08);
+      border: 1px solid rgba(155, 109, 255, 0.18);
+      color: var(--pur)
+    }
+
+    .ws-steps {
+      padding: 12px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px
+    }
+
+    .ws-si {
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .ws-ico {
+      width: 23px;
+      height: 23px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      flex-shrink: 0
+    }
+
+    .ico-done {
+      background: rgba(0, 229, 160, 0.12);
+      border: 1px solid rgba(0, 229, 160, 0.25);
+      color: var(--grn)
+    }
+
+    .ico-run {
+      background: rgba(232, 255, 71, 0.1);
+      border: 1px solid rgba(232, 255, 71, 0.25);
+      color: var(--acc);
+      animation: lmpulse 1.5s ease-in-out infinite
+    }
+
+    .ico-q {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--b1);
+      color: var(--t3)
+    }
+
+    .ws-info {
+      flex: 1
+    }
+
+    .ws-il {
+      font-size: 0.67rem;
+      font-weight: 500;
+      color: var(--t1)
+    }
+
+    .ws-ib {
+      height: 2.5px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+      margin-top: 3px;
+      overflow: hidden
+    }
+
+    .ws-ibf {
+      height: 100%;
+      border-radius: 3px
+    }
+
+    .ws-ist {
+      font-size: 0.56rem;
+      flex-shrink: 0
+    }
+
+    .ws-ist.d {
+      color: var(--grn)
+    }
+
+    .ws-ist.r {
+      color: var(--acc)
+    }
+
+    .ws-ist.q {
+      color: var(--t3)
+    }
+
+    .ws-out {
+      padding: 12px 18px;
+      border-top: 1px solid var(--b1);
+      background: rgba(232, 255, 71, 0.02)
+    }
+
+    .ws-ol {
+      font-size: 0.56rem;
+      color: var(--acc);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 7px;
+      font-weight: 600
+    }
+
+    .ws-og {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px
+    }
+
+    .ws-oi {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 7px;
+      padding: 7px 8px;
+      text-align: center;
+      font-size: 0.57rem;
+      color: var(--t2)
+    }
+
+    .ws-oi-i {
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+      display: block
+    }
+
+    /* Steps list */
+    .pl-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative
+    }
+
+    .pl-steps::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 20px;
+      bottom: 20px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--acc), rgba(232, 255, 71, 0.05));
+      pointer-events: none
+    }
+
+    .pl-si {
+      display: flex;
+      gap: 14px;
+      padding: 18px 0;
+      position: relative
+    }
+
+    .pl-si:last-child {
+      padding-bottom: 0
+    }
+
+    .pl-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 800;
+      background: var(--surf2);
+      border: 1px solid var(--b2);
+      color: var(--t2);
+      flex-shrink: 0;
+      transition: all 0.2s;
+      z-index: 1
+    }
+
+    .pl-si:hover .pl-num {
+      background: rgba(232, 255, 71, 0.1);
+      border-color: rgba(232, 255, 71, 0.25);
+      color: var(--acc)
+    }
+
+    
+
+    .pl-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.58rem;
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-weight: 600;
+      margin-bottom: 4px
+    }
+
+    .pl-ti {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 3px
+    }
+
+    .pl-de {
+      font-size: 0.78rem;
+      color: var(--t2);
+      line-height: 1.6
+    }
+
+    /* ── FEATURES BENTO ── */
+    .bento {
+      padding: 0 52px 100px
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--b1);
+      border: 1px solid var(--b1);
+      border-radius: 24px;
+      overflow: hidden;
+      margin-top: 52px
+    }
+
+    .bc {
+      background: var(--bg);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s
+    }
+
+    .bc::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--bc-c, var(--acc));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s
+    }
+
+    .bc:hover::after {
+      transform: scaleX(1)
+    }
+
+    .bc:hover {
+      background: rgba(255, 255, 255, 0.01)
+    }
+
+    .bc-ico {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 14px
+    }
+
+    .bc-ti {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.93rem;
+      font-weight: 700;
+      margin-bottom: 7px;
+      letter-spacing: -0.02em
+    }
+
+    .bc-de {
+      color: var(--t2);
+      font-size: 0.78rem;
+      line-height: 1.65
+    }
+
+    /* ── PRICING ── */
+    .pricing {
+      padding: 100px 52px;
+      background: var(--bg2);
+      border-top: 1px solid var(--b1);
+      border-bottom: 1px solid var(--b1)
+    }
+
+    .ptog-w {
+      display: flex;
+      justify-content: center;
+      margin: 26px 0 44px
+    }
+
+    .ptog {
+      display: inline-flex;
+      background: var(--surf2);
+      border: 1px solid var(--b1);
+      border-radius: 100px;
+      padding: 4px;
+      gap: 2px
+    }
+
+    .pto {
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--t3);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .pto.on {
+      background: var(--acc);
+      color: var(--bg);
+      font-weight: 700
+    }
+
+    .save-p {
+      font-size: 0.62rem;
+      background: rgba(0, 229, 160, 0.15);
+      color: var(--grn);
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-weight: 700
+    }
+
+    /* Two-col plan cards */
+    .plans-row {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 18px;
+      max-width: 900px;
+      margin: 0 auto 60px
+    }
+
+    .pcard {
+      background: var(--surf);
+      border: 1px solid var(--b2);
+      border-radius: 22px;
+      padding: 34px 28px;
+      position: relative;
+      transition: transform 0.25s, box-shadow 0.25s
+    }
+
+    .pcard:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.45)
+    }
+
+    .pcard.hot {
+      background: linear-gradient(155deg, rgba(232, 255, 71, 0.05), rgba(232, 255, 71, 0.01));
+      border-color: rgba(232, 255, 71, 0.25)
+    }
+
+    .pcard.hot::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232, 255, 71, 0.5), transparent)
+    }
+
+    .pc-pop {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--acc);
+      color: var(--bg);
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 3.5px 14px;
+      border-radius: 100px;
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+      font-family: 'Bricolage Grotesque', sans-serif
+    }
+
+    .pc-plan {
+      font-size: 0.66rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--t3);
+      margin-bottom: 12px;
+      font-weight: 600
+    }
+
+    .pc-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 4px;
+      flex-wrap: wrap
+    }
+
+    .pc-price {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em
+    }
+
+    .pc-per {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--t3)
+    }
+
+    .pc-orig {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--t3);
+      text-decoration: line-through;
+      letter-spacing: -0.02em;
+      display: none
+    }
+
+    .pc-orig.show {
+      display: block
+    }
+
+    .nc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(0, 229, 160, 0.08);
+      border: 1px solid rgba(0, 229, 160, 0.18);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 0.66rem;
+      color: var(--grn);
+      font-weight: 600;
+      margin: 10px 0 6px
+    }
+
+    .pc-desc {
+      color: var(--t3);
+      font-size: 0.8rem;
+      margin-bottom: 20px;
+      line-height: 1.5
+    }
+
+    .pc-btn {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      border-radius: 100px;
+      text-align: center;
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: all 0.2s;
+      margin-bottom: 20px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      cursor: pointer;
+      border: none
+    }
+
+    .pc-btn-g {
+      background: transparent;
+      border: 1px solid var(--b2);
+      color: var(--t1)
+    }
+
+    .pc-btn-g:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.04)
+    }
+
+    .pc-btn-s {
+      background: var(--acc);
+      color: var(--bg)
+    }
+
+    .pc-btn-s:hover {
+      background: var(--acc2);
+      box-shadow: 0 10px 30px rgba(232, 255, 71, 0.3)
+    }
+
+    .pc-div {
+      height: 1px;
+      background: var(--b1);
+      margin-bottom: 18px
+    }
+
+    /* 2-column feature grid inside Creator card */
+    .pc-feats-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px 16px
+    }
+
+    .pc-feats-1 {
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .pcf {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.79rem;
+      color: var(--t2)
+    }
+
+    .pcf-ck {
+      width: 15px;
+      height: 15px;
+      border-radius: 4px;
+      background: rgba(232, 255, 71, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.55rem;
+      color: var(--acc);
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .pcf-grn .pcf-ck {
+      background: rgba(0, 229, 160, 0.1);
+      color: var(--grn)
+    }
+
+    /* NEW badge in pricing */
+    .feat-new {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(0, 229, 160, 0.15);
+      border: 1px solid rgba(0, 229, 160, 0.3);
+      color: var(--grn);
+      font-size: 0.55rem;
+      font-weight: 700;
+      padding: 1.5px 6px;
+      border-radius: 100px;
+      letter-spacing: 0.06em;
+      margin-left: 6px;
+      vertical-align: middle
+    }
+
+    /* Security badges */
+    .sec-badges {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px
+    }
+
+    .sec-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      color: var(--t3)
+    }
+
+    .sec-badge-ico {
+      font-size: 0.85rem
+    }
+
+    /* ── GENERATION PACKS ── */
+    .packs {
+      padding: 0 52px 60px;
+      background: var(--bg2)
+    }
+
+    .packs-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding-top: 0
+    }
+
+    .packs-header {
+      text-align: center;
+      margin-bottom: 36px
+    }
+
+    .packs-h {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px
+    }
+
+    .packs-sub {
+      font-size: 0.85rem;
+      color: var(--t3);
+      font-weight: 300
+    }
+
+    .packs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px
+    }
+
+    .pk {
+      background: var(--surf);
+      border: 1px solid var(--b2);
+      border-radius: 18px;
+      padding: 26px 22px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer
+    }
+
+    .pk:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4)
+    }
+
+    .pk.best {
+      border-color: rgba(232, 255, 71, 0.28);
+      background: linear-gradient(155deg, rgba(232, 255, 71, 0.04), rgba(232, 255, 71, 0.01))
+    }
+
+    .pk-pop {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--acc);
+      color: var(--bg);
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      white-space: nowrap
+    }
+
+    .pk-ico {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      display: block
+    }
+
+    .pk-price {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--t1);
+      margin-bottom: 2px
+    }
+
+    .pk-gens {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--t2);
+      margin-bottom: 2px
+    }
+
+    .pk-each {
+      font-size: 0.72rem;
+      color: var(--t3);
+      margin-bottom: 16px
+    }
+
+    .pk-btn {
+      display: block;
+      width: 100%;
+      padding: 11px;
+      border-radius: 100px;
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      transition: all 0.2s
+    }
+
+    .pk-btn-g {
+      background: transparent;
+      border: 1px solid var(--b2);
+      color: var(--t2)
+    }
+
+    .pk-btn-g:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      color: var(--t1)
+    }
+
+    .pk-btn-s {
+      background: var(--acc);
+      color: var(--bg)
+    }
+
+    .pk-btn-s:hover {
+      background: var(--acc2)
+    }
+
+    .packs-note {
+      text-align: center;
+      font-size: 0.74rem;
+      color: var(--t3);
+      margin-top: 16px;
+      font-style: italic
+    }
+
+    /* ── FINAL CTA ── */
+    .cta-sec {
+      padding: 130px 52px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg)
+    }
+
+    .cta-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(1000px, 100vw);
+      height: min(600px, 80vw);
+      background: radial-gradient(ellipse, rgba(232, 255, 71, 0.07) 0%, transparent 62%);
+      pointer-events: none
+    }
+
+    .cta-grid-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(232, 255, 71, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 255, 71, 0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black, transparent)
+    }
+
+    .cta-h {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 7.5rem);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.055em;
+      max-width: 900px;
+      margin: 0 auto 22px;
+      position: relative;
+      z-index: 2
+    }
+
+    .cta-h-ghost {
+      -webkit-text-stroke: 2px rgba(232, 255, 71, 0.28);
+  
+    }
+
+    .cta-h-acc {
+      color: var(--acc)
+    }
+
+    .cta-sub {
+      color: var(--t2);
+      font-size: 1rem;
+      max-width: 440px;
+      margin: 0 auto 40px;
+      font-weight: 300;
+      line-height: 1.75;
+      position: relative;
+      z-index: 2
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--b1);
+      padding: 48px 0 32px
+    }
+
+    .foot-inner {
+      display: grid;
+      grid-template-columns: 240px 1fr 1fr;
+      gap: 40px;
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 52px
+    }
+
+    .foot-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 11px
+    }
+
+    .foot-tag {
+      color: var(--t3);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      font-weight: 300;
+      max-width: 200px
+    }
+
+    .fc-h {
+      font-size: 0.64rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--t3);
+      margin-bottom: 13px;
+      font-weight: 600
+    }
+
+    .foot-links {
+      display: flex;
+      flex-direction: column;
+      gap: 9px
+    }
+
+    .foot-links a {
+      color: var(--t2);
+      font-size: 0.82rem;
+      transition: color 0.2s
+    }
+
+    .foot-links a:hover {
+      color: var(--t1)
+    }
+
+    .foot-bot {
+      border-top: 1px solid var(--b1);
+      padding-top: 22px;
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1260px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 52px;
+      padding-right: 52px;
+      margin-top: 40px;
+      font-size: 0.72rem;
+      color: var(--t3)
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fu {
+      from {
+        opacity: 0;
+        transform: translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none
+    }
+
+    .d1 {
+      transition-delay: 0.1s
+    }
+
+    .d2 {
+      transition-delay: 0.2s
+    }
+
+    .d3 {
+      transition-delay: 0.3s
+    }
+
+    .d4 {
+      transition-delay: 0.4s
+    }
+
+
+    /* Explicit dark backgrounds - prevent white bleed on mobile */
+    .showcase,
+    .pipeline,
+    .bento,
+    .cta-sec,
+    footer,
+    .stats-bar,
+    .ticker {
+      background: var(--bg)
+    }
+
+    .pricing {
+      background: var(--bg)
+    }
+
+
+    /* Prevent app window overflow */
+    .app-win,
+    .app-wrap,
+    .win-layout,
+    .win-main,
+    .win-sb {
+      overflow: hidden
+    }
+
+    .win-tabs {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch
+    }
+
+    .win-tabs::-webkit-scrollbar {
+      height: 0;
+      display: none
+    }
+
+    /* App window always visible - don't rely on IntersectionObserver alone */
+    .app-win {
+      opacity: 1 !important;
+      transform: none !important
+    }
+
+    /* stats grid - 2x2 on mobile */
+    @media(max-width:640px) {
+      .stats-r {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6px
+      }
+
+      .dhc {
+        flex-direction: column;
+        gap: 12px
+      }
+
+      .gen-btn-m {
+        width: 100%;
+        justify-content: center
+      }
+    }
+
+    /* ── TABLET LANDSCAPE 1200px ── */
+    @media(max-width:1200px) {
+      .pl-layout {
+        grid-template-columns: 1fr 360px;
+        gap: 40px
+      }
+
+      .plans-row {
+        gap: 14px
+      }
+
+      .pc-feats-2 {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* ── TABLET PORTRAIT 1060px ── */
+    @media(max-width:1060px) {
+      nav {
+        padding: 0 20px
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .hero {
+        padding: 100px 20px 0
+      }
+
+      .showcase {
+        padding: 0 20px
+      }
+
+      .pipeline,
+      .bento,
+      .pricing {
+        padding-left: 20px;
+        padding-right: 20px
+      }
+
+      .stats-bar {
+        padding: 56px 20px;
+        gap: 24px
+      }
+
+      .stat-big {
+        padding: 0 20px;
+        width: 50%;
+        min-width: 180px
+      }
+
+      .stat-big+.stat-big::before {
+        display: none
+      }
+
+      .pl-layout {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .plans-row {
+        grid-template-columns: 1fr;
+        max-width: 460px;
+        margin-left: auto;
+        margin-right: auto
+      }
+
+      .bento-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .win-layout {
+        grid-template-columns: 1fr
+      }
+
+      .win-sb {
+        display: none
+      }
+
+      .float-cards {
+        display: none
+      }
+
+      .pc-feats-2 {
+        grid-template-columns: 1fr
+      }
+
+      .foot-inner {
+        grid-template-columns: 1fr 1fr;
+        padding: 0 20px
+      }
+
+      .foot-bot {
+        padding: 22px 20px 0;
+        margin-top: 32px
+      }
+
+      .cta-sec {
+        padding: 80px 20px
+      }
+
+      .cta-h {
+        font-size: clamp(2.6rem, 6vw, 5rem)
+      }
+    }
+
+    /* ── TABLET SMALL / LARGE PHONE 768px ── */
+    @media(max-width:768px) {
+      nav {
+        padding: 0 16px;
+        height: 60px
+      }
+
+      .hero {
+        padding: 88px 16px 0;
+        min-height: auto
+      }
+
+      .hero h1 {
+        font-size: clamp(2.8rem, 10vw, 4.5rem);
+        line-height: 0.95;
+        letter-spacing: -0.04em
+      }
+
+      .h1-ghost {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.22)
+      }
+
+      .hero-sub {
+        font-size: 0.95rem;
+        margin-bottom: 28px
+      }
+
+      .hero-badge {
+        font-size: 0.7rem;
+        padding: 6px 14px;
+        margin-bottom: 22px
+      }
+
+      .feat-pills {
+        gap: 6px;
+        margin-bottom: 28px
+      }
+
+      .fp {
+        font-size: 0.72rem;
+        padding: 6px 11px
+      }
+
+      .hero-cta {
+        gap: 10px;
+        margin-bottom: 0
+      }
+
+      .hero-inner {
+        margin-bottom: 48px
+      }
+
+      .showcase {
+        padding: 0 16px
+      }
+
+      .showcase-label {
+        padding: 36px 0 20px;
+        font-size: 0.64rem
+      }
+
+      .pipeline,
+      .bento,
+      .pricing {
+        padding: 72px 16px
+      }
+
+      .stats-bar {
+        padding: 48px 16px;
+        gap: 20px
+      }
+
+      .stat-big {
+        width: 48%;
+        padding: 0 16px
+      }
+
+      .stat-big-num {
+        font-size: clamp(2rem, 7vw, 3.5rem)
+      }
+
+      .sec-h {
+        font-size: clamp(1.9rem, 5.5vw, 2.8rem);
+        letter-spacing: -0.03em
+      }
+
+      .sec-s {
+        font-size: 0.92rem
+      }
+
+      .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 0
+      }
+
+      .bc {
+        padding: 24px 20px
+      }
+
+      .plans-row {
+        max-width: 100%;
+        padding: 0 0
+      }
+
+      .pcard {
+        padding: 28px 22px
+      }
+
+      .pc-feats-2 {
+        grid-template-columns: 1fr
+      }
+
+      .stats-r {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px
+      }
+
+      .dhc {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px
+      }
+
+      .gen-btn-m {
+        width: 100%;
+        justify-content: center
+      }
+
+      .dhc-s {
+        max-width: 100%
+      }
+
+      .cta-sec {
+        padding: 72px 16px
+      }
+
+      .cta-h {
+        font-size: clamp(2.4rem, 9vw, 4rem);
+        letter-spacing: -0.04em;
+        line-height: 0.95
+      }
+
+      .cta-h-ghost {
+        -webkit-text-stroke: 1.5px rgba(232, 255, 71, 0.28)
+      }
+
+      .cta-sub {
+        font-size: 0.92rem;
+        margin-bottom: 32px
+      }
+
+      .foot-inner {
+        grid-template-columns: 1fr;
+        padding: 0 16px;
+        gap: 28px
+      }
+
+      .foot-bot {
+        padding: 20px 16px 0;
+        flex-direction: column;
+        gap: 8px;
+        text-align: center
+      }
+
+      .pl-layout {
+        gap: 32px
+      }
+
+      .ws-win {
+        font-size: 0.9em
+      }
+
+      .ws-steps {
+        padding: 10px 14px;
+        gap: 6px
+      }
+
+      .ws-topic {
+        padding: 12px 14px
+      }
+
+      .ws-out {
+        padding: 10px 14px
+      }
+
+      .ptog-w {
+        margin: 22px 0 36px
+      }
+
+      .packs-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* ── MOBILE 600px ── */
+    @media(max-width:600px) {
+      nav {
+        padding: 0 14px;
+        height: 58px
+      }
+
+      .nav-r {
+        gap: 6px
+      }
+
+      .nav-si {
+        padding: 7px 12px;
+        font-size: 0.78rem
+      }
+
+      .nav-trial {
+        padding: 7px 14px;
+        font-size: 0.78rem
+      }
+
+      .hero {
+        padding: 82px 14px 0
+      }
+
+      .hero h1 {
+        font-size: clamp(2.6rem, 11vw, 4rem);
+        line-height: 0.95;
+        letter-spacing: -0.04em
+      }
+
+      .hero-badge {
+        font-size: 0.65rem;
+        padding: 5px 12px
+      }
+
+      .hero-sub {
+        font-size: 0.88rem;
+        max-width: 100%
+      }
+
+      .feat-pills {
+        justify-content: center
+      }
+
+      .fp {
+        font-size: 0.68rem;
+        padding: 5px 10px
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        width: 100%
+      }
+
+      .btn-acc,
+      .btn-ghost {
+        width: 100%;
+        justify-content: center
+      }
+
+      .btn-acc {
+        padding: 15px 24px;
+        font-size: 0.95rem
+      }
+
+      .btn-ghost {
+        padding: 14px 24px
+      }
+
+      .no-card {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        gap: 4px;
+        padding-bottom: -10px;
+        padding-top: 15px;
+      }
+
+      .stats-bar {
+        flex-direction: column;
+        gap: 16px;
+        padding: 40px 14px;
+        align-items: center
+      }
+
+      .stat-big {
+        width: 100%;
+        padding: 0;
+        border: none !important
+      }
+
+      .stat-big-num {
+        font-size: clamp(2.2rem, 9vw, 3rem)
+      }
+
+      .pl-layout {
+        gap: 24px
+      }
+
+      .sec-h {
+        font-size: clamp(1.8rem, 7vw, 2.4rem)
+      }
+
+      .bento-grid {
+        border-radius: 16px
+      }
+
+      .plans-row {
+        gap: 12px
+      }
+
+      .pcard {
+        padding: 24px 18px
+      }
+
+      .pc-btn {
+        font-size: 0.82rem
+      }
+
+      .ptog {
+        width: 100%;
+        max-width: 320px
+      }
+
+      .pto {
+        flex: 1;
+        justify-content: center;
+        text-align: center;
+        padding: 8px 12px;
+        font-size: 0.75rem
+      }
+
+      .pc-price-row {
+        align-items: baseline;
+        gap: 8px
+      }
+
+      .pc-price {
+        font-size: 2.6rem
+      }
+
+      .nc-badge {
+        font-size: 0.62rem
+      }
+
+      .sec-badges {
+        flex-wrap: wrap;
+        gap: 12px
+      }
+
+      .cta-sec {
+        padding: 60px 14px
+      }
+
+      .cta-h {
+        font-size: clamp(2.2rem, 11vw, 3.5rem);
+        line-height: 0.95
+      }
+
+      .cta-h-ghost {
+        -webkit-text-stroke: 1px rgba(232, 255, 71, 0.28)
+      }
+
+      .cta-btns {
+        flex-direction: column;
+        align-items: center;
+        width: 100%
+      }
+
+      .cta-btns .btn-acc,
+      .cta-btns .btn-ghost {
+        width: 100%;
+        justify-content: center;
+        max-width: 340px
+      }
+
+      .modal-box {
+        padding: 32px 24px;
+        border-radius: 20px
+      }
+
+      .modal h2 {
+        font-size: 1.45rem
+      }
+
+      .foot-inner {
+        padding: 0 14px;
+        gap: 24px
+      }
+
+      .foot-bot {
+        padding: 18px 14px 0
+      }
+
+      .win-tabs {
+        font-size: 0.6rem
+      }
+
+      .wtab {
+        padding: 8px 11px;
+        font-size: 0.62rem
+      }
+
+      .ep-ti {
+        max-width: 140px
+      }
+
+      .showcase-label {
+        padding: 28px 0 16px
+      }
+    }
+
+    /* ── MOBILE SMALL 375px ── */
+    @media(max-width:400px) {
+      nav {
+        padding: 0 12px
+      }
+
+      .nav-si {
+        display: none
+      }
+
+      .hero {
+        padding: 76px 12px 0
+      }
+
+      .hero h1 {
+        font-size: clamp(2.4rem, 12vw, 3.5rem)
+      }
+
+      .hero-badge {
+        font-size: 0.6rem;
+        padding: 5px 10px;
+        text-align: center
+      }
+
+      .feat-pills {
+        gap: 4px
+      }
+
+      .fp {
+        font-size: 0.64rem;
+        padding: 5px 9px
+      }
+
+      .btn-acc {
+        font-size: 0.88rem;
+        padding: 14px 20px
+      }
+
+      .cta-h {
+        font-size: clamp(2rem, 12vw, 3rem)
+      }
+
+      .stat-big-num {
+        font-size: 2.4rem
+      }
+
+      .modal-box {
+        padding: 28px 18px
+      }
+
+      .plans-row {
+        padding: 0
+      }
+
+      .pcard {
+        padding: 20px 16px
+      }
+
+      .ptog {
+        max-width: 100%
+      }
+
+      .foot-inner {
+        padding: 0 12px
+      }
+
+      .foot-bot {
+        padding: 16px 12px 0
+      }
+    }
+
+/* ── FIXED TICKER (Dark + Light Mode) ── */
+.ticker-wrap {
+  width: 100vw;
+  overflow: hidden;
+  padding: 16px 0;
+  border-top: 1px solid var(--b1);
+  border-bottom: 1px solid var(--b1);
+  background: rgba(255,255,255,0.015);
+  margin-top: 0px;
+  position: relative;
+  z-index: 10;
+}
+
+.t-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 35s linear infinite;
+}
+
+.t-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 30px;
+  font-size: 0.9rem;
+  color: var(--t2);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.t-item:hover {
+  color: var(--t1);
+}
+
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Light Mode Fix */
+[data-theme="light"] .ticker-wrap {
+  background: rgba(0, 0, 0, 0.04);
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- ── EMAIL MODAL ── -->
+  <div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box">
+      <button class="modal-x" onclick="closeModal()">✕</button>
+      <div id="mForm">
+        <div class="modal-ico"><div class="lm">
+          <div class="lm-outer">
+            <div class="lm-mid"></div>
+            <div class="lm-inner"></div>
+          </div>
+        </div></div>
+        <h2>Start your free trial.</h2>
+        <p>Enter your email and your PodWizard studio is ready instantly. No credit card, no commitment. Your first
+          perfect episode is waiting.</p>
+        <form class="modal-form" onsubmit="submitModal(event)">
+          <input class="modal-input" type="email" id="mEmail" placeholder="your@email.com" required
+            autocomplete="email">
+          <button class="modal-submit" type="submit">Get instant access →</button>
+          <p class="modal-fine"><strong>No credit card required. </strong>Unlock a 14 days Free Trial...</p>
+        </form>
+      </div>
+      <div class="modal-ok" id="mOk">
+        <div class="modal-ok-icon">🎉</div>
+        <h3>You're in the studio.</h3>
+        <p>Check your inbox — we've sent your access link. Your first perfect episode is 2 minutes away.</p>
+        <a href="https://podpulse-creator-flow.base44.app" target="_blank">Open PodWizard →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <div class="lm">
+        <div class="lm-outer">
+          <div class="lm-mid"></div>
+          <div class="lm-inner"></div>
+        </div>
+      </div>
+      PodWizard <span class="v6b">v6</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#pipeline">How it works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <div class="nav-r">
+      <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle light/dark mode">🌓</button>
+      <a href="https://podpulse-creator-flow.base44.app" class="nav-si" target="_blank">Sign in</a>
+      <button class="nav-trial" onclick="openModal()">Start free trial</button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-mesh"></div>
+    <div class="hero-scan"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-glow-c"></div>
+    <div class="hero-glow-r"></div>
+    <div class="hero-glow-l"></div>
+    <div class="hero-beam"></div>
+
+    <div class="hero-inner">
+      <div class="hero-badge"><span class="bdot"></span> PodWizard v6 — EXTREME QUALITY MODE · 9-Step AI Pipeline</div>
+
+      <h1>
+        <span class="h1-solid">Generate a</span>
+        <span class="h1-ghost">
+          <span class="rw"><span class="rw-track">
+              <span class="rw-w">Perfect</span>
+              <span class="rw-w">Viral</span>
+              <span class="rw-w">SEO-ranked</span>
+            </span></span>
+        </span>
+        <span class="h1-acc">Episode.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Type a topic. PodWizard researches it, scripts it in detail, generates <strong>5 real thumbnails</strong>,
+        <strong>15 social clips</strong>, a <strong>full SEO package</strong>, sponsor matches, and a growth score
+        — all QA-gated to <strong>9.8/10</strong>. Automatically.
+      </p>
+
+      <div class="feat-pills">
+        <div class="fp"><span class="fc">✓</span> 10 Viral Titles</div>
+        <div class="fp"><span class="fc">✓</span> 5 Real Thumbnails</div>
+        <div class="fp"><span class="fc">✓</span> Full Script</div>
+        <div class="fp"><span class="fc">✓</span> 15 Social Shorts</div>
+        <div class="fp"><span class="fc">✓</span> SEO Engine</div>
+        <div class="fp"><span class="fc">✓</span> Sponsor Scripts</div>
+        <div class="fp"><span class="fc">✓</span> Growth Score</div>
+        <div class="fp"><span class="fc">✓</span> A/B Plan</div>
+        <div class="fp"><span class="fc">✓</span> QA 9.8/10</div>
+      </div>
+
+      <div class="hero-cta">
+        <button class="btn-acc" onclick="openModal()">Start free trial</button>
+        <a href="#pipeline" class="btn-ghost">See how it works</a>
+      </div>
+      <div class="no-card">
+        <span class="no-card-dot"></span>
+        <strong>No credit card required.</strong>&nbsp; Free plan available forever.
+      </div>
+    </div>
+
+
+  </section>
+
+  <!-- ── APP SHOWCASE ── -->
+  <section class="showcase" id="showcase">
+    <p class="showcase-label">The actual software — exactly as it looks</p>
+    <div class="app-wrap">
+      <div class="app-win" id="appWin">
+        <div class="win-bar">
+          <div class="wd r"></div>
+          <div class="wd y"></div>
+          <div class="wd g"></div>
+          <div class="win-t">PodWizard v6 — Creator Studio</div>
+        </div>
+        <!-- Getting Started onboarding bar - matches real app -->
+        <div class="onboard-bar">
+          <div class="ob-left">
+            <div class="ob-badge">0/5</div>
+            <div>
+              <div class="ob-title">Getting Started</div>
+              <div class="ob-sub">0 of 5 steps complete</div>
+            </div>
+          </div>
+          <div class="ob-prog">
+            <div class="ob-prog-fill" style="width:0%"></div>
+          </div>
+          <div class="ob-x">✕</div>
+        </div>
+        <div class="win-layout">
+          <!-- Sidebar matching real screenshots exactly -->
+          <div class="win-sb">
+            <div class="sb-show">
+              <div class="sb-show-av">🎙️</div>
+              <div style="flex:1;min-width:0">
+                <div class="sb-show-nm">My Show</div>
+                <div class="sb-show-sub">Click to configure</div>
+              </div>
+              <div style="font-size:0.7rem;color:var(--t3);flex-shrink:0">⚙</div>
+            </div>
+            <div class="sbg">STUDIO</div>
+            <div class="sbi on">📊 Dashboard</div>
+            <div class="sbi">⚡ Generate <span class="sb-new">NEW</span></div>
+            <div class="sbi">✍️ Script Studio</div>
+            <div class="sbi">📅 Content Calendar</div>
+            <div class="sbi">🕐 Episode History</div>
+            <div class="sbg">INSIGHTS</div>
+            <div class="sbi">📈 Analytics</div>
+            <div class="sbi">🎯 Audience Insights</div>
+            <div class="sbg">GROWTH</div>
+            <div class="sbi">👥 Guest Booker</div>
+            <div class="sb-btm">
+              <div class="sb-unlimited">
+                <span class="sb-ul-icon">⚡</span>
+                <span class="sb-ul-text">Unlimited</span>
+                <span class="sb-creator-badge">CREATOR</span>
+              </div>
+              <div class="sb-buy-packs">Buy Packs</div>
+              <div class="sb-acc">
+                <div class="sb-av">S</div>
+                <div>
+                  <div class="sb-an">Success 4K</div><span class="sb-ab">v6 Studio</span>
+                </div>
+                <div style="font-size:0.65rem;color:var(--t3);margin-left:auto">⚙</div>
+              </div>
+            </div>
+          </div>
+          <!-- Main dashboard matching real screenshots -->
+          <div class="win-main">
+            <!-- Hero card - matches real app exactly -->
+            <div class="dhc">
+              <div>
+                <div class="dhc-b">✦ PodWizard v6 — EXTREME QUALITY MODE</div>
+                <div class="dhc-h">Generate a Perfect Episode<br><span>in One Click.</span></div>
+                <div class="dhc-s">Deep research → Host-voice script → 5 real thumbnails → 15 shorts → Sponsor matches →
+                  Growth score → Full SEO Engine. All QA-gated to 9.8/10.</div>
+                <div class="dhc-chips">
+                  <span class="dhchip">10 Viral Titles</span>
+                  <span class="dhchip">5 Real Thumbnails</span>
+                  <span class="dhchip">Full Script</span>
+                  <span class="dhchip">15 Shorts</span>
+                  <span class="dhchip">Sponsor Scripts</span>
+                  <span class="dhchip">Growth Score</span>
+                  <span class="dhchip">SEO Engine</span>
+                  <span class="dhchip">A/B Plan</span>
+                </div>
+              </div>
+              <div style="flex-shrink:0;text-align:center">
+                <button class="gen-btn-m">⚡ Generate Perfect Episode</button>
+                <div
+                  style="font-size:0.55rem;color:var(--grn);margin-top:5px;display:flex;align-items:center;justify-content:center;gap:4px">
+                  <span>⚡</span> Unlimited · Creator Plan
+                </div>
+              </div>
+            </div>
+            <!-- Stats row 1 - all zero, matching real screenshots -->
+            <div class="stats-r">
+              <div class="sc">
+                <div class="sc-ico" style="background:rgba(232,255,71,0.1)">🎙️</div>
+                <div>
+                  <div class="sc-n" style="color:var(--acc)">0</div>
+                  <div class="sc-l">Total Episodes</div>
+                  <div class="sc-s">0 published</div>
+                </div>
+              </div>
+              <div class="sc">
+                <div class="sc-ico" style="background:rgba(79,141,255,0.1)">📥</div>
+                <div>
+                  <div class="sc-n" style="color:var(--blu)">0</div>
+                  <div class="sc-l">Downloads</div>
+                  <div class="sc-s">All time</div>
+                </div>
+              </div>
+              <div class="sc">
+                <div class="sc-ico" style="background:rgba(155,109,255,0.1)">👥</div>
+                <div>
+                  <div class="sc-n" style="color:var(--pur)">0</div>
+                  <div class="sc-l">Guests</div>
+                  <div class="sc-s">0 confirmed</div>
+                </div>
+              </div>
+              <div class="sc">
+                <div class="sc-ico" style="background:rgba(0,229,160,0.1)">📦</div>
+                <div>
+                  <div class="sc-n" style="color:var(--grn)">0</div>
+                  <div class="sc-l">Packages</div>
+                  <div class="sc-s">Complete</div>
+                </div>
+              </div>
+            </div>
+            <!-- Stats row 2 - matches real screenshots -->
+            <div class="stats-r" style="margin-top:7px">
+              <div class="sc sc-muted">
+                <div class="sc-ico" style="background:rgba(79,141,255,0.08)">🧪</div>
+                <div>
+                  <div class="sc-n sc-dash">—</div>
+                  <div class="sc-l">Avg QA Score</div>
+                  <div class="sc-s">Generate first episode</div>
+                </div>
+              </div>
+              <div class="sc sc-muted">
+                <div class="sc-ico" style="background:rgba(255,107,43,0.08)">⭐</div>
+                <div>
+                  <div class="sc-n sc-dash">—</div>
+                  <div class="sc-l">Avg User Rating</div>
+                  <div class="sc-s">Rate your episodes</div>
+                </div>
+              </div>
+              <div class="sc sc-muted">
+                <div class="sc-ico" style="background:rgba(0,229,160,0.08)">🔍</div>
+                <div>
+                  <div class="sc-n sc-dash">—</div>
+                  <div class="sc-l">Avg SEO Score</div>
+                  <div class="sc-s">Run SEO Engine</div>
+                </div>
+              </div>
+              <div class="sc">
+                <div class="sc-ico" style="background:rgba(232,255,71,0.1)">📱</div>
+                <div>
+                  <div class="sc-n" style="color:var(--acc)">0</div>
+                  <div class="sc-l">Shorts Generated</div>
+                  <div class="sc-s">Across all episodes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── STATS BAR ── -->
+  <div class="stats-bar">
+    <div class="stat-big"><span class="stat-big-num">9.8/10</span><span class="stat-big-label">QA score · guaranteed
+        on
+        every output</span></div>
+    <div class="stat-big"><span class="stat-big-num">9 agents</span><span class="stat-big-label">Working in sequence,
+        automatically</span></div>
+    <div class="stat-big"><span class="stat-big-num">20+</span><span class="stat-big-label">Podcast niches ·
+        auto-detected</span></div>
+  </div>
+
+  <!-- ── Ticker ── -->
+
+  <div class="ticker-wrap">
+    <div class="t-track">
+      <div class="t-item">🎙️ Host-Voice Audio</div>
+      <div class="t-item">🖼️ 5 Real Thumbnails</div>
+      <div class="t-item">📱 30 Social Shorts</div>
+      <div class="t-item">🔍 Full SEO Engine</div>
+      <div class="t-item">💰 Sponsor Matching</div>
+      <div class="t-item">📊 Growth Score</div>
+      <div class="t-item">👥 Guest Booker</div>
+      <div class="t-item">🧪 A/B Testing</div>
+      <!-- Duplicate for seamless infinite loop -->
+      <div class="t-item">🎙️ Host-Voice Audio</div>
+      <div class="t-item">🖼️ 5 Real Thumbnails</div>
+      <div class="t-item">📱 30 Social Shorts</div>
+      <div class="t-item">🔍 Full SEO Engine</div>
+      <div class="t-item">💰 Sponsor Matching</div>
+      <div class="t-item">📊 Growth Score</div>
+      <div class="t-item">👥 Guest Booker</div>
+      <div class="t-item">🧪 A/B Testing</div>
+    </div>
+  </div>
+
+  <!-- ── 9-STEP PIPELINE ── -->
+  <section class="pipeline" id="pipeline">
+    <div class="wrap">
+      <div class="eyebrow">
+        <div class="el"></div> The Generation Pipeline
+      </div>
+      <h2 class="sec-h reveal">Nine agents.<br>One perfect episode.<br><span style="color:var(--acc)">Fully
+          automatic.</span></h2>
+      <p class="sec-s reveal d1">Hit generate. Nine specialized agents kick off in sequence, handing results to each
+        other. The QA Gate at the end refuses to ship anything below 9.8/10 — and retries automatically if needed.</p>
+
+      <div class="pl-layout">
+        <!-- Workshop running mockup -->
+        <div class="reveal">
+          <div class="ws-win">
+            <div class="ws-bar">
+              <div class="wd r"></div>
+              <div class="wd y"></div>
+              <div class="wd g"></div>
+              <div class="ws-bt">⚡ Generate — Episode Workshop</div>
+            </div>
+            <div class="ws-topic">
+              <div class="ws-tl">Episode Topic</div>
+              <div class="ws-tt">"The Crypto Kidnapping Ring of Miami"</div>
+              <div class="ws-chips">
+                <span class="ws-chip chip-acc">True Crime</span>
+                <span class="ws-chip chip-pur">🔮 Auto-detected</span>
+              </div>
+            </div>
+            <div class="ws-steps">
+              <div class="ws-si">
+                <div class="ws-ico ico-done">✓</div>
+                <div class="ws-info">
+                  <div class="ws-il">Step 1 — Deep Research + Fact-checking</div>
+                  <div class="ws-ib">
+                    <div class="ws-ibf" style="width:100%;background:var(--grn)"></div>
+                  </div>
+                </div>
+                <div class="ws-ist d">Done</div>
+              </div>
+              <div class="ws-si">
+                <div class="ws-ico ico-done">✓</div>
+                <div class="ws-info">
+                  <div class="ws-il">Step 2 — Detailed Script + 10 Titles</div>
+                  <div class="ws-ib">
+                    <div class="ws-ibf" style="width:100%;background:var(--grn)"></div>
+                  </div>
+                </div>
+                <div class="ws-ist d">Done</div>
+              </div>
+              <div class="ws-si">
+                <div class="ws-ico ico-done">✓</div>
+                <div class="ws-info">
+                  <div class="ws-il">Step 3 — 5 Real AI Thumbnails</div>
+                  <div class="ws-ib">
+                    <div class="ws-ibf" style="width:100%;background:var(--grn)"></div>
+                  </div>
+                </div>
+                <div class="ws-ist d">Done</div>
+              </div>
+              <div class="ws-si">
+                <div class="ws-ico ico-run">⚙</div>
+                <div class="ws-info">
+                  <div class="ws-il">Step 4 — Guest Suggestions + Pitches</div>
+                  <div class="ws-ib">
+                    <div class="ws-ibf"
+                      style="width:68%;background:var(--acc);animation:pulse-bar 2s ease-in-out infinite alternate">
+                    </div>
+                  </div>
+                </div>
+                <div class="ws-ist r">Running…</div>
+              </div>
+              <div class="ws-si" style="opacity:0.4">
+                <div class="ws-ico ico-q">5</div>
+                <div class="ws-info">
+                  <div class="ws-il">Step 5 — 15 Social Shorts</div>
+                  <div class="ws-ib"></div>
+                </div>
+                <div class="ws-ist q">Queued</div>
+              </div>
+              <div class="ws-si" style="opacity:0.3">
+                <div class="ws-ico ico-q">6</div>
+                <div class="ws-info">
+                  <div class="ws-il">Step 6 — Sponsor Matches + Ad Scripts</div>
+                  <div class="ws-ib"></div>
+                </div>
+                <div class="ws-ist q">Queued</div>
+              </div>
+              <div class="ws-si" style="opacity:0.22">
+                <div class="ws-ico ico-q">7</div>
+                <div class="ws-info">
+                  <div class="ws-il">Step 7 — Growth Score + Predictions</div>
+                  <div class="ws-ib"></div>
+                </div>
+                <div class="ws-ist q">Queued</div>
+              </div>
+              <div class="ws-si" style="opacity:0.16">
+                <div class="ws-ico ico-q">8</div>
+                <div class="ws-info">
+                  <div class="ws-il">Step 8 — A/B Testing Plan</div>
+                  <div class="ws-ib"></div>
+                </div>
+                <div class="ws-ist q">Queued</div>
+              </div>
+              <div class="ws-si" style="opacity:0.12">
+                <div class="ws-ico ico-q">9</div>
+                <div class="ws-info">
+                  <div class="ws-il">Step 9 — Full SEO Engine + QA Gate (9.8/10)</div>
+                  <div class="ws-ib"></div>
+                </div>
+                <div class="ws-ist q">Queued</div>
+              </div>
+            </div>
+            <div class="ws-out">
+              <div class="ws-ol">✓ Completed so far</div>
+              <div class="ws-og">
+                <div class="ws-oi"><span class="ws-oi-i">📝</span>Full Script</div>
+                <div class="ws-oi"><span class="ws-oi-i">📰</span>10 Titles</div>
+                <div class="ws-oi"><span class="ws-oi-i">📋</span>Show Notes</div>
+                <div class="ws-oi"><span class="ws-oi-i">🖼️</span>Thumbnail 1</div>
+                <div class="ws-oi"><span class="ws-oi-i">🖼️</span>Thumbnail 2</div>
+                <div class="ws-oi"><span class="ws-oi-i">🖼️</span>+3 more</div>
+              </div>
+            </div>
+          </div>
+          <style>
+            @keyframes pulse-bar {
+              from {
+                width: 60%
+              }
+
+              to {
+                width: 80%
+              }
+            }
+          </style>
+        </div>
+
+        <!-- Steps list -->
+        <div class="pl-steps reveal d2">
+          <div class="pl-si">
+            <div class="pl-num">01</div>
+            <div class="pl-body">
+              <div class="pl-tag"
+                style="background:rgba(79,141,255,0.1);color:var(--blu);border:1px solid rgba(79,141,255,0.2)">🌐
+                Web-connected</div>
+              <div class="pl-ti">Deep Research + Fact-checking</div>
+              <div class="pl-de">Searches the live web, cross-references sources, and fact-checks key claims. Builds a
+                research brief tailored to your niche — not generic AI knowledge.</div>
+            </div>
+          </div>
+          <div class="pl-si">
+            <div class="pl-num">02</div>
+            <div class="pl-body">
+              <div class="pl-tag"
+                style="background:rgba(232,255,71,0.1);color:var(--acc);border:1px solid rgba(232,255,71,0.2)">✦
+                Broadcast-quality</div>
+              <div class="pl-ti">Detailed Script + 10 Title Variants</div>
+              <div class="pl-de">Writes a complete, broadcast-ready script — hook, story arc, transitions, close. Plus
+                10 SEO-optimised title variants using Claude Sonnet's full context window.</div>
+            </div>
+          </div>
+          <div class="pl-si">
+            <div class="pl-num">03</div>
+            <div class="pl-body">
+              <div class="pl-tag"
+                style="background:rgba(155,109,255,0.1);color:var(--pur);border:1px solid rgba(155,109,255,0.2)">🎨
+                AI-generated images</div>
+              <div class="pl-ti">5 Real Thumbnails</div>
+              <div class="pl-de">Not templates. Five unique AI-generated images, each optimised for click-through in
+                your specific niche. High-CTR layouts, bold text, niche-accurate visuals.</div>
+            </div>
+          </div>
+          <div class="pl-si">
+            <div class="pl-num">04</div>
+            <div class="pl-body">
+              <div class="pl-tag"
+                style="background:rgba(0,229,160,0.1);color:var(--grn);border:1px solid rgba(0,229,160,0.2)">📧
+                Pitch-ready</div>
+              <div class="pl-ti">Guest Suggestions + Pitch Emails</div>
+              <div class="pl-de">Recommends ideal guests by audience fit and niche relevance. Auto-generates a
+                ready-to-send branded pitch email for each one.</div>
+            </div>
+          </div>
+          <div class="pl-si">
+            <div class="pl-num">05</div>
+            <div class="pl-body">
+              <div class="pl-tag"
+                style="background:rgba(255,107,43,0.1);color:var(--org);border:1px solid rgba(255,107,43,0.2)">🚀
+                Multi-platform</div>
+              <div class="pl-ti">15 Platform-Specific Shorts</div>
+              <div class="pl-de">Repurposes your episode into 15 posts: Twitter/X threads, Instagram captions, TikTok
+                hooks, LinkedIn takes, and a newsletter version.</div>
+            </div>
+          </div>
+          <div class="pl-si">
+            <div class="pl-num">06</div>
+            <div class="pl-body">
+              <div class="pl-tag"
+                style="background:rgba(245,158,11,0.1);color:var(--amb);border:1px solid rgba(245,158,11,0.2)">💼
+                Revenue-ready</div>
+              <div class="pl-ti">Sponsor Matches + Ad Scripts</div>
+              <div class="pl-de">Identifies aligned brands and auto-generates a ready-to-record ad-read script for
+                each
+                match. Already formatted and timed.</div>
+            </div>
+          </div>
+          <div class="pl-si">
+            <div class="pl-num">07</div>
+            <div class="pl-body">
+              <div class="pl-tag"
+                style="background:rgba(79,141,255,0.1);color:var(--blu);border:1px solid rgba(79,141,255,0.2)">📊
+                Predictive AI</div>
+              <div class="pl-ti">Growth Score + Predictions</div>
+              <div class="pl-de">Runs a virality analysis predicting listens, subscriber lift, and shareability. Gives
+                a
+                0–100 growth score with specific actions to improve it.</div>
+            </div>
+          </div>
+          <div class="pl-si">
+            <div class="pl-num">08</div>
+            <div class="pl-body">
+              <div class="pl-tag"
+                style="background:rgba(155,109,255,0.1);color:var(--pur);border:1px solid rgba(155,109,255,0.2)">⚗️
+                Data-driven</div>
+              <div class="pl-ti">A/B Testing Plan</div>
+              <div class="pl-de">Creates a structured test across 3 title variants with predicted performance based on
+                your niche audience's behaviour patterns.</div>
+            </div>
+          </div>
+          <div class="pl-si">
+            <div class="pl-num">09</div>
+            <div class="pl-body">
+              <div class="pl-tag"
+                style="background:rgba(232,255,71,0.1);color:var(--acc);border:1px solid rgba(232,255,71,0.2)">✓
+                QA-gated 9.8/10</div>
+              <div class="pl-ti">Full SEO Engine + QA Gate</div>
+              <div class="pl-de">Scores 6 SEO dimensions, writes platform descriptions for Spotify/Apple/YouTube,
+                generates a blog outline — then the QA Agent refuses to deliver anything below 9.8/10.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES BENTO ── -->
+  <section class="bento" id="features">
+    <div class="wrap">
+      <div class="eyebrow">
+        <div class="el"></div> Everything Included
+      </div>
+      <h2 class="sec-h reveal">One studio.<br>Every tool you need.</h2>
+      <div class="bento-grid reveal">
+        <div class="bc" style="--bc-c:var(--acc)">
+          <div class="bc-ico" style="background:rgba(232,255,71,0.08);border:1px solid rgba(232,255,71,0.14)">🔍</div>
+          <div class="bc-ti">SEO Podcast Engine</div>
+          <div class="bc-de">0–100 SEO score across 6 dimensions. 10 keyword-optimised titles with CTR predictions.
+            Platform-specific descriptions for Spotify, Apple, and YouTube. Full blog post outline.</div>
+        </div>
+        <div class="bc" style="--bc-c:var(--blu)">
+          <div class="bc-ico" style="background:rgba(79,141,255,0.08);border:1px solid rgba(79,141,255,0.14)">📈</div>
+          <div class="bc-ti">Analytics & Audience Insights</div>
+          <div class="bc-de">Listener heatmaps showing exact drop-off moments. Demographic breakdowns. SEO ranking
+            tracker vs. competitors. AI growth predictions with actionable weekly recommendations.</div>
+        </div>
+        <div class="bc" style="--bc-c:var(--grn)">
+          <div class="bc-ico" style="background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.14)">👥</div>
+          <div class="bc-ti">AI Guest Booker</div>
+          <div class="bc-de">AI-matched guest recommendations by audience fit. Branded pitch email templates ready to
+            send. Calendar sync, intake forms, and post-episode performance tracking.</div>
+        </div>
+        <div class="bc" style="--bc-c:var(--org)">
+          <div class="bc-ico" style="background:rgba(255,107,43,0.08);border:1px solid rgba(255,107,43,0.14)">💰</div>
+          <div class="bc-ti">Sponsorship Manager</div>
+          <div class="bc-de">Full deal pipeline with kanban view. AI brand-to-audience matching. Automated ad-read
+            script generation. Deliverable tracking and sponsor performance reporting.</div>
+        </div>
+        <div class="bc" style="--bc-c:var(--pur)">
+          <div class="bc-ico" style="background:rgba(155,109,255,0.08);border:1px solid rgba(155,109,255,0.14)">🤖
+          </div>
+          <div class="bc-ti">Wizard AI Co-pilot</div>
+          <div class="bc-de">Context-aware assistant on every page. Knows your episode, stats, errors, and plan.
+            Answers
+            any question about your show — zero support team needed.</div>
+        </div>
+        <div class="bc" style="--bc-c:var(--amb)">
+          <div class="bc-ico" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.14)">📣</div>
+          <div class="bc-ti">Promotion & Repurposing</div>
+          <div class="bc-de">One episode into 15 social posts, a newsletter, Twitter/X threads, Instagram captions,
+            TikTok hooks, and a LinkedIn article — all in the same generation pipeline.</div>
+        </div>
+        <div class="bc" style="--bc-c:var(--acc)">
+          <div class="bc-ico" style="background:rgba(232,255,71,0.08);border:1px solid rgba(232,255,71,0.14)">✍️</div>
+          <div class="bc-ti">Script Studio</div>
+          <div class="bc-de">Full script editor with AI enhancement. Hook optimisation, pacing adjustments,
+            niche-specific language tuning, and filler-word prevention as standard.</div>
+        </div>
+        <div class="bc" style="--bc-c:var(--blu)">
+          <div class="bc-ico" style="background:rgba(79,141,255,0.08);border:1px solid rgba(79,141,255,0.14)">👤</div>
+          <div class="bc-ti">Team Dashboard</div>
+          <div class="bc-de">Role-based access for hosts, editors, co-hosts, and producers. Real-time script
+            collaboration, task assignment, and approval workflows built in.</div>
+        </div>
+        <div class="bc" style="--bc-c:var(--grn)">
+          <div class="bc-ico" style="background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.14)">📅</div>
+          <div class="bc-ti">Content Calendar</div>
+          <div class="bc-de">Plan your entire publishing schedule visually. See episodes in research, scripting,
+            draft,
+            and scheduled — and never miss a release date again.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING ── -->
+  <section class="pricing" id="pricing">
+    <div class="wrap" style="text-align:center">
+      <div class="eyebrow" style="justify-content:center">
+        <div class="el"></div> Simple Pricing <div class="el"></div>
+      </div>
+      <h2 class="sec-h reveal" style="max-width:100%;text-align:center;margin:0 auto 14px">One plan. Full power.</h2>
+      <p class="sec-s reveal d1" style="text-align:center;margin:0 auto">Everything you need to produce a perfect
+        podcast — start free, upgrade when you're ready.</p>
+      <div class="ptog-w">
+        <div class="ptog">
+          <div class="pto on" id="tm" onclick="setBilling('m')">Monthly</div>
+          <div class="pto" id="ta" onclick="setBilling('a')">Yearly <span class="save-p">SAVE 28%</span></div>
+        </div>
+      </div>
+      <div class="plans-row reveal">
+        <!-- Starter - matches real software exactly -->
+        <div class="pcard">
+          <div class="pc-plan">Starter</div>
+          <div class="pc-price-row">
+            <div class="pc-price">$0</div>
+            <span class="pc-per">Free forever</span>
+          </div>
+          <div class="pc-desc" style="margin-top:8px">For new voices. No time limit, no expiry.</div>
+          <div class="pc-div" style="margin-top:20px"></div>
+          <div class="pc-feats-1">
+            <div class="pcf">
+              <div class="pcf-ck">✓</div>3 episode generations / month
+            </div>
+            <div class="pcf">
+              <div class="pcf-ck">✓</div>All 9 production steps
+            </div>
+            <div class="pcf">
+              <div class="pcf-ck">✓</div>Full scripts &amp; show notes
+            </div>
+            <div class="pcf">
+              <div class="pcf-ck">✓</div>Thumbnails (watermarked)
+            </div>
+            <div class="pcf">
+              <div class="pcf-ck">✓</div>Shorts &amp; social assets
+            </div>
+          </div>
+          <button class="pc-btn pc-btn-g" style="margin-top:24px" onclick="openModal()">Get started free</button>
+        </div>
+        <!-- Creator - matches real software exactly -->
+        <div class="pcard hot">
+          <div class="pc-pop">MOST POPULAR</div>
+          <div class="pc-plan" style="color:var(--acc)">Creator</div>
+          <div class="pc-price-row">
+            <div class="pc-orig" id="pcOrig">$29</div>
+            <div class="pc-price" id="pcPrice">$29</div>
+            <span class="pc-per" id="pcPer">/mo</span>
+          </div>
+          <div style="font-size:0.8rem;color:var(--t3);margin-bottom:16px" id="pcBillLabel">billed monthly</div>
+          <div class="pc-feats-1" style="margin-bottom:20px">
+            <div class="pcf pcf-grn">
+              <div class="pcf-ck">✓</div>Unlimited AI episode packages
+            </div>
+            <div class="pcf pcf-grn">
+              <div class="pcf-ck">✓</div>5 real AI-generated thumbnails per episode
+            </div>
+            <div class="pcf pcf-grn">
+              <div class="pcf-ck">✓</div>Full broadcast-quality scripts (Claude Sonnet)
+            </div>
+            <div class="pcf pcf-grn">
+              <div class="pcf-ck">✓</div>15 platform-specific shorts per episode
+            </div>
+            <div class="pcf pcf-grn">
+              <div class="pcf-ck">✓</div>Full SEO Engine + blog outline
+            </div>
+            <div class="pcf pcf-grn">
+              <div class="pcf-ck">✓</div>Growth scoring &amp; virality predictions
+            </div>
+            <div class="pcf pcf-grn">
+              <div class="pcf-ck">✓</div>A/B testing plans
+            </div>
+            <div class="pcf pcf-grn" style="color:var(--grn)">
+              <div class="pcf-ck">✓</div><span>Guest Booker &amp; Sponsor Manager</span> <span
+                class="feat-new">NEW</span>
+            </div>
+            <div class="pcf pcf-grn" style="color:var(--grn)">
+              <div class="pcf-ck">✓</div><span>Analytics &amp; Audience Insights</span> <span
+                class="feat-new">NEW</span>
+            </div>
+            <div class="pcf pcf-grn" style="color:var(--grn)">
+              <div class="pcf-ck">✓</div><span>Team Dashboard (co-hosts, editors, viewers)</span> <span
+                class="feat-new">NEW</span>
+            </div>
+            <div class="pcf pcf-grn">
+              <div class="pcf-ck">✓</div>14-day free trial — cancel anytime
+            </div>
+          </div>
+          <button class="pc-btn pc-btn-s" onclick="openModal()" id="pcTrialBtn">Start free trial — no card needed
+          </button>
+          <div
+            style="font-size:0.72rem;color:var(--t3);text-align:center;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px">
+            <span>☆</span> 14-day free trial · Cancel anytime
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="cta-sec">
+    <div class="cta-glow"></div>
+    <div class="cta-grid-bg"></div>
+    <div class="wrap" style="position:relative;z-index:2">
+      <div class="hero-badge reveal" style="margin:0 auto 28px;display:inline-flex">
+        <span class="bdot"></span> No credit card. No commitment. No catch.
+      </div>
+      <h2 class="cta-h reveal">
+        Your best<br>
+        <span class="cta-h-ghost">episode hasn't</span><br>
+        <span class="cta-h-acc">been made yet.</span>
+      </h2>
+      <p class="cta-sub reveal d1">Join podcasters who chose PodWizard to grow faster, rank higher, and create better
+        content — without burning out.</p>
+      <div class="cta-btns reveal d2">
+        <button class="btn-acc" onclick="openModal()">Start free trial — no card needed</button>
+        <a href="https://podpulse-creator-flow.base44.app" class="btn-ghost" target="_blank">Sign in →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="foot-inner">
+      <div>
+        <div class="foot-logo">
+          <div class="lm" style="width:26px;height:26px;border-radius:7px">
+            <div class="lm-outer" style="width:14px;height:14px">
+              <div class="lm-mid" style="width:10px;height:10px"></div>
+              <div class="lm-inner" style="width:5px;height:5px"></div>
+            </div>
+          </div>
+          PodWizard
+        </div>
+        <p class="foot-tag">The professional podcast studio for creators who want to script, rank, and grow — all in
+          one
+          place.</p>
+      </div>
+      <div>
+        <div class="fc-h">Product</div>
+        <div class="foot-links">
+          <a href="#pipeline">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="https://podpulse-creator-flow.base44.app" target="_blank">Sign in</a>
+        </div>
+      </div>
+      <div>
+        <div class="fc-h">Company</div>
+        <div class="foot-links">
+          <a href="about.html">About</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="/cdn-cgi/l/email-protection#4a222f2626250a3a252e3a3f26392f642325">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 PodWizard. All rights reserved.</span>
+      <span>Made for creators who don't settle.</span>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
+    /* ── MODAL ── */
+    const EMAIL_ACTION = ''; // ← paste Formspree/ConvertKit/Mailchimp URL here
+    function openModal() { document.getElementById('modal').classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(() => document.getElementById('mEmail')?.focus(), 300); }
+    function closeModal() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = ''; }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    async function submitModal(e) {
+      e.preventDefault();
+      const email = document.getElementById('mEmail').value.trim();
+      if (!email) return;
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Setting up your studio…'; btn.disabled = true;
+      try {
+        if (EMAIL_ACTION) { await fetch(EMAIL_ACTION, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) }); }
+        else { const l = JSON.parse(localStorage.getItem('pp') || '[]'); if (!l.includes(email)) l.push(email); localStorage.setItem('pp', JSON.stringify(l)); await new Promise(r => setTimeout(r, 900)); }
+        document.getElementById('mForm').style.display = 'none';
+        document.getElementById('mOk').style.display = 'block';
+      } catch (err) { btn.textContent = 'Try again →'; btn.disabled = false; }
+    }
+
+    /* ── BILLING ── */
+    function setBilling(m) {
+      document.getElementById('tm').classList.toggle('on', m === 'm');
+      document.getElementById('ta').classList.toggle('on', m === 'a');
+      const orig = document.getElementById('pcOrig'),
+        price = document.getElementById('pcPrice'),
+        per = document.getElementById('pcPer'),
+        label = document.getElementById('pcBillLabel'),
+        btn = document.getElementById('pcTrialBtn');
+      if (m === 'a') {
+        orig.classList.add('show'); price.textContent = '$19'; per.textContent = '/mo';
+        if (label) label.textContent = 'billed annually ($228/yr)';
+        if (btn) btn.textContent = 'Start Free Trial — $19/mo';
+      } else {
+        orig.classList.remove('show'); price.textContent = '$29'; per.textContent = '/mo';
+        if (label) label.textContent = 'billed monthly';
+        if (btn) btn.textContent = 'Start Free Trial — $29/mo';
+      }
+    }
+
+
+    /* ── REVEAL ── */
+    const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.07 });
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+    const ao = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.03 });
+    document.querySelectorAll('.app-win').forEach(el => ao.observe(el));
+
+    /* ── TABS ── */
+    document.querySelectorAll('.wtab').forEach(t => { t.addEventListener('click', () => { document.querySelectorAll('.wtab').forEach(x => x.classList.remove('on')); t.classList.add('on'); }); });
+
+    /* ── NAV ACTIVE ── */
+    const secs = document.querySelectorAll('section[id]'), nls = document.querySelectorAll('.nav-links a[href^="#"]');
+
+    <!-- NAV ACTIVE -->
+
+    window.addEventListener('scroll', () => {
+      let c = '';
+      document.querySelectorAll('section[id]').forEach(s => {
+        if (window.scrollY >= s.offsetTop - 90) c = s.id;
+      });
+      document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + c ? 'var(--acc)' : '';
+      });
+    }, { passive: true });
+
+
+    const toggleBtn = document.querySelector('.theme-toggle'); // Pass på at knappen har denne klassen
+    const htmlElement = document.documentElement;
+
+    // 1. Funksjon for å oppdatere knappen (valgfritt hvis du vil bytte ikon)
+    const updateBtnIcon = (theme) => {
+      if (toggleBtn) toggleBtn.textContent = theme === 'light' ? '☀️' : '🌓';
+    };
+
+    // 2. Sjekk lagret preferanse med EN gang siden laster
+    const savedTheme = localStorage.getItem('pw-theme') || 'dark';
+    if (savedTheme === 'light') {
+      htmlElement.setAttribute('data-theme', 'light');
+      updateBtnIcon('light');
+    }
+
+    // 3. Logikk for når man klikker på knappen
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+
+        if (currentTheme === 'light') {
+          htmlElement.removeAttribute('data-theme');
+          localStorage.setItem('pw-theme', 'dark');
+          updateBtnIcon('dark');
+        } else {
+          htmlElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('pw-theme', 'light');
+          updateBtnIcon('light');
+        }
+      });
+    }
+
+  </script>
+</body>
+
+</html>
