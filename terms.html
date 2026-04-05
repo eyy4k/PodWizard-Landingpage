@@ -535,40 +535,144 @@ nav {
       }
     }
 
+    
     @media(max-width:600px) {
-      nav {
-        padding: 0 14px;
-        height: 60px
-      }
+  nav {
+    padding: 0 10px;
+    height: 56px;
+    gap: 8px
+  }
 
-      .nav-signin {
-        display: none
-      }
+  .nav-logo {
+    font-size: 0.9rem;
+    gap: 5px;
+    flex-shrink: 0;
+    min-width: fit-content
+  }
 
-      .doc-hero,
-      .doc-body {
-        padding-left: 14px;
-        padding-right: 14px
-      }
+  .lm {
+    width: 26px;
+    height: 26px
+  }
 
-      .doc-hero {
-        padding-top: 76px
-      }
+  .v6b {
+    display: none        /* HIDES v6 badge */
+  }
 
-      .footer-inner {
-        grid-template-columns: 1fr
-      }
+  .nav-links {
+    display: none        /* HIDES nav links */
+  }
 
-      .site-footer {
-        padding: 24px 14px
-      }
+  .nav-r {
+    gap: 4px;
+    flex-shrink: 0
+  }
 
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-        gap: 6px
-      }
-    }
+  .theme-toggle {
+    font-size: 1.1rem;
+    padding: 6px;
+    line-height: 1;
+    background: none;
+    border: none;
+    cursor: pointer
+  }
+
+  .nav-si {
+    display: none        /* HIDES sign in */
+  }
+
+  .nav-trial {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0
+  }
+
+  @media(max-width:400px) {
+  nav {
+    padding: 0 8px;
+    height: 52px;
+    gap: 4px
+  }
+
+  .nav-logo {
+    font-size: 0.85rem;
+    gap: 4px;
+    flex-shrink: 0;
+    min-width: fit-content
+  }
+
+  .lm {
+    width: 24px;
+    height: 24px
+  }
+
+  .v6b {
+    display: none
+  }
+
+  .nav-r {
+    gap: 3px;
+    flex-shrink: 0
+  }
+
+  .theme-toggle {
+    font-size: 1rem;
+    padding: 4px;
+    background: none;
+    border: none
+  }
+
+  .nav-si {
+    display: none
+  }
+
+  .nav-trial {
+    padding: 5px 8px;
+    font-size: 0.7rem;
+    flex-shrink: 0
+  }
+}
+
+@media(max-width:320px) {
+  nav {
+    padding: 0 6px;
+    height: 50px;
+    gap: 3px
+  }
+
+  .nav-logo {
+    font-size: 0.8rem;
+    gap: 3px;
+    flex-shrink: 0;
+    min-width: fit-content
+  }
+
+  .lm {
+    width: 22px;
+    height: 22px
+  }
+
+  .v6b {
+    display: none
+  }
+
+  .theme-toggle {
+    font-size: 0.95rem;
+    padding: 3px;
+    background: none;
+    border: none
+  }
+
+  .nav-trial {
+    padding: 5px 8px;
+    font-size: 0.65rem;
+    flex-shrink: 0
+  }
+}
+}  
+
   </style>
 </head>
 
@@ -826,9 +930,9 @@ nav {
       <div>
         <div class="footer-col-title">Company</div>
         <div class="footer-links">
-          <a href="about.html">About</a>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Service</a>
+          <a href="about.html" target="_blank">About</a>
+          <a href="privacy.html" target="_blank">Privacy Policy</a>
+          <a href="terms.html" target="_blank">Terms of Service</a>
           <a href="mailto:hello@podwizard.io">Contact</a>
         </div>
       </div>
