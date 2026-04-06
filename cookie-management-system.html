@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Management & Audit Dashboard — PodWizard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #05070d;
+      --surf: #0d1020;
+      --surf2: #111628;
+      --b1: rgba(255, 255, 255, 0.06);
+      --b2: rgba(255, 255, 255, 0.11);
+      --t1: #eceef4;
+      --t2: #9ba3b8;
+      --t3: #5c6580;
+      --acc: #e8ff47;
+      --acc2: #cfe800;
+      --grn: #00e5a0;
+      --red: #ff6b6b;
+      --nav-bg: rgba(5, 7, 13, 0.92);
+    }
+
+    [data-theme="light"] {
+      --bg: #f5f6fa;
+      --surf: #ffffff;
+      --surf2: #f0f2f9;
+      --b1: rgba(0, 0, 0, 0.07);
+      --b2: rgba(0, 0, 0, 0.12);
+      --t1: #0d0f1a;
+      --t2: #4a5070;
+      --t3: #8890aa;
+      --acc: #b8c800;
+      --acc2: #9aaa00;
+      --grn: #00b87a;
+      --red: #e63946;
+      --nav-bg: rgba(245, 246, 250, 0.95);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--t1);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 52px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(28px);
+      border-bottom: 1px solid var(--b1);
+    }
+
+    .nav-logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--t1);
+      text-decoration: none;
+    }
+
+    .theme-toggle {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--b2);
+      background: rgba(255,255,255,0.04);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(232, 255, 71, 0.1);
+      border-color: rgba(232, 255, 71, 0.25);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 40px;
+    }
+
+    h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      color: var(--t2);
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+    }
+
+    /* Tabs */
+    .tab-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--b1);
+      padding-bottom: 0;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 12px 20px;
+      background: transparent;
+      border: none;
+      color: var(--t2);
+      cursor: pointer;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--t1);
+    }
+
+    .tab-btn.active {
+      color: var(--acc);
+      border-bottom-color: var(--acc);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Dashboard Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: var(--surf);
+      border: 1px solid var(--b1);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.2s;
+    }
+
+    .stat-card:hover {
+      border-color: var(--b2);
+      background: var(--surf2);
+    }
+
+    .stat-label {
+      color: var(--t2);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--acc);
+      margin-bottom: 12px;
+    }
+
+    .stat-subtext {
+      color: var(--t3);
+      font-size: 0.85rem;
+    }
+
+    /* Cookie Categories */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .category-card {
+      background: var(--surf);
+      border: 1px solid var(--b1);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.2s;
+    }
+
+    .category-card:hover {
+      border-color: var(--acc);
+      background: var(--surf2);
+    }
+
+    .category-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .category-status {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--grn);
+    }
+
+    .category-status.disabled {
+      background: var(--t3);
+    }
+
+    .category-description {
+      color: var(--t2);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .category-examples {
+      background: var(--surf2);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      font-size: 0.85rem;
+      color: var(--t3);
+    }
+
+    .category-examples strong {
+      display: block;
+      color: var(--t2);
+      margin-bottom: 6px;
+    }
+
+    .toggle-switch {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .switch {
+      width: 50px;
+      height: 28px;
+      background: var(--t3);
+      border-radius: 14px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .switch.enabled {
+      background: var(--grn);
+    }
+
+    .switch::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: all 0.3s;
+    }
+
+    .switch.enabled::after {
+      left: 24px;
+    }
+
+    /* Audit Log */
+    .audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surf);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--b1);
+    }
+
+    .audit-table thead {
+      background: var(--surf2);
+      border-bottom: 1px solid var(--b1);
+    }
+
+    .audit-table th {
+      padding: 16px;
+      text-align: left;
+      color: var(--t2);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .audit-table td {
+      padding: 16px;
+      border-bottom: 1px solid var(--b1);
+      color: var(--t1);
+    }
+
+    .audit-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .audit-action {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .audit-action.accept {
+      background: rgba(0, 229, 160, 0.2);
+      color: var(--grn);
+    }
+
+    .audit-action.reject {
+      background: rgba(255, 107, 107, 0.2);
+      color: var(--red);
+    }
+
+    .audit-action.update {
+      background: rgba(232, 255, 71, 0.2);
+      color: var(--acc);
+    }
+
+    /* Regional Compliance */
+    .compliance-section {
+      background: var(--surf);
+      border: 1px solid var(--b1);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .compliance-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .compliance-status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .compliance-status.compliant {
+      background: rgba(0, 229, 160, 0.2);
+      color: var(--grn);
+    }
+
+    .compliance-status.partial {
+      background: rgba(232, 255, 71, 0.2);
+      color: var(--acc);
+    }
+
+    .compliance-requirements {
+      background: var(--surf2);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+
+    .compliance-requirements ul {
+      margin-left: 20px;
+      list-style-type: disc;
+    }
+
+    .compliance-requirements li {
+      margin-bottom: 8px;
+      color: var(--t2);
+    }
+
+    .compliance-requirements strong {
+      color: var(--t1);
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 500;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background: var(--acc);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background: var(--acc2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(232, 255, 71, 0.3);
+    }
+
+    .btn-secondary {
+      background: var(--surf2);
+      color: var(--t1);
+      border: 1px solid var(--b2);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surf);
+      border-color: var(--b1);
+    }
+
+    .btn-danger {
+      background: var(--red);
+      color: white;
+    }
+
+    .btn-danger:hover {
+      opacity: 0.9;
+    }
+
+    /* Export Section */
+    .export-section {
+      background: var(--surf);
+      border: 1px solid var(--b1);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 40px;
+    }
+
+    .export-section h3 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+
+    .export-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      main {
+        margin-top: 100px;
+        padding: 0 20px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      nav {
+        padding: 0 20px;
+      }
+
+      .tab-nav {
+        gap: 4px;
+      }
+
+      .tab-btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .export-buttons {
+        flex-direction: column;
+      }
+
+      .export-buttons .btn {
+        width: 100%;
+      }
+    }
+
+    /* Logo mark - fixed proportions */
+    .lm {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--acc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0
+    }
+
+    .lm::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent)
+    }
+
+    .lm-outer {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1
+    }
+
+    .lm-mid {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--acc);
+      z-index: 2
+    }
+
+    .lm-inner {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--bg);
+      z-index: 3;
+      position: relative;
+      animation: lmpulse 2.2s ease-in-out infinite
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.025em;
+      cursor: pointer
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <div class="lm">
+      <div class="lm-outer">
+        <div class="lm-mid"></div>
+        <div class="lm-inner"></div>
+      </div>
+    </div>
+    PodWizard <span class="v6b">v6</span>
+  </div>
+  <button class="theme-toggle" id="themeBtn">🌓</button>
+</nav>
+
+<!-- Main Content -->
+<main>
+  <h1>🍪 Cookie Management & Compliance Dashboard</h1>
+  <p class="subtitle">Monitor, manage, and ensure compliance with global privacy regulations</p>
+
+  <!-- Tab Navigation -->
+  <div class="tab-nav">
+    <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+    <button class="tab-btn" data-tab="categories">Categories</button>
+    <button class="tab-btn" data-tab="audit">Audit Log</button>
+    <button class="tab-btn" data-tab="compliance">Regional Compliance</button>
+    <button class="tab-btn" data-tab="export">Export & Rights</button>
+  </div>
+
+  <!-- Dashboard Tab -->
+  <div id="dashboard" class="tab-content active">
+    <h2 style="margin-bottom: 24px;">Dashboard Overview</h2>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Consents</div>
+        <div class="stat-value" id="totalConsents">0</div>
+        <div class="stat-subtext">All consent decisions</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Accepted Cookies</div>
+        <div class="stat-value" id="acceptedRate">0%</div>
+        <div class="stat-subtext">Users who accepted tracking</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Rejected Cookies</div>
+        <div class="stat-value" id="rejectedRate">0%</div>
+        <div class="stat-subtext">Users who rejected tracking</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Last Updated</div>
+        <div class="stat-value" id="lastUpdated" style="font-size: 1.2rem;">Never</div>
+        <div class="stat-subtext">Your latest preference update</div>
+      </div>
+    </div>
+
+    <div class="export-section">
+      <h3>Quick Actions</h3>
+      <div class="export-buttons">
+        <button class="btn btn-primary" onclick="downloadConsentReceipt()">📄 Download Consent Receipt</button>
+        <button class="btn btn-secondary" onclick="resetCookies()">🔄 Reset All Cookies</button>
+        <button class="btn btn-secondary" onclick="generateAuditReport()">📊 Generate Audit Report</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Categories Tab -->
+  <div id="categories" class="tab-content">
+    <h2 style="margin-bottom: 24px;">Cookie Categories</h2>
+    <p style="margin-bottom: 24px; color: var(--t2);">Toggle cookie categories based on your preferences and regional requirements.</p>
+    
+    <div class="category-grid" id="categoryGrid">
+      <!-- Categories will be populated by JavaScript -->
+    </div>
+  </div>
+
+  <!-- Audit Log Tab -->
+  <div id="audit" class="tab-content">
+    <h2 style="margin-bottom: 24px;">Audit Log</h2>
+    <p style="margin-bottom: 24px; color: var(--t2);">Complete history of cookie consent decisions and compliance actions.</p>
+    
+    <table class="audit-table">
+      <thead>
+        <tr>
+          <th>Date & Time</th>
+          <th>Action</th>
+          <th>Details</th>
+          <th>Region Detected</th>
+        </tr>
+      </thead>
+      <tbody id="auditTableBody">
+        <tr>
+          <td colspan="4" style="text-align: center; color: var(--t3); padding: 40px;">No audit logs yet. Consent decisions will appear here.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Regional Compliance Tab -->
+  <div id="compliance" class="tab-content">
+    <h2 style="margin-bottom: 24px;">Regional Compliance Status</h2>
+    <p style="margin-bottom: 24px; color: var(--t2);">Your compliance status with global privacy regulations.</p>
+    
+    <div id="complianceGrid">
+      <!-- Compliance sections will be populated by JavaScript -->
+    </div>
+  </div>
+
+  <!-- Export & Rights Tab -->
+  <div id="export" class="tab-content">
+    <h2 style="margin-bottom: 24px;">Data Subject Rights & Export</h2>
+    <p style="margin-bottom: 24px; color: var(--t2);">Exercise your privacy rights under GDPR, CCPA, and other regulations.</p>
+    
+    <div class="export-section">
+      <h3>Download Your Data</h3>
+      <p style="margin-bottom: 16px; color: var(--t2);">Export all data we have about you and your consent decisions.</p>
+      <div class="export-buttons">
+        <button class="btn btn-primary" onclick="downloadPersonalData()">📥 Download My Data (JSON)</button>
+        <button class="btn btn-primary" onclick="downloadPersonalDataCSV()">📥 Download My Data (CSV)</button>
+        <button class="btn btn-primary" onclick="downloadConsentHistory()">📥 Download Consent History</button>
+      </div>
+    </div>
+
+    <div class="export-section">
+      <h3>Privacy Requests</h3>
+      <p style="margin-bottom: 16px; color: var(--t2);">Submit formal data subject rights requests.</p>
+      <div class="export-buttons">
+        <button class="btn btn-secondary" onclick="requestDataAccess()">🔍 Request Data Access (GDPR Art. 15)</button>
+        <button class="btn btn-secondary" onclick="requestDataDeletion()">🗑️ Request Data Deletion (GDPR Art. 17)</button>
+        <button class="btn btn-secondary" onclick="requestDataPortability()">📤 Request Data Portability (GDPR Art. 20)</button>
+      </div>
+    </div>
+
+    <div class="export-section">
+      <h3>Contact Us</h3>
+      <p style="margin-bottom: 16px; color: var(--t2);">For data subject rights requests or questions about your data, contact:</p>
+      <div style="background: var(--surf2); padding: 16px; border-radius: 8px;">
+        <strong>Data Protection Officer:</strong> <a href="mailto:hello@podwizard.com" style="color: var(--acc);">hello@podwizard.com</a><br>
+        <strong>General Contact:</strong> <a href="mailto:hello@podwizard.com" style="color: var(--acc);">hello@podwizard.com</a><br>
+        <strong>Response Time:</strong> 30 days (as per GDPR)
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Cookie Management System
+  const COOKIE_LOG_KEY = 'pw-cookie-audit-log';
+  const COOKIE_PREFERENCES_KEY = 'pw-cookie-consent';
+  const REGIONAL_DETECTION_KEY = 'pw-region-detected';
+
+  // Cookie Categories Configuration
+  const cookieCategories = [
+    {
+      id: 'essential',
+      name: 'Essential Cookies',
+      icon: '🔒',
+      description: 'Required for basic site functionality, security, and session management.',
+      examples: 'Session tokens, CSRF protection, load balancer tokens',
+      required: true,
+      enabled: true
+    },
+    {
+      id: 'analytics',
+      name: 'Analytics Cookies',
+      icon: '📊',
+      description: 'Help us understand how visitors use the site to improve functionality.',
+      examples: 'Google Analytics, page views, user interactions, conversion tracking',
+      required: false,
+      enabled: false
+    },
+    {
+      id: 'preference',
+      name: 'Preference Cookies',
+      icon: '⚙️',
+      description: 'Remember your settings and preferences for a better experience.',
+      examples: 'Theme preference (dark/light), language, UI customization',
+      required: false,
+      enabled: false
+    },
+    {
+      id: 'marketing',
+      name: 'Marketing Cookies',
+      icon: '📢',
+      description: 'Used for targeted advertising and retargeting campaigns.',
+      examples: 'Facebook Pixel, LinkedIn Ads, Google Ads retargeting',
+      required: false,
+      enabled: false
+    },
+    {
+      id: 'social',
+      name: 'Social Media Cookies',
+      icon: '👥',
+      description: 'Enable social media features and track social sharing.',
+      examples: 'Twitter widgets, LinkedIn plugins, Facebook sharing',
+      required: false,
+      enabled: false
+    }
+  ];
+
+  // Regional Compliance Configuration
+  const regionalCompliance = [
+    {
+      region: 'GDPR (EU/EEA)',
+      status: 'compliant',
+      requirements: [
+        '<strong>Consent Required:</strong> Explicit opt-in for all non-essential cookies',
+        '<strong>Privacy Policy:</strong> Comprehensive and transparent',
+        '<strong>Data Rights:</strong> Access, deletion, portability, objection',
+        '<strong>Data Processing Agreement:</strong> Required for third-party processors',
+        '<strong>Data Protection Officer:</strong> Recommended for organizations',
+        '<strong>DPIA:</strong> Required for high-risk processing'
+      ]
+    },
+    {
+      region: 'CCPA (California)',
+      status: 'compliant',
+      requirements: [
+        '<strong>Cookie Disclosure:</strong> Clear notice about data collection',
+        '<strong>Opt-out Right:</strong> "Do Not Sell My Personal Information" link',
+        '<strong>Data Rights:</strong> Access, deletion, opt-out of sale',
+        '<strong>Supplier Notification:</strong> Service providers must be disclosed',
+        '<strong>Response Time:</strong> 45 days for access/deletion requests',
+        '<strong>No Discrimination:</strong> Cannot penalize users for exercising rights'
+      ]
+    },
+    {
+      region: 'LGPD (Brazil)',
+      status: 'compliant',
+      requirements: [
+        '<strong>Legal Basis:</strong> Consent or legitimate interest required',
+        '<strong>Transparency:</strong> Clear notice of data processing',
+        '<strong>Data Rights:</strong> Access, correction, deletion, portability',
+        '<strong>Sensitive Data:</strong> Explicit consent required',
+        '<strong>Data Controller:</strong> Must be clearly identified',
+        '<strong>Breach Notification:</strong> Report to authority within 72 hours'
+      ]
+    },
+    {
+      region: 'PIPEDA (Canada)',
+      status: 'compliant',
+      requirements: [
+        '<strong>Consent:</strong> Meaningful, informed consent before collection',
+        '<strong>Transparency:</strong> Clear privacy policy required',
+        '<strong>Purpose Limitation:</strong> Use data only for stated purposes',
+        '<strong>Data Rights:</strong> Access and request corrections',
+        '<strong>Accuracy:</strong> Keep personal data accurate and up-to-date',
+        '<strong>Security:</strong> Implement safeguards against unauthorized access'
+      ]
+    },
+    {
+      region: 'ePrivacy Directive (EU)',
+      status: 'compliant',
+      requirements: [
+        '<strong>Cookie Consent:</strong> Prior consent before non-essential tracking',
+        '<strong>Easy Withdrawal:</strong> Users can withdraw consent anytime',
+        '<strong>Transparent Notice:</strong> Clear explanation of each cookie',
+        '<strong>Second Consent:</strong> Required before analytics tracking',
+        '<strong>DNT Support:</strong> Respect browser Do Not Track signals',
+        '<strong>Essential Only:</strong> Essential cookies exempt from consent'
+      ]
+    }
+  ];
+
+  // Initialize Dashboard
+  function initDashboard() {
+    renderCategoryCards();
+    renderComplianceSection();
+    updateStatistics();
+    loadAuditLog();
+    applyTheme();
+  }
+
+  // Render Category Cards
+  function renderCategoryCards() {
+    const grid = document.getElementById('categoryGrid');
+    grid.innerHTML = '';
+
+    cookieCategories.forEach(category => {
+      const card = document.createElement('div');
+      card.className = 'category-card';
+      card.innerHTML = `
+        <div class="category-title">
+          <span class="category-status ${!category.required ? (category.enabled ? '' : 'disabled') : ''}"></span>
+          <span>${category.icon} ${category.name}</span>
+          ${category.required ? '<span style="color: var(--t3); font-size: 0.8rem; margin-left: auto;">REQUIRED</span>' : ''}
+        </div>
+        <p class="category-description">${category.description}</p>
+        <div class="category-examples">
+          <strong>Examples:</strong>
+          ${category.examples}
+        </div>
+        <div class="toggle-switch">
+          <span>Status: <strong>${category.enabled ? 'Enabled' : 'Disabled'}</strong></span>
+          ${!category.required ? `
+            <div class="switch ${category.enabled ? 'enabled' : ''}" data-category="${category.id}" onclick="toggleCategory('${category.id}')"></div>
+          ` : ''}
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  // Toggle Category
+  function toggleCategory(categoryId) {
+    const category = cookieCategories.find(c => c.id === categoryId);
+    if (category && !category.required) {
+      category.enabled = !category.enabled;
+      savePreferences();
+      renderCategoryCards();
+      logAuditEntry('PREFERENCE_UPDATE', `${category.name} ${category.enabled ? 'enabled' : 'disabled'}`);
+      updateStatistics();
+    }
+  }
+
+  // Render Compliance Section
+  function renderComplianceSection() {
+    const grid = document.getElementById('complianceGrid');
+    grid.innerHTML = '';
+
+    regionalCompliance.forEach(compliance => {
+      const section = document.createElement('div');
+      section.className = 'compliance-section';
+      section.innerHTML = `
+        <div class="compliance-title">
+          ${compliance.region}
+          <span class="compliance-status ${compliance.status}">${compliance.status.toUpperCase()}</span>
+        </div>
+        <div class="compliance-requirements">
+          <ul>
+            ${compliance.requirements.map(req => `<li>${req}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+      grid.appendChild(section);
+    });
+  }
+
+  // Update Statistics
+  function updateStatistics() {
+    const log = getAuditLog();
+    const totalConsents = log.length;
+    const accepted = log.filter(entry => entry.action === 'ACCEPT').length;
+    const rejected = log.filter(entry => entry.action === 'REJECT').length;
+
+    document.getElementById('totalConsents').textContent = totalConsents;
+    document.getElementById('acceptedRate').textContent = totalConsents > 0 ? Math.round((accepted / totalConsents) * 100) + '%' : '0%';
+    document.getElementById('rejectedRate').textContent = totalConsents > 0 ? Math.round((rejected / totalConsents) * 100) + '%' : '0%';
+
+    const prefs = getPreferences();
+    if (prefs && prefs.timestamp) {
+      const date = new Date(prefs.timestamp);
+      document.getElementById('lastUpdated').textContent = date.toLocaleDateString();
+    }
+  }
+
+  // Load Audit Log
+  function loadAuditLog() {
+    const log = getAuditLog();
+    const tbody = document.getElementById('auditTableBody');
+
+    if (log.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--t3); padding: 40px;">No audit logs yet.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = log.map(entry => {
+      const date = new Date(entry.timestamp);
+      const actionClass = entry.action.toLowerCase();
+      return `
+        <tr>
+          <td>${date.toLocaleString()}</td>
+          <td><span class="audit-action ${actionClass}">${entry.action}</span></td>
+          <td>${entry.details}</td>
+          <td>${entry.region || 'Unknown'}</td>
+        </tr>
+      `;
+    }).reverse().join('');
+  }
+
+  // Audit Log Functions
+  function getAuditLog() {
+    try {
+      const log = localStorage.getItem(COOKIE_LOG_KEY);
+      return log ? JSON.parse(log) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function logAuditEntry(action, details) {
+    try {
+      const log = getAuditLog();
+      log.push({
+        timestamp: new Date().toISOString(),
+        action: action,
+        details: details,
+        region: detectRegion()
+      });
+      localStorage.setItem(COOKIE_LOG_KEY, JSON.stringify(log));
+      loadAuditLog();
+    } catch (e) {
+      console.error('Failed to log audit entry:', e);
+    }
+  }
+
+  // Detect Region (simplified)
+  function detectRegion() {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (timezone.includes('Europe')) return 'EU';
+    if (timezone.includes('America')) return 'US';
+    if (timezone.includes('São_Paulo')) return 'BR';
+    if (timezone.includes('Toronto')) return 'CA';
+    return 'Unknown';
+  }
+
+  // Save Preferences
+  function savePreferences() {
+    try {
+      const preferences = {
+        timestamp: new Date().toISOString(),
+        categories: cookieCategories.map(c => ({ id: c.id, enabled: c.enabled }))
+      };
+      localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(preferences));
+      logAuditEntry('PREFERENCES_SAVED', 'Cookie preferences updated');
+    } catch (e) {
+      console.error('Failed to save preferences:', e);
+    }
+  }
+
+  // Get Preferences
+  function getPreferences() {
+    try {
+      return JSON.parse(localStorage.getItem(COOKIE_PREFERENCES_KEY));
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Export Functions
+  function downloadConsentReceipt() {
+    const prefs = getPreferences();
+    const receipt = `
+COOKIE CONSENT RECEIPT
+=====================
+
+Date: ${new Date().toLocaleString()}
+
+SELECTED CATEGORIES:
+${cookieCategories.map(c => `- ${c.name}: ${prefs && prefs.categories.find(cat => cat.id === c.id)?.enabled ? 'ACCEPTED' : 'REJECTED'}`).join('\n')}
+
+AUDIT LOG:
+${getAuditLog().map(entry => `${entry.timestamp} - ${entry.action}: ${entry.details}`).join('\n')}
+
+This receipt confirms your cookie consent decisions. You can download this at any time.
+For more information, visit: privacy.html#s8
+    `;
+
+    downloadFile(receipt, 'cookie-consent-receipt.txt');
+  }
+
+  function downloadPersonalData() {
+    const data = {
+      exportDate: new Date().toISOString(),
+      preferences: getPreferences(),
+      auditLog: getAuditLog(),
+      cookieCategories: cookieCategories
+    };
+
+    downloadFile(JSON.stringify(data, null, 2), 'my-data.json');
+  }
+
+  function downloadPersonalDataCSV() {
+    const log = getAuditLog();
+    let csv = 'Timestamp,Action,Details,Region\n';
+    csv += log.map(entry => `"${entry.timestamp}","${entry.action}","${entry.details}","${entry.region}"`).join('\n');
+
+    downloadFile(csv, 'my-data.csv');
+  }
+
+  function downloadConsentHistory() {
+    const log = getAuditLog();
+    const history = `
+COOKIE CONSENT HISTORY
+======================
+
+${log.map(entry => `
+Date: ${new Date(entry.timestamp).toLocaleString()}
+Action: ${entry.action}
+Details: ${entry.details}
+Region: ${entry.region}
+`).join('\n')}
+
+Total Entries: ${log.length}
+    `;
+
+    downloadFile(history, 'consent-history.txt');
+  }
+
+  function generateAuditReport() {
+    const log = getAuditLog();
+    const report = `
+AUDIT REPORT
+============
+Generated: ${new Date().toLocaleString()}
+
+STATISTICS:
+- Total Consent Decisions: ${log.length}
+- Accepts: ${log.filter(e => e.action === 'ACCEPT').length}
+- Rejects: ${log.filter(e => e.action === 'REJECT').length}
+- Updates: ${log.filter(e => e.action.includes('UPDATE')).length}
+
+REGIONAL DISTRIBUTION:
+${getRegionalStats()}
+
+DETAILED LOG:
+${log.map(e => `${e.timestamp} | ${e.action} | ${e.details} | ${e.region}`).join('\n')}
+    `;
+
+    downloadFile(report, 'audit-report.txt');
+  }
+
+  function getRegionalStats() {
+    const log = getAuditLog();
+    const regions = {};
+    log.forEach(entry => {
+      regions[entry.region] = (regions[entry.region] || 0) + 1;
+    });
+    return Object.entries(regions).map(([region, count]) => `- ${region}: ${count}`).join('\n');
+  }
+
+  function resetCookies() {
+    if (confirm('Are you sure you want to reset all cookie preferences? This cannot be undone.')) {
+      localStorage.removeItem(COOKIE_PREFERENCES_KEY);
+      localStorage.removeItem(COOKIE_LOG_KEY);
+      logAuditEntry('RESET', 'All cookie preferences reset');
+      location.reload();
+    }
+  }
+
+  function requestDataAccess() {
+    alert('A data access request form will be sent to: privacy@podwizard.com\n\nYou will receive your complete personal data within 30 days as per GDPR Article 15.');
+    logAuditEntry('REQUEST', 'Data access request submitted (GDPR Art. 15)');
+  }
+
+  function requestDataDeletion() {
+    alert('A data deletion request form will be sent to: privacy@podwizard.com\n\nYour data will be deleted within 30 days as per GDPR Article 17.');
+    logAuditEntry('REQUEST', 'Data deletion request submitted (GDPR Art. 17)');
+  }
+
+  function requestDataPortability() {
+    alert('A data portability request form will be sent to: privacy@podwizard.com\n\nYour data will be provided in machine-readable format within 30 days as per GDPR Article 20.');
+    logAuditEntry('REQUEST', 'Data portability request submitted (GDPR Art. 20)');
+  }
+
+  function downloadFile(content, filename) {
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+  // Tab Navigation
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Theme Toggle
+  function applyTheme() {
+    try {
+      const theme = localStorage.getItem('pw-theme');
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.getElementById('themeBtn').textContent = '☀️';
+      }
+    } catch (e) {}
+  }
+
+  document.getElementById('themeBtn').addEventListener('click', () => {
+    const html = document.documentElement;
+    const isLight = html.getAttribute('data-theme') === 'light';
+    html.setAttribute('data-theme', isLight ? 'dark' : 'light');
+    document.getElementById('themeBtn').textContent = isLight ? '🌓' : '☀️';
+    try { localStorage.setItem('pw-theme', isLight ? 'dark' : 'light'); } catch (e) {}
+  });
+
+  // Initialize on load
+  document.addEventListener('DOMContentLoaded', initDashboard);
+</script>
+
+</body>
+</html>

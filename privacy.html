@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — PodWizard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="icon" type="image/png" href="/images/favicon.png">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/png" href="/images/favicon.png">
   <link
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@300;400;500&display=swap"
     rel="stylesheet">
@@ -95,10 +95,12 @@
     }
 
 
-  /* ── UPDATED NAV & LOGO ── */
-  nav {
+    /* ── UPDATED NAV & LOGO ── */
+    nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 500;
       height: 66px;
       display: flex;
@@ -114,7 +116,9 @@
     nav::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(232, 255, 71, 0.18), transparent)
     }
@@ -133,64 +137,118 @@
     }
 
     .lm {
-      width: 30px; height: 30px; border-radius: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
       background: var(--acc);
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden; flex-shrink: 0
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0
     }
 
     .lm::before {
-      content: ''; position: absolute; inset: 0;
+      content: '';
+      position: absolute;
+      inset: 0;
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent)
     }
 
     .lm-outer {
-      width: 18px; height: 18px; border-radius: 50%;
-      background: var(--bg); display: flex; align-items: center; justify-content: center;
-      position: relative; z-index: 1
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1
     }
 
     .lm-mid {
-      position: absolute; width: 14px; height: 14px;
-      border-radius: 50%; background: var(--acc); z-index: 2
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--acc);
+      z-index: 2
     }
 
     .lm-inner {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--bg); z-index: 3; position: relative;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--bg);
+      z-index: 3;
+      position: relative;
       animation: lmpulse 2.2s ease-in-out infinite
     }
 
     @keyframes lmpulse {
-      0%, 100% { transform: scale(1) }
-      50% { transform: scale(1.4) }
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.4)
+      }
     }
 
     .v6b {
       background: rgba(232, 255, 71, 0.12);
       border: 1px solid rgba(232, 255, 71, 0.2);
-      color: var(--acc); font-size: 0.58rem; font-weight: 700;
-      padding: 2.5px 8px; border-radius: 100px; letter-spacing: 0.09em; margin-left: 4px
+      color: var(--acc);
+      font-size: 0.58rem;
+      font-weight: 700;
+      padding: 2.5px 8px;
+      border-radius: 100px;
+      letter-spacing: 0.09em;
+      margin-left: 4px
     }
 
     .nav-links {
-      display: flex; gap: 28px; list-style: none
+      display: flex;
+      gap: 28px;
+      list-style: none
     }
 
     .nav-links a {
-      color: var(--t2); font-size: 0.85rem; transition: color 0.2s; letter-spacing: -0.01em
+      color: var(--t2);
+      font-size: 0.85rem;
+      transition: color 0.2s;
+      letter-spacing: -0.01em
     }
 
-    .nav-links a:hover { color: var(--t1) }
+    .nav-links a:hover {
+      color: var(--t1)
+    }
 
-    .nav-r { display: flex; gap: 8px; align-items: center }
+    .nav-r {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
 
     /* Theme Toggle Style */
     .theme-toggle {
-      width: 38px; height: 38px; border-radius: 10px;
-      border: 1px solid var(--b2); background: rgba(255,255,255,0.04);
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; transition: all 0.2s; flex-shrink: 0; margin-right: 4px
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--b2);
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      margin-right: 4px
     }
 
     .theme-toggle:hover {
@@ -199,21 +257,35 @@
     }
 
     .nav-si {
-      color: var(--t2); font-size: 0.83rem; padding: 8px 18px;
-      border-radius: 100px; border: 1px solid var(--b2); transition: all 0.2s
+      color: var(--t2);
+      font-size: 0.83rem;
+      padding: 8px 18px;
+      border-radius: 100px;
+      border: 1px solid var(--b2);
+      transition: all 0.2s
     }
 
-    .nav-si:hover { color: var(--t1); border-color: rgba(255, 255, 255, 0.2) }
+    .nav-si:hover {
+      color: var(--t1);
+      border-color: rgba(255, 255, 255, 0.2)
+    }
 
     .nav-trial {
-      background: var(--acc); color: var(--bg); font-weight: 700;
-      font-size: 0.83rem; padding: 8px 20px; border-radius: 100px;
-      font-family: 'Bricolage Grotesque', sans-serif; cursor: pointer;
-      border: none; transition: all 0.2s
+      background: var(--acc);
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 0.83rem;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s
     }
 
     .nav-trial:hover {
-      background: var(--acc2); transform: translateY(-1px);
+      background: var(--acc2);
+      transform: translateY(-1px);
       box-shadow: 0 6px 20px rgba(232, 255, 71, 0.3)
     }
 
@@ -539,140 +611,143 @@
     }
 
     @media(max-width:600px) {
-  nav {
-    padding: 0 10px;
-    height: 56px;
-    gap: 8px
-  }
+      nav {
+        padding: 0 10px;
+        height: 56px;
+        gap: 8px
+      }
 
-  .nav-logo {
-    font-size: 0.9rem;
-    gap: 5px;
-    flex-shrink: 0;
-    min-width: fit-content
-  }
+      .nav-logo {
+        font-size: 0.9rem;
+        gap: 5px;
+        flex-shrink: 0;
+        min-width: fit-content
+      }
 
-  .lm {
-    width: 26px;
-    height: 26px
-  }
+      .lm {
+        width: 26px;
+        height: 26px
+      }
 
-  .v6b {
-    display: none        /* HIDES v6 badge */
-  }
+      .v6b {
+        display: none
+          /* HIDES v6 badge */
+      }
 
-  .nav-links {
-    display: none        /* HIDES nav links */
-  }
+      .nav-links {
+        display: none
+          /* HIDES nav links */
+      }
 
-  .nav-r {
-    gap: 4px;
-    flex-shrink: 0
-  }
+      .nav-r {
+        gap: 4px;
+        flex-shrink: 0
+      }
 
-  .theme-toggle {
-    font-size: 1.1rem;
-    padding: 6px;
-    line-height: 1;
-    background: none;
-    border: none;
-    cursor: pointer
-  }
+      .theme-toggle {
+        font-size: 1.1rem;
+        padding: 6px;
+        line-height: 1;
+        background: none;
+        border: none;
+        cursor: pointer
+      }
 
-  .nav-si {
-    display: none        /* HIDES sign in */
-  }
+      .nav-si {
+        display: none
+          /* HIDES sign in */
+      }
 
-  .nav-trial {
-    padding: 6px 10px;
-    font-size: 0.72rem;
-    border-radius: 20px;
-    white-space: nowrap;
-    flex-shrink: 0
-  }
+      .nav-trial {
+        padding: 6px 10px;
+        font-size: 0.72rem;
+        border-radius: 20px;
+        white-space: nowrap;
+        flex-shrink: 0
+      }
 
-  @media(max-width:400px) {
-  nav {
-    padding: 0 8px;
-    height: 52px;
-    gap: 4px
-  }
+      @media(max-width:400px) {
+        nav {
+          padding: 0 8px;
+          height: 52px;
+          gap: 4px
+        }
 
-  .nav-logo {
-    font-size: 0.85rem;
-    gap: 4px;
-    flex-shrink: 0;
-    min-width: fit-content
-  }
+        .nav-logo {
+          font-size: 0.85rem;
+          gap: 4px;
+          flex-shrink: 0;
+          min-width: fit-content
+        }
 
-  .lm {
-    width: 24px;
-    height: 24px
-  }
+        .lm {
+          width: 24px;
+          height: 24px
+        }
 
-  .v6b {
-    display: none
-  }
+        .v6b {
+          display: none
+        }
 
-  .nav-r {
-    gap: 3px;
-    flex-shrink: 0
-  }
+        .nav-r {
+          gap: 3px;
+          flex-shrink: 0
+        }
 
-  .theme-toggle {
-    font-size: 1rem;
-    padding: 4px;
-    background: none;
-    border: none
-  }
+        .theme-toggle {
+          font-size: 1rem;
+          padding: 4px;
+          background: none;
+          border: none
+        }
 
-  .nav-si {
-    display: none
-  }
+        .nav-si {
+          display: none
+        }
 
-  .nav-trial {
-    padding: 5px 8px;
-    font-size: 0.7rem;
-    flex-shrink: 0
-  }
-}
+        .nav-trial {
+          padding: 5px 8px;
+          font-size: 0.7rem;
+          flex-shrink: 0
+        }
+      }
 
-@media(max-width:320px) {
-  nav {
-    padding: 0 6px;
-    height: 50px;
-    gap: 3px
-  }
+      @media(max-width:320px) {
+        nav {
+          padding: 0 6px;
+          height: 50px;
+          gap: 3px
+        }
 
-  .nav-logo {
-    font-size: 0.8rem;
-    gap: 3px;
-    flex-shrink: 0;
-    min-width: fit-content
-  }
+        .nav-logo {
+          font-size: 0.8rem;
+          gap: 3px;
+          flex-shrink: 0;
+          min-width: fit-content
+        }
 
-  .lm {
-    width: 22px;
-    height: 22px
-  }
+        .lm {
+          width: 22px;
+          height: 22px
+        }
 
-  .v6b {
-    display: none
-  }
+        .v6b {
+          display: none
+        }
 
-  .theme-toggle {
-    font-size: 0.95rem;
-    padding: 3px;
-    background: none;
-    border: none
-  }
+        .theme-toggle {
+          font-size: 0.95rem;
+          padding: 3px;
+          background: none;
+          border: none
+        }
 
-  .nav-trial {
-    padding: 5px 8px;
-    font-size: 0.65rem;
-    flex-shrink: 0
-  }
-}
+        .nav-trial {
+          padding: 5px 8px;
+          font-size: 0.65rem;
+          flex-shrink: 0
+        }
+      }
 
     }
   </style>
@@ -689,13 +764,13 @@
       </div>
       PodWizard <span class="v6b">V6</span>
     </a>
-    
+
     <ul class="nav-links">
       <li><a href="index.html#pipeline">How it works</a></li>
       <li><a href="index.html#features">Features</a></li>
       <li><a href="index.html#pricing">Pricing</a></li>
     </ul>
-    
+
     <div class="nav-r">
       <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌓</button>
       <a href="https://podpulse-creator-flow.base44.app" class="nav-si" target="_blank">Sign in</a>
@@ -834,19 +909,99 @@
         <li><strong>Portability:</strong> receive your data in a machine-readable format.</li>
         <li><strong>Objection:</strong> object to certain uses including direct marketing.</li>
       </ul>
-      <p>Email <a href="mailto:hello@podwizard.com">hello@podwizard.com</a> to exercise any of these rights. We
+      <p>Email <a href="mailto:hello@podwizard.com"><span class="__cf_email__"
+            data-cfemail="4028252c2c2f00302f2437293a2132246e232f2d">hello@getpodwizard.com</span></a> to exercise any of
+        these rights. We
         respond within 30 days.</p>
     </div>
     <div class="divider"></div>
     <div class="section" id="s8">
       <div class="section-num">08</div>
       <h2>Cookies and tracking</h2>
+
+      <h3>What are cookies?</h3>
+      <p>Cookies are small text files stored on your device that help us recognize you and improve your experience. We
+        use cookies to keep you logged in, remember your preferences, and understand how you use our service.</p>
+
+      <h3>Types of cookies we use</h3>
       <ul>
-        <li><strong>Essential cookies:</strong> session tokens that keep you logged in. Cannot be opted out of.</li>
-        <li><strong>Analytics cookies:</strong> anonymous usage analytics. Do not identify you personally.</li>
-        <li><strong>Preference cookies:</strong> remember your settings, such as dark/light mode.</li>
+        <li><strong>Essential/Functional cookies:</strong> These are necessary for the service to function properly.
+          They include session tokens that keep you logged in and cannot be opted out of. Without these, you wouldn't be
+          able to access your account.
+          <ul style="margin-top: 8px; margin-left: 20px; list-style-type: circle;">
+            <li>Session authentication tokens</li>
+            <li>CSRF protection tokens</li>
+            <li>Load balancer cookies</li>
+          </ul>
+        </li>
+        <li><strong>Preference/Analytics cookies:</strong> These remember your settings and help us understand how you
+          use PodWizard. You can control these through our cookie consent banner.
+          <ul style="margin-top: 8px; margin-left: 20px; list-style-type: circle;">
+            <li><code>pw-theme</code> – remembers your dark/light mode preference</li>
+            <li><code>pw-consent</code> – tracks your cookie consent choices</li>
+            <li>Google Analytics cookies (if enabled) – anonymous usage patterns</li>
+          </ul>
+        </li>
+        <li><strong>Third-party cookies:</strong>
+          <ul style="margin-top: 8px; margin-left: 20px; list-style-type: circle;">
+            <li>Google Analytics (analytics.google.com) – aggregated, anonymized usage data</li>
+            <li>Stripe (stripe.com) – payment processing and fraud prevention</li>
+            <li>These partners have their own privacy policies</li>
+          </ul>
+        </li>
+        <li><strong>What we don't use:</strong> We do not use advertising cookies, retargeting pixels, or sell tracking
+          data to ad networks.</li>
       </ul>
-      <p>We do not use advertising cookies or sell tracking data to ad networks.</p>
+
+      <h3>Your cookie choices</h3>
+      <p>When you first visit PodWizard, you'll see a cookie consent banner. You can:</p>
+      <ul>
+        <li><strong>Accept all:</strong> Enable all non-essential cookies</li>
+        <li><strong>Reject all:</strong> Disable all non-essential cookies (essential cookies remain for functionality)
+        </li>
+        <li><strong>Manage preferences:</strong> Choose specific categories</li>
+      </ul>
+      <p>You can change your cookie settings at any time by clicking the cookie preference icon in the footer or
+        clearing your browser cookies and refreshing the page.</p>
+
+      <h3>Browser controls</h3>
+      <p>Most browsers allow you to control cookies through settings. You can:</p>
+      <ul>
+        <li>Block all cookies (may affect functionality)</li>
+        <li>Block third-party cookies only</li>
+        <li>Delete existing cookies</li>
+        <li>Receive notifications when cookies are set</li>
+      </ul>
+      <p>Visit your browser's help center for specific instructions (Chrome, Firefox, Safari, Edge).</p>
+
+      <h3>Legal basis for cookies</h3>
+      <p>Under GDPR, ePrivacy Directive, and similar privacy laws, we only use cookies based on:</p>
+      <ul>
+        <li><strong>Legitimate interest:</strong> Essential cookies for service functionality</li>
+        <li><strong>Consent:</strong> Non-essential cookies (with your explicit opt-in)</li>
+      </ul>
+      <p>We do not use cookies to identify you for targeted advertising.</p>
+
+      <h3>Cookie retention</h3>
+      <ul>
+        <li><strong>Session cookies:</strong> Deleted when you close your browser</li>
+        <li><strong>Persistent cookies:</strong> Remain for up to 1 year (unless you delete them)</li>
+      </ul>
+
+      <h3>Tracking and analytics</h3>
+      <p>We use Google Analytics to understand how users interact with PodWizard — which features are popular, where
+        users drop off, and performance metrics. This data is aggregated and anonymized. Google does not identify
+        individual users.</p>
+
+      <h3>Do Not Track (DNT)</h3>
+      <p>Some browsers have a "Do Not Track" feature. We respect DNT signals where technically possible, though we
+        cannot guarantee all partners honor them.</p>
+
+      <h3>Questions about cookies?</h3>
+      <p>Contact us at <a href="mailto:hello@podwizard.com"><span
+            class="__cf_email__"
+            data-cfemail="79111c1515163909161d0e1003180b1d571a1614">hello@getpodwizard.com</span></a> with any questions
+        about our cookie practices.</p>
     </div>
     <div class="divider"></div>
     <div class="section" id="s9">
@@ -859,7 +1014,8 @@
         <li>Production system access limited to authorised personnel only.</li>
       </ul>
       <p>If you believe your account is compromised, contact <a
-          href="mailto:hello@podwizard.com">hello@podwizard.com</a> immediately.</p>
+          href="mailto:hello@podwizard.com"><span class="__cf_email__"
+            data-cfemail="1d75787171725d6d72796a74677c6f79337e7270">hello@getpodwizard.com</span></a> immediately.</p>
     </div>
     <div class="divider"></div>
     <div class="section" id="s10">
@@ -881,7 +1037,9 @@
       <h2>Contact us</h2>
       <ul>
 
-        <li><strong>General:</strong> <a href="mailto:hello@podwizard.com">hello@podwizard.com</a></li>
+        <li><strong>General:</strong> <a
+            href="mailto:hello@podwizard.com"><span class="__cf_email__"
+              data-cfemail="4c24292020230c3c23283b25362d3e28622f2321">hello@getpodwizard.com<span></a></li>
 
       </ul>
     </div>
@@ -925,6 +1083,7 @@
       <span>Made for creators who don't settle.</span>
     </div>
   </footer>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     function toggleTheme() {
       const h = document.documentElement;
@@ -943,6 +1102,439 @@
         });
       }
     } catch (e) { }
+  </script>
+
+  <!-- COOKIE CONSENT SCRIPT -->
+  <script>
+    (function () {
+      const COOKIE_CONSENT_KEY = 'pw-cookie-consent';
+      const COOKIE_CONSENT_VERSION = '1.0';
+
+      function getCookieConsent() {
+        try {
+          const stored = localStorage.getItem(COOKIE_CONSENT_KEY);
+          return stored ? JSON.parse(stored) : null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function setCookieConsent(consent) {
+        try {
+          localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify({
+            ...consent,
+            timestamp: new Date().toISOString(),
+            version: COOKIE_CONSENT_VERSION
+          }));
+        } catch (e) {
+          console.error('Failed to save cookie consent:', e);
+        }
+      }
+
+      function initializeAnalytics(enable) {
+        if (!enable) return;
+        // Load Google Analytics only if user consents
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-SRPD136Q8R';
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-SRPD136Q8R');
+      }
+
+      function showCookieBanner() {
+        const banner = document.createElement('div');
+        banner.id = 'pw-cookie-banner';
+        banner.innerHTML = `
+          <style>
+            #pw-cookie-banner {
+              position: fixed;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background: var(--surf);
+              border-top: 1px solid var(--b1);
+              padding: 24px;
+              z-index: 9999;
+              box-shadow: 0 -8px 32px rgba(0,0,0,0.2);
+              font-family: 'Instrument Sans', sans-serif;
+              color: var(--t1);
+              animation: slideUp 0.3s ease-out;
+            }
+
+            @keyframes slideUp {
+              from { transform: translateY(100%); opacity: 0; }
+              to { transform: translateY(0); opacity: 1; }
+            }
+
+            #pw-cookie-banner.hidden {
+              display: none;
+            }
+
+            .pw-cookie-content {
+              max-width: 1200px;
+              margin: 0 auto;
+              display: grid;
+              grid-template-columns: 1fr auto;
+              gap: 24px;
+              align-items: center;
+            }
+
+            .pw-cookie-text h3 {
+              font-size: 1.1rem;
+              margin-bottom: 8px;
+              color: var(--t1);
+              font-weight: 600;
+            }
+
+            .pw-cookie-text p {
+              color: var(--t2);
+              font-size: 0.95rem;
+              line-height: 1.5;
+              margin: 0;
+            }
+
+            .pw-cookie-text a {
+              color: var(--acc);
+              text-decoration: none;
+            }
+
+            .pw-cookie-text a:hover {
+              text-decoration: underline;
+            }
+
+            .pw-cookie-buttons {
+              display: flex;
+              gap: 12px;
+              flex-wrap: wrap;
+              justify-content: flex-end;
+            }
+
+            .pw-cookie-btn {
+              padding: 10px 20px;
+              border-radius: 8px;
+              border: none;
+              cursor: pointer;
+              font-size: 0.95rem;
+              font-weight: 500;
+              font-family: 'Instrument Sans', sans-serif;
+              transition: all 0.2s;
+              white-space: nowrap;
+            }
+
+            .pw-cookie-btn-reject {
+              background: var(--surf2);
+              color: var(--t2);
+              border: 1px solid var(--b2);
+            }
+
+            .pw-cookie-btn-reject:hover {
+              background: var(--surf2);
+              color: var(--t1);
+              border-color: var(--b1);
+            }
+
+            .pw-cookie-btn-manage {
+              background: rgba(232, 255, 71, 0.12);
+              color: var(--acc);
+              border: 1px solid rgba(232, 255, 71, 0.3);
+            }
+
+            .pw-cookie-btn-manage:hover {
+              background: rgba(232, 255, 71, 0.2);
+              border-color: rgba(232, 255, 71, 0.4);
+            }
+
+            .pw-cookie-btn-accept {
+              background: var(--acc);
+              color: var(--bg);
+              font-weight: 600;
+            }
+
+            .pw-cookie-btn-accept:hover {
+              background: var(--acc2);
+              transform: translateY(-2px);
+              box-shadow: 0 4px 12px rgba(232, 255, 71, 0.3);
+            }
+
+            @media (max-width: 768px) {
+              .pw-cookie-content {
+                grid-template-columns: 1fr;
+                gap: 16px;
+              }
+
+              .pw-cookie-buttons {
+                justify-content: flex-start;
+              }
+
+              #pw-cookie-banner {
+                padding: 16px;
+              }
+            }
+          </style>
+
+          <div class="pw-cookie-content">
+            <div class="pw-cookie-text">
+              <h3>🍪 Cookie Settings</h3>
+              <p>We use essential cookies to keep you logged in, and optional analytics cookies to improve PodWizard. Learn more in our <a href="privacy.html#s8">cookie policy</a>.</p>
+            </div>
+            <div class="pw-cookie-buttons">
+              <button class="pw-cookie-btn pw-cookie-btn-reject" id="pw-cookie-reject">Reject All</button>
+              <button class="pw-cookie-btn pw-cookie-btn-manage" id="pw-cookie-manage">Manage Preferences</button>
+              <button class="pw-cookie-btn pw-cookie-btn-accept" id="pw-cookie-accept">Accept All</button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(banner);
+
+        document.getElementById('pw-cookie-accept').addEventListener('click', () => {
+          setCookieConsent({ essential: true, analytics: true, preferences: true });
+          initializeAnalytics(true);
+          banner.classList.add('hidden');
+        });
+
+        document.getElementById('pw-cookie-reject').addEventListener('click', () => {
+          setCookieConsent({ essential: true, analytics: false, preferences: false });
+          banner.classList.add('hidden');
+        });
+
+        document.getElementById('pw-cookie-manage').addEventListener('click', () => {
+          showPreferencesModal();
+        });
+      }
+
+      function showPreferencesModal() {
+        const consent = getCookieConsent() || { essential: true, analytics: false, preferences: false };
+
+        const modal = document.createElement('div');
+        modal.id = 'pw-cookie-modal';
+        modal.innerHTML = `
+          <style>
+            #pw-cookie-modal {
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: rgba(0, 0, 0, 0.6);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              z-index: 10000;
+              animation: fadeIn 0.2s ease-out;
+            }
+
+            @keyframes fadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+
+            .pw-cookie-modal-content {
+              background: var(--surf);
+              border-radius: 12px;
+              padding: 32px;
+              max-width: 500px;
+              width: 90%;
+              border: 1px solid var(--b2);
+              box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+              max-height: 80vh;
+              overflow-y: auto;
+            }
+
+            .pw-cookie-modal-content h2 {
+              font-size: 1.5rem;
+              margin-bottom: 24px;
+              color: var(--t1);
+            }
+
+            .pw-cookie-pref-group {
+              margin-bottom: 24px;
+            }
+
+            .pw-cookie-pref-label {
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              cursor: pointer;
+              margin-bottom: 8px;
+            }
+
+            .pw-cookie-checkbox {
+              width: 20px;
+              height: 20px;
+              border: 2px solid var(--b2);
+              border-radius: 6px;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.2s;
+            }
+
+            .pw-cookie-checkbox:hover {
+              border-color: var(--acc);
+            }
+
+            .pw-cookie-checkbox.checked {
+              background: var(--acc);
+              border-color: var(--acc);
+              color: var(--bg);
+            }
+
+            .pw-cookie-pref-label input {
+              display: none;
+            }
+
+            .pw-cookie-pref-name {
+              color: var(--t1);
+              font-weight: 500;
+            }
+
+            .pw-cookie-pref-desc {
+              color: var(--t2);
+              font-size: 0.9rem;
+              margin-left: 32px;
+            }
+
+            .pw-cookie-pref-group.disabled .pw-cookie-pref-label {
+              opacity: 0.6;
+              cursor: default;
+            }
+
+            .pw-cookie-modal-buttons {
+              display: flex;
+              gap: 12px;
+              margin-top: 32px;
+              justify-content: flex-end;
+            }
+
+            .pw-cookie-modal-btn {
+              padding: 10px 20px;
+              border-radius: 8px;
+              border: none;
+              cursor: pointer;
+              font-family: 'Instrument Sans', sans-serif;
+              font-weight: 500;
+              transition: all 0.2s;
+            }
+
+            .pw-cookie-modal-btn-cancel {
+              background: var(--surf2);
+              color: var(--t2);
+              border: 1px solid var(--b2);
+            }
+
+            .pw-cookie-modal-btn-save {
+              background: var(--acc);
+              color: var(--bg);
+            }
+
+            .pw-cookie-modal-btn-save:hover {
+              background: var(--acc2);
+              transform: translateY(-2px);
+              box-shadow: 0 4px 12px rgba(232, 255, 71, 0.3);
+            }
+          </style>
+
+          <div class="pw-cookie-modal-content">
+            <h2>Cookie Preferences</h2>
+            
+            <div class="pw-cookie-pref-group disabled">
+              <label class="pw-cookie-pref-label">
+                <div class="pw-cookie-checkbox checked">✓</div>
+                <span class="pw-cookie-pref-name">Essential Cookies</span>
+              </label>
+              <div class="pw-cookie-pref-desc">Required for authentication and security. Always enabled.</div>
+            </div>
+
+            <div class="pw-cookie-pref-group">
+              <label class="pw-cookie-pref-label">
+                <input type="checkbox" id="pw-pref-analytics" ${consent.analytics ? 'checked' : ''}>
+                <div class="pw-cookie-checkbox ${consent.analytics ? 'checked' : ''}">
+                  ${consent.analytics ? '✓' : ''}
+                </div>
+                <span class="pw-cookie-pref-name">Analytics Cookies</span>
+              </label>
+              <div class="pw-cookie-pref-desc">Help us understand how you use PodWizard to improve the service.</div>
+            </div>
+
+            <div class="pw-cookie-pref-group">
+              <label class="pw-cookie-pref-label">
+                <input type="checkbox" id="pw-pref-preferences" ${consent.preferences ? 'checked' : ''}>
+                <div class="pw-cookie-checkbox ${consent.preferences ? 'checked' : ''}">
+                  ${consent.preferences ? '✓' : ''}
+                </div>
+                <span class="pw-cookie-pref-name">Preference Cookies</span>
+              </label>
+              <div class="pw-cookie-pref-desc">Remember your settings like dark mode and language preferences.</div>
+            </div>
+
+            <div class="pw-cookie-modal-buttons">
+              <button class="pw-cookie-modal-btn pw-cookie-modal-btn-cancel" id="pw-modal-cancel">Cancel</button>
+              <button class="pw-cookie-modal-btn pw-cookie-modal-btn-save" id="pw-modal-save">Save Preferences</button>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        const analyticsCheckbox = document.getElementById('pw-pref-analytics');
+        const preferencesCheckbox = document.getElementById('pw-pref-preferences');
+        const analyticsBox = analyticsCheckbox.parentElement.querySelector('.pw-cookie-checkbox');
+        const preferencesBox = preferencesCheckbox.parentElement.querySelector('.pw-cookie-checkbox');
+
+        [analyticsCheckbox, preferencesCheckbox].forEach(checkbox => {
+          checkbox.addEventListener('change', function () {
+            const box = this.parentElement.querySelector('.pw-cookie-checkbox');
+            if (this.checked) {
+              box.classList.add('checked');
+              box.textContent = '✓';
+            } else {
+              box.classList.remove('checked');
+              box.textContent = '';
+            }
+          });
+        });
+
+        document.getElementById('pw-modal-cancel').addEventListener('click', () => {
+          modal.remove();
+        });
+
+        document.getElementById('pw-modal-save').addEventListener('click', () => {
+          setCookieConsent({
+            essential: true,
+            analytics: analyticsCheckbox.checked,
+            preferences: preferencesCheckbox.checked
+          });
+          if (analyticsCheckbox.checked) {
+            initializeAnalytics(true);
+          }
+          modal.remove();
+          document.getElementById('pw-cookie-banner').classList.add('hidden');
+        });
+      }
+
+      // Initialize on page load
+      document.addEventListener('DOMContentLoaded', function () {
+        const consent = getCookieConsent();
+
+        if (!consent) {
+          showCookieBanner();
+        } else {
+          if (consent.analytics) {
+            initializeAnalytics(true);
+          }
+        }
+      });
+
+      // Expose function to manage cookies from footer if needed
+      window.manageCookies = function () {
+        showPreferencesModal();
+      };
+    })();
   </script>
 </body>
 

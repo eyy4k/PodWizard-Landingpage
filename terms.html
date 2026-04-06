@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Service — PodWizard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="icon" type="image/png" href="/images/favicon.png">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/png" href="/images/favicon.png">
   <link
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@300;400;500&display=swap"
     rel="stylesheet">
@@ -762,7 +762,7 @@ nav {
         <li>You must provide accurate, complete, and current information when creating your account.</li>
         <li>You are responsible for maintaining the confidentiality of your password and all activity under your
           account.</li>
-        <li>Notify us immediately at <a href="mailto:hello@podwizard.com">hello@podwizard.com</a> if you believe
+        <li>Notify us immediately at <a href="mailto:hello@podwizard.com"><span class="__cf_email__" data-cfemail="2d45484141426d5d42495a44574c5f49034e4240">hello@getpodwizard.com</span></a> if you believe
           your account has been compromised.</li>
         <li>You may not create more than one account per person without our written permission.</li>
         <li>Accounts are non-transferable.</li>
@@ -900,7 +900,7 @@ nav {
       <h2>Contact</h2>
       <ul>
 
-        <li><strong>General:</strong> <a href="mailto:hello@podwizard.com">hello@podwizard.com</a></li>
+        <li><strong>General:</strong> <a href="mailto:hello@podwizard.com"><span class="__cf_email__" data-cfemail="fe969b929291be8e919a8997849f8c9ad09d9193">hello@getpodwizard.com</span></a></li>
       </ul>
     </div>
   </div>
@@ -934,7 +934,7 @@ nav {
           <a href="about.html" target="_blank">About</a>
           <a href="privacy.html" target="_blank">Privacy Policy</a>
           <a href="terms.html" target="_blank">Terms of Service</a>
-          <a href="mailto:hello@podwizardcom">Contact</a>
+          <a href="mailto:hello@podwizard.com">Contact</a>
         </div>
       </div>
     </div>
@@ -943,7 +943,7 @@ nav {
       <span>Made for creators who don't settle.</span>
     </div>
   </footer>
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     function toggleTheme() {
       const h = document.documentElement;
       const isLight = h.getAttribute('data-theme') === 'light';
@@ -962,6 +962,435 @@ nav {
       }
     } catch (e) { }
   </script>
+
+  <!-- COOKIE CONSENT SCRIPT -->
+  <script>
+    (function() {
+      const COOKIE_CONSENT_KEY = 'pw-cookie-consent';
+      const COOKIE_CONSENT_VERSION = '1.0';
+
+      function getCookieConsent() {
+        try {
+          const stored = localStorage.getItem(COOKIE_CONSENT_KEY);
+          return stored ? JSON.parse(stored) : null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function setCookieConsent(consent) {
+        try {
+          localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify({
+            ...consent,
+            timestamp: new Date().toISOString(),
+            version: COOKIE_CONSENT_VERSION
+          }));
+        } catch (e) {
+          console.error('Failed to save cookie consent:', e);
+        }
+      }
+
+      function initializeAnalytics(enable) {
+        if (!enable) return;
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-SRPD136Q8R';
+        document.head.appendChild(script);
+        
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SRPD136Q8R');
+      }
+
+      function showCookieBanner() {
+        const banner = document.createElement('div');
+        banner.id = 'pw-cookie-banner';
+        banner.innerHTML = `
+          <style>
+            #pw-cookie-banner {
+              position: fixed;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background: var(--surf);
+              border-top: 1px solid var(--b1);
+              padding: 24px;
+              z-index: 9999;
+              box-shadow: 0 -8px 32px rgba(0,0,0,0.2);
+              font-family: 'Instrument Sans', sans-serif;
+              color: var(--t1);
+              animation: slideUp 0.3s ease-out;
+            }
+
+            @keyframes slideUp {
+              from { transform: translateY(100%); opacity: 0; }
+              to { transform: translateY(0); opacity: 1; }
+            }
+
+            #pw-cookie-banner.hidden {
+              display: none;
+            }
+
+            .pw-cookie-content {
+              max-width: 1200px;
+              margin: 0 auto;
+              display: grid;
+              grid-template-columns: 1fr auto;
+              gap: 24px;
+              align-items: center;
+            }
+
+            .pw-cookie-text h3 {
+              font-size: 1.1rem;
+              margin-bottom: 8px;
+              color: var(--t1);
+              font-weight: 600;
+            }
+
+            .pw-cookie-text p {
+              color: var(--t2);
+              font-size: 0.95rem;
+              line-height: 1.5;
+              margin: 0;
+            }
+
+            .pw-cookie-text a {
+              color: var(--acc);
+              text-decoration: none;
+            }
+
+            .pw-cookie-text a:hover {
+              text-decoration: underline;
+            }
+
+            .pw-cookie-buttons {
+              display: flex;
+              gap: 12px;
+              flex-wrap: wrap;
+              justify-content: flex-end;
+            }
+
+            .pw-cookie-btn {
+              padding: 10px 20px;
+              border-radius: 8px;
+              border: none;
+              cursor: pointer;
+              font-size: 0.95rem;
+              font-weight: 500;
+              font-family: 'Instrument Sans', sans-serif;
+              transition: all 0.2s;
+              white-space: nowrap;
+            }
+
+            .pw-cookie-btn-reject {
+              background: var(--surf2);
+              color: var(--t2);
+              border: 1px solid var(--b2);
+            }
+
+            .pw-cookie-btn-reject:hover {
+              background: var(--surf2);
+              color: var(--t1);
+              border-color: var(--b1);
+            }
+
+            .pw-cookie-btn-manage {
+              background: rgba(232, 255, 71, 0.12);
+              color: var(--acc);
+              border: 1px solid rgba(232, 255, 71, 0.3);
+            }
+
+            .pw-cookie-btn-manage:hover {
+              background: rgba(232, 255, 71, 0.2);
+              border-color: rgba(232, 255, 71, 0.4);
+            }
+
+            .pw-cookie-btn-accept {
+              background: var(--acc);
+              color: var(--bg);
+              font-weight: 600;
+            }
+
+            .pw-cookie-btn-accept:hover {
+              background: var(--acc2);
+              transform: translateY(-2px);
+              box-shadow: 0 4px 12px rgba(232, 255, 71, 0.3);
+            }
+
+            @media (max-width: 768px) {
+              .pw-cookie-content {
+                grid-template-columns: 1fr;
+                gap: 16px;
+              }
+
+              .pw-cookie-buttons {
+                justify-content: flex-start;
+              }
+
+              #pw-cookie-banner {
+                padding: 16px;
+              }
+            }
+          </style>
+
+          <div class="pw-cookie-content">
+            <div class="pw-cookie-text">
+              <h3>🍪 Cookie Settings</h3>
+              <p>We use essential cookies to keep you logged in, and optional analytics cookies to improve PodWizard. Learn more in our <a href="privacy.html#s8">cookie policy</a>.</p>
+            </div>
+            <div class="pw-cookie-buttons">
+              <button class="pw-cookie-btn pw-cookie-btn-reject" id="pw-cookie-reject">Reject All</button>
+              <button class="pw-cookie-btn pw-cookie-btn-manage" id="pw-cookie-manage">Manage Preferences</button>
+              <button class="pw-cookie-btn pw-cookie-btn-accept" id="pw-cookie-accept">Accept All</button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(banner);
+
+        document.getElementById('pw-cookie-accept').addEventListener('click', () => {
+          setCookieConsent({ essential: true, analytics: true, preferences: true });
+          initializeAnalytics(true);
+          banner.classList.add('hidden');
+        });
+
+        document.getElementById('pw-cookie-reject').addEventListener('click', () => {
+          setCookieConsent({ essential: true, analytics: false, preferences: false });
+          banner.classList.add('hidden');
+        });
+
+        document.getElementById('pw-cookie-manage').addEventListener('click', () => {
+          showPreferencesModal();
+        });
+      }
+
+      function showPreferencesModal() {
+        const consent = getCookieConsent() || { essential: true, analytics: false, preferences: false };
+        
+        const modal = document.createElement('div');
+        modal.id = 'pw-cookie-modal';
+        modal.innerHTML = `
+          <style>
+            #pw-cookie-modal {
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: rgba(0, 0, 0, 0.6);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              z-index: 10000;
+              animation: fadeIn 0.2s ease-out;
+            }
+
+            @keyframes fadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+
+            .pw-cookie-modal-content {
+              background: var(--surf);
+              border-radius: 12px;
+              padding: 32px;
+              max-width: 500px;
+              width: 90%;
+              border: 1px solid var(--b2);
+              box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+              max-height: 80vh;
+              overflow-y: auto;
+            }
+
+            .pw-cookie-modal-content h2 {
+              font-size: 1.5rem;
+              margin-bottom: 24px;
+              color: var(--t1);
+            }
+
+            .pw-cookie-pref-group {
+              margin-bottom: 24px;
+            }
+
+            .pw-cookie-pref-label {
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              cursor: pointer;
+              margin-bottom: 8px;
+            }
+
+            .pw-cookie-checkbox {
+              width: 20px;
+              height: 20px;
+              border: 2px solid var(--b2);
+              border-radius: 6px;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.2s;
+            }
+
+            .pw-cookie-checkbox:hover {
+              border-color: var(--acc);
+            }
+
+            .pw-cookie-checkbox.checked {
+              background: var(--acc);
+              border-color: var(--acc);
+              color: var(--bg);
+            }
+
+            .pw-cookie-pref-label input {
+              display: none;
+            }
+
+            .pw-cookie-pref-name {
+              color: var(--t1);
+              font-weight: 500;
+            }
+
+            .pw-cookie-pref-desc {
+              color: var(--t2);
+              font-size: 0.9rem;
+              margin-left: 32px;
+            }
+
+            .pw-cookie-pref-group.disabled .pw-cookie-pref-label {
+              opacity: 0.6;
+              cursor: default;
+            }
+
+            .pw-cookie-modal-buttons {
+              display: flex;
+              gap: 12px;
+              margin-top: 32px;
+              justify-content: flex-end;
+            }
+
+            .pw-cookie-modal-btn {
+              padding: 10px 20px;
+              border-radius: 8px;
+              border: none;
+              cursor: pointer;
+              font-family: 'Instrument Sans', sans-serif;
+              font-weight: 500;
+              transition: all 0.2s;
+            }
+
+            .pw-cookie-modal-btn-cancel {
+              background: var(--surf2);
+              color: var(--t2);
+              border: 1px solid var(--b2);
+            }
+
+            .pw-cookie-modal-btn-save {
+              background: var(--acc);
+              color: var(--bg);
+            }
+
+            .pw-cookie-modal-btn-save:hover {
+              background: var(--acc2);
+              transform: translateY(-2px);
+              box-shadow: 0 4px 12px rgba(232, 255, 71, 0.3);
+            }
+          </style>
+
+          <div class="pw-cookie-modal-content">
+            <h2>Cookie Preferences</h2>
+            
+            <div class="pw-cookie-pref-group disabled">
+              <label class="pw-cookie-pref-label">
+                <div class="pw-cookie-checkbox checked">✓</div>
+                <span class="pw-cookie-pref-name">Essential Cookies</span>
+              </label>
+              <div class="pw-cookie-pref-desc">Required for authentication and security. Always enabled.</div>
+            </div>
+
+            <div class="pw-cookie-pref-group">
+              <label class="pw-cookie-pref-label">
+                <input type="checkbox" id="pw-pref-analytics" ${consent.analytics ? 'checked' : ''}>
+                <div class="pw-cookie-checkbox ${consent.analytics ? 'checked' : ''}">
+                  ${consent.analytics ? '✓' : ''}
+                </div>
+                <span class="pw-cookie-pref-name">Analytics Cookies</span>
+              </label>
+              <div class="pw-cookie-pref-desc">Help us understand how you use PodWizard to improve the service.</div>
+            </div>
+
+            <div class="pw-cookie-pref-group">
+              <label class="pw-cookie-pref-label">
+                <input type="checkbox" id="pw-pref-preferences" ${consent.preferences ? 'checked' : ''}>
+                <div class="pw-cookie-checkbox ${consent.preferences ? 'checked' : ''}">
+                  ${consent.preferences ? '✓' : ''}
+                </div>
+                <span class="pw-cookie-pref-name">Preference Cookies</span>
+              </label>
+              <div class="pw-cookie-pref-desc">Remember your settings like dark mode and language preferences.</div>
+            </div>
+
+            <div class="pw-cookie-modal-buttons">
+              <button class="pw-cookie-modal-btn pw-cookie-modal-btn-cancel" id="pw-modal-cancel">Cancel</button>
+              <button class="pw-cookie-modal-btn pw-cookie-modal-btn-save" id="pw-modal-save">Save Preferences</button>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        const analyticsCheckbox = document.getElementById('pw-pref-analytics');
+        const preferencesCheckbox = document.getElementById('pw-pref-preferences');
+
+        [analyticsCheckbox, preferencesCheckbox].forEach(checkbox => {
+          checkbox.addEventListener('change', function() {
+            const box = this.parentElement.querySelector('.pw-cookie-checkbox');
+            if (this.checked) {
+              box.classList.add('checked');
+              box.textContent = '✓';
+            } else {
+              box.classList.remove('checked');
+              box.textContent = '';
+            }
+          });
+        });
+
+        document.getElementById('pw-modal-cancel').addEventListener('click', () => {
+          modal.remove();
+        });
+
+        document.getElementById('pw-modal-save').addEventListener('click', () => {
+          setCookieConsent({
+            essential: true,
+            analytics: analyticsCheckbox.checked,
+            preferences: preferencesCheckbox.checked
+          });
+          if (analyticsCheckbox.checked) {
+            initializeAnalytics(true);
+          }
+          modal.remove();
+          document.getElementById('pw-cookie-banner').classList.add('hidden');
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const consent = getCookieConsent();
+        
+        if (!consent) {
+          showCookieBanner();
+        } else {
+          if (consent.analytics) {
+            initializeAnalytics(true);
+          }
+        }
+      });
+
+      window.manageCookies = function() {
+        showPreferencesModal();
+      };
+    })();
+  </script>
 </body>
 
 </html>
+      
