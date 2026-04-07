@@ -3799,21 +3799,20 @@
             </div>
           </div>
         </div>
-        <h2>Start your free trial.</h2>
-        <p>Enter your email and your PodWizard studio is ready instantly. No credit card, no commitment. Your first
-          perfect episode is waiting.</p>
+        <h2>Start creating free, forever.</h2>
+        <p>Generate your first perfect episode on us—no credit card, no expiration date. Upgrade anytime if you need more.</p>
         <form class="modal-form" onsubmit="submitModal(event)">
           <input class="modal-input" type="email" id="mEmail" placeholder="your@email.com" required
             autocomplete="email">
           <button class="modal-submit" type="submit">Get instant access →</button>
-          <p class="modal-fine"><strong>No credit card required. </strong>Unlock a 14 days Free Trial...</p>
+          <p class="modal-fine"><strong>No credit card required.</strong> Free forever—generate unlimited episodes, upgrade anytime.</p>
         </form>
       </div>
       <div class="modal-ok" id="mOk">
         <div class="modal-ok-icon">🎉</div>
-        <h3>You're in the studio.</h3>
-        <p>Check your inbox — we've sent your access link. Your first perfect episode is 2 minutes away.</p>
-        <a href="https://studio.getpodwizard.com/pricing" target="_blank">Open PodWizard →</a>
+        <h3>You're all set! Welcome to the studio.</h3>
+        <p>Your free account is active and ready. No card needed. Taking you to the studio…</p>
+        <p class="modal-fine" style="margin-top:16px;color:var(--t3);font-size:0.85em;">If you're not redirected in 2 seconds, <a href="https://studio.getpodwizard.com/login?plan=free" target="_blank" style="color:var(--acc);">click here →</a></p>
       </div>
     </div>
   </div>
@@ -3837,7 +3836,7 @@
     <div class="nav-r">
       <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle light/dark mode">🌓</button>
       <a href="https://podpulse-creator-flow.base44.app" class="nav-si" target="_blank">Sign in</a>
-      <button class="nav-trial" onclick="openModal()">Start free trial</button>
+      <button class="nav-trial" onclick="openModal()">Generate for Free</button>
     </div>
   </nav>
 
@@ -3885,7 +3884,7 @@
       </div>
 
       <div class="hero-cta">
-        <button class="btn-acc" onclick="openModal()">Start free trial</button>
+        <button class="btn-acc" onclick="openModal()">Generate Your First Episode Free</button>
         <a href="#pipeline" class="btn-ghost">See how it works</a>
       </div>
       <div class="no-card">
@@ -3954,7 +3953,7 @@
               <div class="sb-acc">
                 <div class="sb-av">N</div>
                 <div>
-                  <div class="sb-an">Your Name</div><span class="sb-ab">v6 Studio</span>
+                  <div class="sb-an">Name</div><span class="sb-ab">v6 Studio</span>
                 </div>
                 <div style="font-size:0.65rem;color:var(--t3);margin-left:auto">⚙</div>
               </div>
@@ -4504,14 +4503,14 @@
                 class="feat-new">NEW</span>
             </div>
             <div class="pcf pcf-grn">
-              <div class="pcf-ck">✓</div>14-day free trial — cancel anytime
+              <div class="pcf-ck">✓</div>Free forever — upgrade anytime
             </div>
           </div>
-          <button class="pc-btn pc-btn-s" onclick="openModal()" id="pcTrialBtn">Start free trial — no card needed
+          <button class="pc-btn pc-btn-s" onclick="openModal()" id="pcTrialBtn">Try PodWizard Free
           </button>
           <div
             style="font-size:0.72rem;color:var(--t3);text-align:center;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px">
-            <span>☆</span> 14-day free trial · Cancel anytime
+            <span>☆</span> No credit card · Cancel anytime
           </div>
         </div>
       </div>
@@ -4534,7 +4533,7 @@
       <p class="cta-sub reveal d1">Join podcasters who chose PodWizard to grow faster, rank higher, and create better
         content — without burning out.</p>
       <div class="cta-btns reveal d2">
-        <button class="btn-acc" onclick="openModal()">Start free trial — no card needed</button>
+        <button class="btn-acc" onclick="openModal()">Start Creating Free</button>
         <a href="https://podpulse-creator-flow.base44.app" class="btn-ghost" target="_blank">Sign in →</a>
       </div>
     </div>
@@ -4596,11 +4595,52 @@
       const btn = e.target.querySelector('button[type="submit"]');
       btn.textContent = 'Setting up your studio…'; btn.disabled = true;
       try {
-        if (EMAIL_ACTION) { await fetch(EMAIL_ACTION, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) }); }
-        else { const l = JSON.parse(localStorage.getItem('pp') || '[]'); if (!l.includes(email)) l.push(email); localStorage.setItem('pp', JSON.stringify(l)); await new Promise(r => setTimeout(r, 900)); }
+        let signupToken = null;
+        
+        // If you have an email webhook/action setup (Zapier, Make, custom API, etc.)
+        if (EMAIL_ACTION) { 
+          const res = await fetch(EMAIL_ACTION, { 
+            method: 'POST', 
+            headers: { 'Content-Type': 'application/json' }, 
+            body: JSON.stringify({ 
+              email: email, 
+              plan: 'free',  // Important: tell backend they're on free plan
+              source: 'landing_page'
+            }) 
+          }); 
+          try {
+            const data = await res.json();
+            signupToken = data.token || data.sessionId || null;
+          } catch (e) {
+            // Webhook might not return JSON, that's ok
+          }
+        }
+        // Fallback to localStorage (development/demo mode)
+        else { 
+          const l = JSON.parse(localStorage.getItem('pp') || '[]'); 
+          if (!l.includes(email)) l.push(email); 
+          localStorage.setItem('pp', JSON.stringify(l)); 
+          signupToken = 'demo-' + Date.now();
+        }
+        
+        // Show success message immediately (fast feedback)
         document.getElementById('mForm').style.display = 'none';
         document.getElementById('mOk').style.display = 'block';
-      } catch (err) { btn.textContent = 'Try again →'; btn.disabled = false; }
+        
+        // Auto-redirect to studio after 1.5 seconds
+        // This gives users time to see the success message, then seamlessly takes them to the studio
+        setTimeout(() => {
+          const studioUrl = signupToken 
+            ? `https://studio.getpodwizard.com/login?token=${encodeURIComponent(signupToken)}&plan=free&email=${encodeURIComponent(email)}`
+            : `https://studio.getpodwizard.com/signup?email=${encodeURIComponent(email)}&plan=free`;
+          window.location.href = studioUrl;
+        }, 1500);
+        
+      } catch (err) { 
+        console.error('Signup error:', err);
+        btn.textContent = 'Try again →'; 
+        btn.disabled = false; 
+      }
     }
 
     /* ── BILLING ── */
