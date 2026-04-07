@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="image/png" href="/images/favicon.png">
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap"
     rel="stylesheet">
@@ -3781,6 +3782,68 @@
     [data-theme="light"] .ticker-wrap {
       background: rgba(0, 0, 0, 0.04);
     }
+
+    /* Center the Stripe button and give it some spacing */
+.stripe-button-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Make sure the Stripe component takes up full width if needed */
+stripe-buy-button {
+    width: 100%;
+}
+
+/* If the Stripe button looks too small compared to your other buttons: */
+#stripe-monthly-container, #stripe-annual-container {
+    width: 100%;
+    padding: 0 10px;
+
+
+}
+
+.orig-price {
+    display: none; /* Hidden by default */
+    text-decoration: line-through;
+    color: #888;
+    font-size: 0.8em;
+    margin-right: 5px;
+}
+
+.orig-price.show {
+    display: inline-block; /* Shown when annual is selected */
+}
+
+/* Styling for the strikethrough effect */
+.pc-amt.crossed {
+  text-decoration: line-through;
+  text-decoration-color: #888; /* Red line for contrast, or use #888 */
+  color: #888;
+  font-size: 0.7em;
+  opacity: 0.7;
+}
+
+#creator-curr.crossed {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 0.7em;
+}
+
+/* Ensure the Stripe buttons look consistent */
+.stripe-container {
+  width: 100%;
+  margin-top: 15px;
+  min-height: 45px;
+}
+
+.price-crossed {
+    text-decoration: line-through;
+    text-decoration-color: #888; /* Red strike for better visibility */
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-size: 0.6em !important;
+}
   </style>
   <!-- Stripe for payment processing -->
   <script src="https://js.stripe.com/v3/"></script>
@@ -4491,10 +4554,15 @@
         <div class="pcard hot">
           <div class="pc-pop">MOST POPULAR</div>
           <div class="pc-plan" style="color:var(--acc)">Creator</div>
-          <div class="pc-price-row">
-            <div class="pc-orig" id="pcOrig">$29</div>
-            <div class="pc-price" id="pcPrice">$29</div>
-            <span class="pc-per" id="pcPer">/mo</span>
+          <div class="pc-price" style="display: flex; align-items: baseline; justify-content: center; gap: 8px;">
+            <span id="annual-19" style="display: none; color: #fff; font-weight: 800; font-size: 42px;">$19</span>
+          
+            <div id="price-container" style="display: flex; align-items: baseline;">
+              <span class="pc-cur" id="creator-curr">$</span>
+              <span class="pc-amt" id="creator-price">29</span>
+            </div>
+            
+            <span class="pc-per" id="creator-per">/mo</span>
           </div>
           <div style="font-size:0.8rem;color:var(--t3);margin-bottom:16px" id="pcBillLabel">billed monthly</div>
           <div class="pc-feats-1" style="margin-bottom:20px">
@@ -4533,8 +4601,37 @@
             </div>
             
           </div>
-          <button class="pc-btn pc-btn-s" id="paidPlanBtn" onclick="initiateStripeCheckout(STRIPE_PRICES[document.getElementById('ta').classList.contains('on') ? 'annual' : 'monthly'])" style="background:var(--acc);color:var(--bg);font-weight:600;">Upgrade to Creator
-          </button>
+
+          
+          <div class="pcard hot">
+            <div class="pc-pop">Most Popular</div>
+            <h3 class="pc-title">Creator</h3>
+            <div class="pc-price" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <span id="annual-discount-price" style="display: none; color: #05070d; font-weight: 800; font-size: 42px;">$19</span>
+            
+              <div style="position: relative; display: flex; align-items: center;">
+                <span class="pc-cur" id="creator-curr">$</span>
+                <span class="pc-amt" id="creator-price">29</span>
+                </div>
+            
+              <span class="pc-per" id="creator-per">/mo</span>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <div id="stripe-monthly-container">
+                    <stripe-buy-button
+                      buy-button-id="buy_btn_1TJet2As4Bs2UImHdA365Dql"
+                      publishable-key="pk_live_51TFf8FAs4Bs2UImHxYlXxOjutzLOgQUz3k5LBQWI6VZrUGeXWV9M7UqDct0YbkC9Pbtj4cNhu9loQCa6Cn5ZvBcd00JBOHaH8B">
+                    </stripe-buy-button>
+                </div>
+                <div id="stripe-annual-container" style="display: none;">
+                    <stripe-buy-button
+                      buy-button-id="buy_btn_1TJf6CAs4Bs2UImH9eDGHrX9"
+                      publishable-key="pk_live_51TFf8FAs4Bs2UImHxYlXxOjutzLOgQUz3k5LBQWI6VZrUGeXWV9M7UqDct0YbkC9Pbtj4cNhu9loQCa6Cn5ZvBcd00JBOHaH8B">
+                    </stripe-buy-button>
+                </div>
+            </div>
+            </div>
           
         </div>
       </div>
@@ -4754,79 +4851,47 @@
       }
     }
 
-    /* ── STRIPE CHECKOUT ── */
-    // Replace with your actual Stripe publishable key
-    const STRIPE_PUBLISHABLE_KEY = 'pk_live_51TFf8FAs4Bs2UImHxYlXxOjutzLOgQUz3k5LBQWI6VZrUGeXWV9M7UqDct0YbkC9Pbtj4cNhu9loQCa6Cn5ZvBcd00JBOHaH8B'; // Update this
+   
+    // Set Billings 
+    function setBilling(type) {
+    const tm = document.getElementById('tm');
+    const ta = document.getElementById('ta');
     
-    // Your Stripe product price IDs
-    const STRIPE_PRICES = {
-      monthly: 'price_1TJZVCAs4Bs2UImH8dXkz66s', // Update with your actual price ID
-      annual: 'price_1TJZVCAs4Bs2UImHSgxMggY0'    // Update with your actual price ID
-    };
+    const priceMain = document.getElementById('creator-price');
+    const currMain = document.getElementById('creator-curr');
+    const annual19 = document.getElementById('annual-19');
     
-    async function initiateStripeCheckout(priceId) {
-      try {
-        // Call your backend to create a Stripe checkout session
-        const response = await fetch('/api/checkout', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ 
-            priceId: priceId,
-            email: '', // Get from user context if available
-            plan: 'creator'
-          })
-        });
+    const monthlyBtn = document.getElementById('stripe-monthly-container');
+    const annualBtn = document.getElementById('stripe-annual-container');
+
+    if (type === 'm') {
+        // TABS
+        tm.classList.add('on');
+        ta.classList.remove('on');
         
-        if (!response.ok) throw new Error('Checkout failed');
-        const { sessionId } = await response.json();
+        // RESET STYLING
+        annual19.style.display = 'none';
+        priceMain.classList.remove('price-crossed');
+        currMain.classList.remove('price-crossed');
         
-        // Redirect to Stripe checkout
-        const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
-        const { error } = await stripe.redirectToCheckout({ sessionId });
+        // SHOW MONTHLY STRIPE
+        monthlyBtn.style.display = 'block';
+        annualBtn.style.display = 'none';
+    } else {
+        // TABS
+        ta.classList.add('on');
+        tm.classList.remove('on');
         
-        if (error) {
-          console.error('Stripe error:', error);
-          alert('Unable to process checkout. Please try again.');
-        }
-      } catch (err) {
-        console.error('Checkout error:', err);
-        alert('Something went wrong. Please try again or contact support.');
-      }
+        // APPLY "ANUAL" STYLING
+        annual19.style.display = 'inline-block'; // Show $19
+        priceMain.classList.add('price-crossed');   // Cross out 29
+        currMain.classList.add('price-crossed');    // Cross out $
+        
+        // SHOW ANNUAL STRIPE ($290)
+        monthlyBtn.style.display = 'none';
+        annualBtn.style.display = 'block';
     }
-
-    // Attach checkout to paid plan button
-    document.addEventListener('DOMContentLoaded', function() {
-      const billingMode = document.querySelector('.pto.on');
-      const paidBtn = document.getElementById('paidPlanBtn');
-      if (paidBtn) {
-        paidBtn.addEventListener('click', function() {
-          const mode = document.getElementById('ta')?.classList.contains('on') ? 'annual' : 'monthly';
-          const priceId = STRIPE_PRICES[mode];
-          initiateStripeCheckout(priceId);
-        });
-      }
-    });
-
-    /* ── BILLING ── */
-    function setBilling(m) {
-      document.getElementById('tm').classList.toggle('on', m === 'm');
-      document.getElementById('ta').classList.toggle('on', m === 'a');
-      const orig = document.getElementById('pcOrig'),
-        price = document.getElementById('pcPrice'),
-        per = document.getElementById('pcPer'),
-        label = document.getElementById('pcBillLabel'),
-        btn = document.getElementById('pcTrialBtn');
-      if (m === 'a') {
-        orig.classList.add('show'); price.textContent = '$19'; per.textContent = '/mo';
-        if (label) label.textContent = 'billed annually ($228/yr)';
-        if (btn) btn.textContent = 'Start Free Trial — $19/mo';
-      } else {
-        orig.classList.remove('show'); price.textContent = '$29'; per.textContent = '/mo';
-        if (label) label.textContent = 'billed monthly';
-        if (btn) btn.textContent = 'Start Free Trial — $29/mo';
-      }
-    }
-
+}
 
     /* ── REVEAL ── */
     const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.07 });
@@ -5319,6 +5384,31 @@
         showPreferencesModal();
       };
     })();
+
+    function togglePricing() {
+    const isAnnual = document.getElementById('pricing-checkbox').checked;
+    const monthlyContainer = document.getElementById('stripe-monthly-container');
+    const annualContainer = document.getElementById('stripe-annual-container');
+
+    if (isAnnual) {
+        // Update text labels to "Yearly"
+        document.querySelectorAll('.pc-per').forEach(el => el.textContent = '/year');
+        // Update the prices (your existing logic)
+        document.getElementById('creator-price').textContent = '290'; 
+        
+        // SWITCH STRIPE BUTTONS
+        monthlyContainer.style.display = 'none';
+        annualContainer.style.display = 'block';
+    } else {
+        // Update text labels to "Monthly"
+        document.querySelectorAll('.pc-per').forEach(el => el.textContent = '/mo');
+        document.getElementById('creator-price').textContent = '29';
+
+        // SWITCH STRIPE BUTTONS
+        monthlyContainer.style.display = 'block';
+        annualContainer.style.display = 'none';
+    }
+}
   </script>
 </body>
 
