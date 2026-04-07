@@ -2462,7 +2462,8 @@
     .pc-per {
       font-size: 0.85rem;
       font-weight: 300;
-      color: var(--t3)
+      color: var(--t3);;
+
     }
 
     .pc-orig {
@@ -3816,6 +3817,32 @@ stripe-buy-button {
     display: inline-block; /* Shown when annual is selected */
 }
 
+.pc-btn {
+  outline: none;
+  border: 2px solid #000;
+  border-radius: 30px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pc-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.pc-btn:active {
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+button:focus-visible {
+  outline: none;
+}
+
+
+.pc-btn:hover {
+  border-color: #000;
+}
+
 /* Styling for the strikethrough effect */
 .pc-amt.crossed {
   text-decoration: line-through;
@@ -3840,9 +3867,313 @@ stripe-buy-button {
 
 .price-crossed {
     text-decoration: line-through;
-    text-decoration-color: #888; /* Red strike for better visibility */
-    color: rgba(255, 255, 255, 0.4) !important;
+    text-decoration-color: #888; 
+    color: #0d0f1a
+    !important;
     font-size: 0.6em !important;
+    text-decoration: line-through;
+  opacity: 0.6;
+  transform: scale(0.95);
+  transition: all 0.25s ease;
+}
+
+.savings-text {
+  color: #22c55e; /* same flashy green */
+  font-weight: 700;
+  margin-top: 10px;
+  font-size: 16px;
+  text-shadow: 0 0 8px rgba(34,197,94,0.4);
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.best-value-badge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+}
+
+.best-value-badge:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+.yearly-total {
+  margin-top: 6px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.old-total {
+  text-decoration: line-through;
+  opacity: 0.6;
+  margin-right: 8px;
+}
+
+.new-total {
+  color: #22c55e;
+  font-weight: 800;
+}
+
+.free-plan {
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pricing-card * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Base layout pricing divs */
+.pricing-container {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.pricing-card {
+  width: 340px;
+  max-width: 100%;
+  position: relative;
+}
+
+@media (min-width: 1401px) {
+
+.pricing-container {
+  gap: 28px;
+}
+
+.pricing-card {
+  width: 360px;
+}
+
+}
+
+@media (min-width: 1025px) and (max-width: 1400px) {
+
+.pricing-card {
+  width: 340px;
+}
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+.pricing-container {
+  gap: 20px;
+}
+
+.pricing-card {
+  width: 320px;
+}
+
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+.pricing-card {
+  width: 90%;
+}
+
+}
+
+@media (max-width: 480px) {
+
+.pricing-container {
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.pricing-card {
+  width: 92%;
+  padding: 20px;
+}
+
+.pc-btn {
+  width: 100%;
+  font-size: 16px;
+  padding: 14px;
+}
+
+}
+
+/* Extra small phones — fix for under 415px */
+
+@media (max-width: 415px) {
+
+.pricing-card {
+  width: 88%;
+  max-width: 300px;
+  padding: 18px;
+}
+
+}
+
+/* Very small devices (older iPhones / small Android) */
+
+@media (max-width: 360px) {
+
+.pricing-card {
+  width: 86%;
+  max-width: 280px;
+  padding: 16px;
+}
+
+}
+
+.pricing-card {
+  width: 92%;
+  padding: 20px;
+}
+
+.pc-btn {
+  width: 100%;
+  font-size: 16px;
+  padding: 14px;
+}
+
+
+
+/* Under 415px — main fix */
+@media (max-width: 415px) {
+
+  .pcard,
+  .pcard.hot {
+    width: 92%;
+    max-width: 300px;
+    padding: 18px;
+  }
+
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+
+.pcard,
+.pcard.hot {
+  width: 90%;
+  max-width: 280px;
+  padding: 16px;
+}
+
+}
+
+@media (max-width: 415px) {
+
+/* Center the whole pricing section */
+.pricing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Center BOTH cards */
+.pcard,
+.pcard.hot {
+  width: 92%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+}
+
+@media (max-width: 320px) {
+
+.pcard,
+.pcard.hot {
+  width: 94%;
+  max-width: 260px;
+  padding: 14px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pc-title {
+  font-size: 20px;
+}
+
+.pc-price {
+  font-size: 36px;
+}
+
+}
+
+/* Base */
+.stripe-button-container {
+  font-size: 18px;
+  padding: 14px 22px;
+  white-space: nowrap;
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+
+  .BuyButton-ButtonText {
+    font-size: 17px;
+    padding: 13px 20px;
+  }
+
+}
+
+/* Phones */
+@media (max-width: 480px) {
+
+  .BuyButton-ButtonText {
+    font-size: 16px;
+    padding: 12px 18px;
+  }
+
+}
+
+
+/* Small phones */
+@media (max-width: 415px) {
+
+.BuyButton-ButtonText {
+  font-size: 15px;
+  padding: 11px 16px;
+}
+
+}
+
+/* Very small phones */
+@media (max-width: 320px) {
+
+.BuyButton-ButtonText {
+  font-size: 14px;
+  padding: 10px 14px;
+}
+
 }
   </style>
   <!-- Stripe for payment processing -->
@@ -4548,21 +4879,28 @@ stripe-buy-button {
               <div class="pcf-ck">✓</div>Shorts &amp; social assets
             </div>
           </div>
-          <button class="pc-btn pc-btn-g" style="margin-top:24px" onclick="openModal()">Get started free</button>
+          <button class="pc-btn pc-btn-g" style="margin-top:24px" onclick="openModal()">Get Started For Free</button>
         </div>
         <!-- Creator - matches real software exactly -->
         <div class="pcard hot">
           <div class="pc-pop">MOST POPULAR</div>
           <div class="pc-plan" style="color:var(--acc)">Creator</div>
           <div class="pc-price" style="display: flex; align-items: baseline; justify-content: center; gap: 8px;">
-            <span id="annual-19" style="display: none; color: #fff; font-weight: 800; font-size: 42px;">$19</span>
+            <div class="best-value-badge">
+              BEST VALUE
+            </div>
+            <span class="annual-price" style="display:none">$19</span>
           
             <div id="price-container" style="display: flex; align-items: baseline;">
-              <span class="pc-cur" id="creator-curr">$</span>
-              <span class="pc-amt" id="creator-price">29</span>
+              <span class="pc-cur price-currency">$</span>
+              <span class="pc-amt price-amount">29</span>
             </div>
             
             <span class="pc-per" id="creator-per">/mo</span>
+
+            
+
+            
           </div>
           <div style="font-size:0.8rem;color:var(--t3);margin-bottom:16px" id="pcBillLabel">billed monthly</div>
           <div class="pc-feats-1" style="margin-bottom:20px">
@@ -4607,17 +4945,17 @@ stripe-buy-button {
             <div class="pc-pop">Most Popular</div>
             <h3 class="pc-title">Creator</h3>
             <div class="pc-price" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-              <span id="annual-discount-price" style="display: none; color: #05070d; font-weight: 800; font-size: 42px;">$19</span>
+              <span class="annual-price" style="display:none">$19</span>
             
               <div style="position: relative; display: flex; align-items: center;">
-                <span class="pc-cur" id="creator-curr">$</span>
-                <span class="pc-amt" id="creator-price">29</span>
+                <span class="pc-cur price-currency">$</span>
+                <span class="pc-amt price-amount">29</span>
                 </div>
             
               <span class="pc-per" id="creator-per">/mo</span>
             </div>
             
-            <div style="margin-top: 20px;">
+            <div style="margin-top: 20px;" class="BuyButton-ButtonText ">
                 <div id="stripe-monthly-container">
                     <stripe-buy-button
                       buy-button-id="buy_btn_1TJet2As4Bs2UImHdA365Dql"
@@ -4854,43 +5192,52 @@ stripe-buy-button {
    
     // Set Billings 
     function setBilling(type) {
-    const tm = document.getElementById('tm');
-    const ta = document.getElementById('ta');
-    
-    const priceMain = document.getElementById('creator-price');
-    const currMain = document.getElementById('creator-curr');
-    const annual19 = document.getElementById('annual-19');
-    
-    const monthlyBtn = document.getElementById('stripe-monthly-container');
-    const annualBtn = document.getElementById('stripe-annual-container');
 
-    if (type === 'm') {
-        // TABS
-        tm.classList.add('on');
-        ta.classList.remove('on');
-        
-        // RESET STYLING
-        annual19.style.display = 'none';
-        priceMain.classList.remove('price-crossed');
-        currMain.classList.remove('price-crossed');
-        
-        // SHOW MONTHLY STRIPE
-        monthlyBtn.style.display = 'block';
-        annualBtn.style.display = 'none';
-    } else {
-        // TABS
-        ta.classList.add('on');
-        tm.classList.remove('on');
-        
-        // APPLY "ANUAL" STYLING
-        annual19.style.display = 'inline-block'; // Show $19
-        priceMain.classList.add('price-crossed');   // Cross out 29
-        currMain.classList.add('price-crossed');    // Cross out $
-        
-        // SHOW ANNUAL STRIPE ($290)
-        monthlyBtn.style.display = 'none';
-        annualBtn.style.display = 'block';
-    }
+const tm = document.getElementById('tm');
+const ta = document.getElementById('ta');
+
+const yearlyTotals = document.querySelectorAll('.yearly-total');
+
+const prices = document.querySelectorAll('.price-amount');
+const currencies = document.querySelectorAll('.price-currency');
+const annualPrices = document.querySelectorAll('.annual-price');
+const savings = document.querySelectorAll('.savings-text');
+
+const monthlyBtn = document.getElementById('stripe-monthly-container');
+const annualBtn = document.getElementById('stripe-annual-container');
+
+if (type === 'm') {
+
+  tm.classList.add('on');
+  ta.classList.remove('on');
+
+  annualPrices.forEach(p => p.style.display = 'none');
+
+  prices.forEach(p => p.classList.remove('price-crossed'));
+  currencies.forEach(c => c.classList.remove('price-crossed'));
+
+  savings.forEach(s => s.style.display = 'none');
+
+  monthlyBtn.style.display = 'block';
+  annualBtn.style.display = 'none';
+  yearlyTotals.forEach(t => t.style.display = 'none');
+
+} else {
+
+  ta.classList.add('on');
+  tm.classList.remove('on');
+
+  annualPrices.forEach(p => p.style.display = 'inline-block');
+
+  prices.forEach(p => p.classList.add('price-crossed'));
+  currencies.forEach(c => c.classList.add('price-crossed'));
+
+  savings.forEach(s => s.style.display = 'block');
+
+  monthlyBtn.style.display = 'none';
+  annualBtn.style.display = 'block';
+  yearlyTotals.forEach(t => t.style.display = 'block');
+}
 }
 
     /* ── REVEAL ── */
