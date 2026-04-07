@@ -3782,6 +3782,8 @@
       background: rgba(0, 0, 0, 0.04);
     }
   </style>
+  <!-- Stripe for payment processing -->
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
@@ -3835,7 +3837,7 @@
     </ul>
     <div class="nav-r">
       <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle light/dark mode">🌓</button>
-      <a href="https://podpulse-creator-flow.base44.app" class="nav-si" target="_blank">Sign in</a>
+      <a href="https://studio.getpodwizard.com" class="nav-si" target="_blank">Sign in</a>
       <button class="nav-trial" onclick="openModal()">Generate for Free</button>
     </div>
   </nav>
@@ -4414,6 +4416,33 @@
     </div>
   </section>
 
+  <!-- ── DEMO SECTION (No Signup Needed) ── -->
+  <section style="text-align:center;padding:80px 20px;background:var(--surf2);margin:60px 0;">
+    <div class="wrap" style="max-width:800px;margin:0 auto;">
+      <h3 class="sec-h reveal" style="margin:0 0 12px;">See it in action — no signup needed</h3>
+      <p class="sec-s reveal d1" style="margin:10px auto 20px;">Type a podcast topic and see exactly what PodWizard generates for you.</p>
+      
+      <div style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;justify-content: center;">
+        <input id="demoTopic" type="text" placeholder="E.g., 'The Future of AI in Content Creation'" 
+          style="flex:1;min-width:200px;padding:14px 16px;background:var(--surf);border:1px solid var(--b2);border-radius:8px;color:var(--t1);font-size:0.95em;font-family:inherit;">
+        <button onclick="showDemoOutput()" 
+          style="padding:14px 28px;background:var(--acc);color:var(--bg);border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.95em;white-space:nowrap;transition:background 0.2s;">
+          ⚡ Show Sample
+        </button>
+      </div>
+
+      <div id="demoOutput" style="text-align:left;background:var(--surf);padding:28px;border-radius:12px;display:none;border:1px solid var(--b2);margin-bottom:28px;">
+        <div id="demoContent" style="color:var(--t1);line-height:1.6;"></div>
+        <div style="margin-top:28px;text-align:center;padding-top:28px;border-top:1px solid var(--b1);">
+          <p style="color:var(--t2);font-size:0.9em;margin-bottom:16px;">Ready to generate your real episodes?</p>
+          <button onclick="openModal()" style="padding:12px 28px;background:var(--acc);color:var(--bg);border:none;border-radius:8px;cursor:pointer;font-weight:600;">
+            Start Creating Free →
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── PRICING ── -->
   <section class="pricing" id="pricing">
     <div class="wrap" style="text-align:center">
@@ -4502,16 +4531,11 @@
               <div class="pcf-ck">✓</div><span>Team Dashboard (co-hosts, editors, viewers)</span> <span
                 class="feat-new">NEW</span>
             </div>
-            <div class="pcf pcf-grn">
-              <div class="pcf-ck">✓</div>Free forever — upgrade anytime
-            </div>
+            
           </div>
-          <button class="pc-btn pc-btn-s" onclick="openModal()" id="pcTrialBtn">Try PodWizard Free
+          <button class="pc-btn pc-btn-s" id="paidPlanBtn" onclick="initiateStripeCheckout(STRIPE_PRICES[document.getElementById('ta').classList.contains('on') ? 'annual' : 'monthly'])" style="background:var(--acc);color:var(--bg);font-weight:600;">Upgrade to Creator
           </button>
-          <div
-            style="font-size:0.72rem;color:var(--t3);text-align:center;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px">
-            <span>☆</span> No credit card · Cancel anytime
-          </div>
+          
         </div>
       </div>
     </div>
@@ -4534,7 +4558,7 @@
         content — without burning out.</p>
       <div class="cta-btns reveal d2">
         <button class="btn-acc" onclick="openModal()">Start Creating Free</button>
-        <a href="https://podpulse-creator-flow.base44.app" class="btn-ghost" target="_blank">Sign in →</a>
+        <a href="https://studio.getpodwizard.com" class="btn-ghost" target="_blank">Sign in →</a>
       </div>
     </div>
   </section>
@@ -4562,7 +4586,7 @@
           <a href="#pipeline">How it works</a>
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
-          <a href="https://podpulse-creator-flow.base44.app" target="_blank">Sign in</a>
+          <a href="https://studio.getpodwizard.com" target="_blank">Sign in</a>
         </div>
       </div>
       <div>
@@ -4642,6 +4666,146 @@
         btn.disabled = false; 
       }
     }
+
+    /* ── DEMO ── */
+    function showDemoOutput() {
+      const topic = document.getElementById('demoTopic').value.trim() || 'Podcast Trends 2026';
+      const samples = [
+        {
+          title: 'Understanding the Latest Innovations',
+          duration: '18-22 minutes',
+          outline: [
+            'Hook: Start with surprising stat or question',
+            'Intro to topic: What listeners need to know',
+            '3 Key points: Deep dive with examples',
+            'Real-world impact: How this affects listeners',
+            'Expert perspective: What pros think',
+            'Listener takeaway: Actionable insights',
+            'Outro: Call to action & next episode teaser'
+          ],
+          resources: ['5 custom podcast thumbnails', '15 social media clips (30-60 sec)', 'Full transcript & summary', 'SEO-optimized description', 'Show notes with timestamps']
+        },
+        {
+          title: 'Everything You Need to Know',
+          duration: '15-20 minutes',
+          outline: [
+            'Cold open with story',
+            'Problem setup',
+            '3 Solutions explained',
+            'Success story from real user',
+            'Common mistakes to avoid',
+            'Quick implementation guide',
+            'Final thoughts & next steps'
+          ],
+          resources: ['5 unique designs', '15 short clips ready to post', 'Complete transcript', 'SEO metadata', 'Audiogram ready to share']
+        },
+        {
+          title: 'The Ultimate Guide',
+          duration: '20-25 minutes',
+          outline: [
+            'Hook: Why this matters now',
+            'Background & context',
+            'Benefit 1, 2, 3 explained',
+            'Case study deep-dive',
+            'Tools & resources mentioned',
+            'Mistakes to avoid',
+            'Your action plan'
+          ],
+          resources: ['5 eye-catching thumbnails', '15 TikTok/Reels-ready clips', 'Full episode transcript', 'SEO description', 'Chapter markers']
+        }
+      ];
+      
+      const sample = samples[Math.floor(Math.random() * samples.length)];
+      const html = `
+        <div>
+          <h4 style="color:var(--acc);margin:0 0 16px;font-size:1.1em;">📊 Sample Episode: "${topic}: ${sample.title}"</h4>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+            <div>
+              <p style="color:var(--t2);font-size:0.85em;margin:0 0 4px;font-weight:600;">Duration</p>
+              <p style="color:var(--t1);margin:0;">${sample.duration}</p>
+            </div>
+            <div>
+              <p style="color:var(--t2);font-size:0.85em;margin:0 0 4px;font-weight:600;">Format</p>
+              <p style="color:var(--t1);margin:0;">Full Script + Audio Ready</p>
+            </div>
+          </div>
+          
+          <p style="color:var(--t2);font-size:0.85em;margin:0 0 8px;font-weight:600;">📝 Episode Structure</p>
+          <ol style="margin:0 0 20px;padding-left:20px;color:var(--t1);">
+            ${sample.outline.map(item => `<li style="margin-bottom:6px;">${item}</li>`).join('')}
+          </ol>
+          
+          <p style="color:var(--t2);font-size:0.85em;margin:0 0 8px;font-weight:600;">⚡ You Also Get</p>
+          <ul style="margin:0;padding-left:20px;color:var(--t1);list-style:none;padding-left:0;">
+            ${sample.resources.map(item => `<li style="margin-bottom:6px;">✓ ${item}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+      
+      document.getElementById('demoContent').innerHTML = html;
+      document.getElementById('demoOutput').style.display = 'block';
+      
+      // Track analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'demo_shown', {
+          topic: topic,
+          sample_type: sample.title
+        });
+      }
+    }
+
+    /* ── STRIPE CHECKOUT ── */
+    // Replace with your actual Stripe publishable key
+    const STRIPE_PUBLISHABLE_KEY = 'pk_live_51TFf8FAs4Bs2UImHxYlXxOjutzLOgQUz3k5LBQWI6VZrUGeXWV9M7UqDct0YbkC9Pbtj4cNhu9loQCa6Cn5ZvBcd00JBOHaH8B'; // Update this
+    
+    // Your Stripe product price IDs
+    const STRIPE_PRICES = {
+      monthly: 'price_1TJZVCAs4Bs2UImH8dXkz66s', // Update with your actual price ID
+      annual: 'price_1TJZVCAs4Bs2UImHSgxMggY0'    // Update with your actual price ID
+    };
+    
+    async function initiateStripeCheckout(priceId) {
+      try {
+        // Call your backend to create a Stripe checkout session
+        const response = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            priceId: priceId,
+            email: '', // Get from user context if available
+            plan: 'creator'
+          })
+        });
+        
+        if (!response.ok) throw new Error('Checkout failed');
+        const { sessionId } = await response.json();
+        
+        // Redirect to Stripe checkout
+        const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+        const { error } = await stripe.redirectToCheckout({ sessionId });
+        
+        if (error) {
+          console.error('Stripe error:', error);
+          alert('Unable to process checkout. Please try again.');
+        }
+      } catch (err) {
+        console.error('Checkout error:', err);
+        alert('Something went wrong. Please try again or contact support.');
+      }
+    }
+
+    // Attach checkout to paid plan button
+    document.addEventListener('DOMContentLoaded', function() {
+      const billingMode = document.querySelector('.pto.on');
+      const paidBtn = document.getElementById('paidPlanBtn');
+      if (paidBtn) {
+        paidBtn.addEventListener('click', function() {
+          const mode = document.getElementById('ta')?.classList.contains('on') ? 'annual' : 'monthly';
+          const priceId = STRIPE_PRICES[mode];
+          initiateStripeCheckout(priceId);
+        });
+      }
+    });
 
     /* ── BILLING ── */
     function setBilling(m) {
