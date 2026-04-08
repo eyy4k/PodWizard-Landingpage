@@ -3784,119 +3784,58 @@
       background: rgba(0, 0, 0, 0.04);
     }
 
-    /* Center the Stripe button and give it some spacing */
-.stripe-button-container {
-    margin-top: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+   /* ==========================================================================
+   STRIPE BUTTON & PRICING RESPONSIVE FIXES
+   ========================================================================== */
+
+/* 1. Base Stripe Button Container Styling */
+.stripe-button-container,
+.BuyButton-ButtonText {
+  width: 100%;
+  display: block;
+  margin-top: 15px;
 }
 
-/* Make sure the Stripe component takes up full width if needed */
+#stripe-monthly-container, 
+#stripe-annual-container {
+  width: 100%;
+  min-height: 44px; /* Prevents layout shift */
+  display: flex;
+  justify-content: center;
+}
+
+/* Force the Stripe web component to fill the space */
 stripe-buy-button {
-    width: 100%;
+  width: 100%;
+  display: block;
 }
 
-/* If the Stripe button looks too small compared to your other buttons: */
-#stripe-monthly-container, #stripe-annual-container {
-    width: 100%;
-    padding: 0 10px;
-
-
-}
-
-.orig-price {
-    display: none; /* Hidden by default */
-    text-decoration: line-through;
-    color: #888;
-    font-size: 0.8em;
-    margin-right: 5px;
-}
-
-.orig-price.show {
-    display: inline-block; /* Shown when annual is selected */
-}
-
+/* Reset standard button outlines */
 .pc-btn {
   outline: none;
-  border: 2px solid #000;
+  border: 1px solid transparent;
   border-radius: 30px;
   -webkit-tap-highlight-color: transparent;
-}
-
-.pc-btn:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.pc-btn:active {
-  outline: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-button:focus-visible {
-  outline: none;
-}
-
-
-.pc-btn:hover {
-  border-color: #000;
-}
-
-/* Styling for the strikethrough effect */
-.pc-amt.crossed {
-  text-decoration: line-through;
-  text-decoration-color: #888; /* Red line for contrast, or use #888 */
-  color: #888;
-  font-size: 0.7em;
-  opacity: 0.7;
-}
-
-#creator-curr.crossed {
-  text-decoration: line-through;
-  color: #888;
-  font-size: 0.7em;
-}
-
-/* Ensure the Stripe buttons look consistent */
-.stripe-container {
   width: 100%;
-  margin-top: 15px;
-  min-height: 45px;
 }
+.pc-btn:focus, button:focus-visible { outline: none; }
+.pc-btn:active { transform: translateY(1px); }
 
+/* Cross-out pricing styles for yearly toggle */
 .price-crossed {
-    text-decoration: line-through;
-    text-decoration-color: #888; 
-    color: #0d0f1a
-    !important;
-    font-size: 0.6em !important;
-    text-decoration: line-through;
+  text-decoration: line-through;
+  text-decoration-color: var(--t3);
   opacity: 0.6;
+  font-size: 0.6em !important;
   transform: scale(0.95);
   transition: all 0.25s ease;
-}
-
-.savings-text {
-  color: #22c55e; /* same flashy green */
-  font-weight: 700;
-  margin-top: 10px;
-  font-size: 16px;
-  text-shadow: 0 0 8px rgba(34,197,94,0.4);
-  animation: pulseGreen 2s infinite;
-}
-
-@keyframes pulseGreen {
-  0% { opacity: 1; }
-  50% { opacity: 0.7; }
-  100% { opacity: 1; }
 }
 
 .best-value-badge {
   position: absolute;
   top: -12px;
   right: -12px;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
+  background: linear-gradient(135deg, var(--grn), #16a34a);
   color: white;
   font-weight: 800;
   font-size: 12px;
@@ -3904,276 +3843,129 @@ button:focus-visible {
   border-radius: 999px;
   box-shadow: 0 8px 18px rgba(0,0,0,0.25);
   letter-spacing: 0.5px;
-  transition: all 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 .best-value-badge:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  transform: translateY(-2px) scale(1.02);
 }
 
-.yearly-total {
-  margin-top: 6px;
-  font-size: 15px;
-  font-weight: 700;
+/* 2. Responsive Breakpoints for Pricing Cards */
+
+/* Tablets & Small Laptops (Stack cards instead of squishing) */
+@media (max-width: 1060px) {
+  .plans-row {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto 60px;
+  }
+  .pcard, .pcard.hot {
+    width: 100%;
+  }
 }
 
-.old-total {
-  text-decoration: line-through;
-  opacity: 0.6;
-  margin-right: 8px;
+/* Mobile Devices */
+@media (max-width: 600px) {
+  .plans-row {
+    gap: 16px;
+  }
+  .pcard, .pcard.hot {
+    padding: 28px 20px;
+  }
+  .pc-price {
+    font-size: 2.8rem;
+  }
 }
 
-.new-total {
-  color: #22c55e;
-  font-weight: 800;
-}
-
-.free-plan {
-  min-height: 520px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.pricing-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.pricing-card * {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-/* Base layout pricing divs */
-.pricing-container {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.pricing-card {
-  width: 340px;
-  max-width: 100%;
-  position: relative;
-}
-
-@media (min-width: 1401px) {
-
-.pricing-container {
-  gap: 28px;
-}
-
-.pricing-card {
-  width: 360px;
-}
-
-}
-
-@media (min-width: 1025px) and (max-width: 1400px) {
-
-.pricing-card {
-  width: 340px;
-}
-
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-
-.pricing-container {
-  gap: 20px;
-}
-
-.pricing-card {
-  width: 320px;
-}
-
-}
-
-@media (min-width: 481px) and (max-width: 767px) {
-
-.pricing-card {
-  width: 90%;
-}
-
-}
-
-@media (max-width: 480px) {
-
-.pricing-container {
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-}
-
-.pricing-card {
-  width: 92%;
-  padding: 20px;
-}
-
-.pc-btn {
-  width: 100%;
-  font-size: 16px;
-  padding: 14px;
-}
-
-}
-
-/* Extra small phones — fix for under 415px */
-
+/* Small Phones (iPhone SE, standard Androids) */
 @media (max-width: 415px) {
-
-.pricing-card {
-  width: 88%;
-  max-width: 300px;
-  padding: 18px;
+  .pcard, .pcard.hot {
+    padding: 24px 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .pc-price {
+    font-size: 2.5rem;
+  }
+  .pc-plan {
+    font-size: 0.75rem;
+  }
+  
+  /* Ensure the Stripe component scales down gracefully if it's rigid */
+  stripe-buy-button {
+    transform: scale(0.95);
+    transform-origin: center;
+  }
 }
 
-}
-
-/* Very small devices (older iPhones / small Android) */
-
-@media (max-width: 360px) {
-
-.pricing-card {
-  width: 86%;
-  max-width: 280px;
-  padding: 16px;
-}
-
-}
-
-.pricing-card {
-  width: 92%;
-  padding: 20px;
-}
-
-.pc-btn {
-  width: 100%;
-  font-size: 16px;
-  padding: 14px;
-}
-
-
-
-/* Under 415px — main fix */
-@media (max-width: 415px) {
-
-  .pcard,
-  .pcard.hot {
-    width: 92%;
-    max-width: 300px;
-    padding: 18px;
+/* ==========================================================================
+   THE "PERFECT CENTER" FIX (Under 365px)
+   ========================================================================== */
+   @media (max-width: 386px) {
+  /* 1. Ensure the card is tight and centered */
+  .pcard, .pcard.hot {
+    width: 100% !important;
+    max-width: 285px !important; /* Slightly smaller for better fit */
+    padding: 20px 10px !important;
+    margin: 10px auto !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
   }
 
-}
-
-/* Very small phones */
-@media (max-width: 360px) {
-
-.pcard,
-.pcard.hot {
-  width: 90%;
-  max-width: 280px;
-  padding: 16px;
-}
-
-}
-
-@media (max-width: 415px) {
-
-/* Center the whole pricing section */
-.pricing-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-/* Center BOTH cards */
-.pcard,
-.pcard.hot {
-  width: 92%;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-}
-
-}
-
-@media (max-width: 320px) {
-
-.pcard,
-.pcard.hot {
-  width: 94%;
-  max-width: 260px;
-  padding: 14px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.pc-title {
-  font-size: 20px;
-}
-
-.pc-price {
-  font-size: 36px;
-}
-
-}
-
-/* Base */
-.stripe-button-container {
-  font-size: 18px;
-  padding: 14px 22px;
-  white-space: nowrap;
-}
-
-/* Tablets */
-@media (max-width: 768px) {
-
-  .BuyButton-ButtonText {
-    font-size: 17px;
-    padding: 13px 20px;
+  /* 2. Fix the Button Container */
+  #stripe-monthly-container, 
+  #stripe-annual-container {
+    width: 100% !important;
+    overflow: hidden !important; /* Clips the invisible 'ghost' area of the button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-}
-
-/* Phones */
-@media (max-width: 480px) {
-
-  .BuyButton-ButtonText {
-    font-size: 16px;
-    padding: 12px 18px;
+  /* 3. THE CENTER ALIGNMENT FIX */
+  stripe-buy-button {
+    /* Scale down to fit the narrow box */
+    transform: scale(0.82) !important; 
+    transform-origin: center center !important;
+    
+    /* These three lines force it to stay centered despite the scaling */
+    width: 120% !important; 
+    max-width: 120% !important;
+     
+    
+    display: block !important;
   }
 
+  /* 4. Pricing Text Centering */
+  .pc-price {
+    font-size: 1.5rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: baseline !important;
+    width: 100% !important;
+  }
+
+  /* 5. Badge Adjustment */
+  .pc-pop {
+    right: 5px !important;
+    top: -10px !important;
+    font-size: 9px !important;
+  }
 }
 
-
-/* Small phones */
-@media (max-width: 415px) {
-
-.BuyButton-ButtonText {
-  font-size: 15px;
-  padding: 11px 16px;
-}
-
-}
-
-/* Very small phones */
-@media (max-width: 320px) {
-
-.BuyButton-ButtonText {
-  font-size: 14px;
-  padding: 10px 14px;
-}
-
+@media (max-width: 365px) {
+  /* Targeted fix for the badge to make it much smaller */
+   .best-value-badge {
+          
+    top: -8px !important;      /* Pulls it slightly down */
+    font-size: 9px !important;  /* Smaller text */
+    padding: 3px 8px !important; /* Thinner padding */
+    font-weight: 700 !important;
+    border-radius: 99px !important;
+    white-space: nowrap !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
+    transform: scale(0.9) !important; /* Final shrink factor */
+  }
 }
   </style>
   <!-- Stripe for payment processing -->
