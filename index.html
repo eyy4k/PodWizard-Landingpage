@@ -516,7 +516,7 @@
 
     .modal-input {
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--b2);
+     
       border-radius: 12px;
       padding: 14px 18px;
       color: var(--t1);
@@ -532,9 +532,7 @@
       box-shadow: 0 0 0 4px rgba(232, 255, 71, 0.07)
     }
 
-    .modal-input::placeholder {
-      color: var(--t3)
-    }
+    
 
     .modal-submit {
       background: var(--acc);
@@ -2462,7 +2460,8 @@
     .pc-per {
       font-size: 0.85rem;
       font-weight: 300;
-      color: var(--t3);;
+      color: var(--t3);
+      ;
 
     }
 
@@ -3595,145 +3594,148 @@
         padding: 16px 12px 0
       }
 
+    }
+
+    @media(max-width:600px) {
+      nav {
+        padding: 0 10px;
+        height: 56px;
+        gap: 8px
       }
 
-      @media(max-width:600px) {
-  nav {
-    padding: 0 10px;
-    height: 56px;
-    gap: 8px
-  }
+      .nav-logo {
+        font-size: 0.9rem;
+        gap: 5px;
+        flex-shrink: 0;
+        min-width: fit-content
+      }
 
-  .nav-logo {
-    font-size: 0.9rem;
-    gap: 5px;
-    flex-shrink: 0;
-    min-width: fit-content
-  }
+      .lm {
+        width: 26px;
+        height: 26px
+      }
 
-  .lm {
-    width: 26px;
-    height: 26px
-  }
+      .v6b {
+        display: none
+          /* HIDES v6 badge */
+      }
 
-  .v6b {
-    display: none        /* HIDES v6 badge */
-  }
+      .nav-links {
+        display: none
+          /* HIDES nav links */
+      }
 
-  .nav-links {
-    display: none        /* HIDES nav links */
-  }
+      .nav-r {
+        gap: 4px;
+        flex-shrink: 0
+      }
 
-  .nav-r {
-    gap: 4px;
-    flex-shrink: 0
-  }
+      .theme-toggle {
+        font-size: 1.1rem;
+        padding: 6px;
+        line-height: 1;
+        background: none;
+        border: none;
+        cursor: pointer
+      }
 
-  .theme-toggle {
-    font-size: 1.1rem;
-    padding: 6px;
-    line-height: 1;
-    background: none;
-    border: none;
-    cursor: pointer
-  }
+      .nav-si {
+        display: none
+          /* HIDES sign in */
+      }
 
-  .nav-si {
-    display: none        /* HIDES sign in */
-  }
+      .nav-trial {
+        padding: 6px 10px;
+        font-size: 0.72rem;
+        border-radius: 20px;
+        white-space: nowrap;
+        flex-shrink: 0
+      }
 
-  .nav-trial {
-    padding: 6px 10px;
-    font-size: 0.72rem;
-    border-radius: 20px;
-    white-space: nowrap;
-    flex-shrink: 0
-  }
+    }
 
-  }
+    @media(max-width:400px) {
+      nav {
+        padding: 0 8px;
+        height: 52px;
+        gap: 4px
+      }
 
-  @media(max-width:400px) {
-  nav {
-    padding: 0 8px;
-    height: 52px;
-    gap: 4px
-  }
+      .nav-logo {
+        font-size: 0.85rem;
+        gap: 4px;
+        flex-shrink: 0;
+        min-width: fit-content
+      }
 
-  .nav-logo {
-    font-size: 0.85rem;
-    gap: 4px;
-    flex-shrink: 0;
-    min-width: fit-content
-  }
+      .lm {
+        width: 24px;
+        height: 24px
+      }
 
-  .lm {
-    width: 24px;
-    height: 24px
-  }
+      .v6b {
+        display: none
+      }
 
-  .v6b {
-    display: none
-  }
+      .nav-r {
+        gap: 3px;
+        flex-shrink: 0
+      }
 
-  .nav-r {
-    gap: 3px;
-    flex-shrink: 0
-  }
+      .theme-toggle {
+        font-size: 1rem;
+        padding: 4px;
+        background: none;
+        border: none
+      }
 
-  .theme-toggle {
-    font-size: 1rem;
-    padding: 4px;
-    background: none;
-    border: none
-  }
+      .nav-si {
+        display: none
+      }
 
-  .nav-si {
-    display: none
-  }
+      .nav-trial {
+        padding: 5px 8px;
+        font-size: 0.7rem;
+        flex-shrink: 0
+      }
+    }
 
-  .nav-trial {
-    padding: 5px 8px;
-    font-size: 0.7rem;
-    flex-shrink: 0
-  }
-}
+    @media(max-width:320px) {
+      nav {
+        padding: 0 6px;
+        height: 50px;
+        gap: 3px
+      }
 
-@media(max-width:320px) {
-  nav {
-    padding: 0 6px;
-    height: 50px;
-    gap: 3px
-  }
+      .nav-logo {
+        font-size: 0.8rem;
+        gap: 3px;
+        flex-shrink: 0;
+        min-width: fit-content
+      }
 
-  .nav-logo {
-    font-size: 0.8rem;
-    gap: 3px;
-    flex-shrink: 0;
-    min-width: fit-content
-  }
+      .lm {
+        width: 22px;
+        height: 22px
+      }
 
-  .lm {
-    width: 22px;
-    height: 22px
-  }
+      .v6b {
+        display: none
+      }
 
-  .v6b {
-    display: none
-  }
+      .theme-toggle {
+        font-size: 0.95rem;
+        padding: 3px;
+        background: none;
+        border: none
+      }
 
-  .theme-toggle {
-    font-size: 0.95rem;
-    padding: 3px;
-    background: none;
-    border: none
-  }
-
-  .nav-trial {
-    padding: 5px 8px;
-    font-size: 0.65rem;
-    flex-shrink: 0
-  }
-  }
+      .nav-trial {
+        padding: 5px 8px;
+        font-size: 0.65rem;
+        flex-shrink: 0
+      }
+    }
 
     /* ── FIXED TICKER (Dark + Light Mode) ── */
     .ticker-wrap {
@@ -3784,189 +3786,208 @@
       background: rgba(0, 0, 0, 0.04);
     }
 
-   /* ==========================================================================
+    /* ==========================================================================
    STRIPE BUTTON & PRICING RESPONSIVE FIXES
    ========================================================================== */
 
-/* 1. Base Stripe Button Container Styling */
-.stripe-button-container,
-.BuyButton-ButtonText {
-  width: 100%;
-  display: block;
-  margin-top: 15px;
-}
+    /* 1. Base Stripe Button Container Styling */
+    .stripe-button-container,
+    .BuyButton-ButtonText {
+      width: 100%;
+      display: block;
+      margin-top: 15px;
+    }
 
-#stripe-monthly-container, 
-#stripe-annual-container {
-  width: 100%;
-  min-height: 44px; /* Prevents layout shift */
-  display: flex;
-  justify-content: center;
-}
+    #stripe-monthly-container,
+    #stripe-annual-container {
+      width: 100%;
+      min-height: 44px;
+      /* Prevents layout shift */
+      display: flex;
+      justify-content: center;
+    }
 
-/* Force the Stripe web component to fill the space */
-stripe-buy-button {
-  width: 100%;
-  display: block;
-}
+    /* Force the Stripe web component to fill the space */
+    stripe-buy-button {
+      width: 100%;
+      display: block;
+    }
 
-/* Reset standard button outlines */
-.pc-btn {
-  outline: none;
-  border: 1px solid transparent;
-  border-radius: 30px;
-  -webkit-tap-highlight-color: transparent;
-  width: 100%;
-}
-.pc-btn:focus, button:focus-visible { outline: none; }
-.pc-btn:active { transform: translateY(1px); }
+    /* Reset standard button outlines */
+    .pc-btn {
+      outline: none;
+      border: 1px solid transparent;
+      border-radius: 30px;
+      -webkit-tap-highlight-color: transparent;
+      width: 100%;
+    }
 
-/* Cross-out pricing styles for yearly toggle */
-.price-crossed {
-  text-decoration: line-through;
-  text-decoration-color: var(--t3);
-  opacity: 0.6;
-  font-size: 0.6em !important;
-  transform: scale(0.95);
-  transition: all 0.25s ease;
-}
+    .pc-btn:focus,
+    button:focus-visible {
+      outline: none;
+    }
 
-.best-value-badge {
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  background: linear-gradient(135deg, var(--grn), #16a34a);
-  color: white;
-  font-weight: 800;
-  font-size: 12px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
-  letter-spacing: 0.5px;
-  transition: transform 0.25s ease;
-}
+    .pc-btn:active {
+      transform: translateY(1px);
+    }
 
-.best-value-badge:hover {
-  transform: translateY(-2px) scale(1.02);
-}
+    /* Cross-out pricing styles for yearly toggle */
+    .price-crossed {
+      text-decoration: line-through;
+      text-decoration-color: var(--t3);
+      opacity: 0.6;
+      font-size: 0.6em !important;
+      transform: scale(0.95);
+      transition: all 0.25s ease;
+    }
 
-/* 2. Responsive Breakpoints for Pricing Cards */
+    .best-value-badge {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      background: linear-gradient(135deg, var(--grn), #16a34a);
+      color: white;
+      font-weight: 800;
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+      letter-spacing: 0.5px;
+      transition: transform 0.25s ease;
+    }
 
-/* Tablets & Small Laptops (Stack cards instead of squishing) */
-@media (max-width: 1060px) {
-  .plans-row {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin: 0 auto 60px;
-  }
-  .pcard, .pcard.hot {
-    width: 100%;
-  }
-}
+    .best-value-badge:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
 
-/* Mobile Devices */
-@media (max-width: 600px) {
-  .plans-row {
-    gap: 16px;
-  }
-  .pcard, .pcard.hot {
-    padding: 28px 20px;
-  }
-  .pc-price {
-    font-size: 2.8rem;
-  }
-}
+    /* 2. Responsive Breakpoints for Pricing Cards */
 
-/* Small Phones (iPhone SE, standard Androids) */
-@media (max-width: 415px) {
-  .pcard, .pcard.hot {
-    padding: 24px 16px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .pc-price {
-    font-size: 2.5rem;
-  }
-  .pc-plan {
-    font-size: 0.75rem;
-  }
-  
-  /* Ensure the Stripe component scales down gracefully if it's rigid */
-  stripe-buy-button {
-    transform: scale(0.95);
-    transform-origin: center;
-  }
-}
+    /* Tablets & Small Laptops (Stack cards instead of squishing) */
+    @media (max-width: 1060px) {
+      .plans-row {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto 60px;
+      }
 
-/* ==========================================================================
+      .pcard,
+      .pcard.hot {
+        width: 100%;
+      }
+    }
+
+    /* Mobile Devices */
+    @media (max-width: 600px) {
+      .plans-row {
+        gap: 16px;
+      }
+
+      .pcard,
+      .pcard.hot {
+        padding: 28px 20px;
+      }
+
+      .pc-price {
+        font-size: 2.8rem;
+      }
+    }
+
+    /* Small Phones (iPhone SE, standard Androids) */
+    @media (max-width: 415px) {
+
+      .pcard,
+      .pcard.hot {
+        padding: 24px 16px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .pc-price {
+        font-size: 2.5rem;
+      }
+
+      .pc-plan {
+        font-size: 0.75rem;
+      }
+
+      /* Ensure the Stripe component scales down gracefully if it's rigid */
+      stripe-buy-button {
+        transform: scale(0.95);
+        transform-origin: center;
+      }
+    }
+
+    /* ==========================================================================
    THE "PERFECT CENTER" FIX (Under 365px)
    ========================================================================== */
-   @media (max-width: 386px) {
-  /* 1. Ensure the card is tight and centered */
-  .pcard, .pcard.hot {
-    width: 100% !important;
-    max-width: 285px !important; /* Slightly smaller for better fit */
-    padding: 20px 10px !important;
-    margin: 10px auto !important;
-    box-sizing: border-box !important;
-    overflow: visible !important;
-  }
+    @media (max-width: 386px) {
 
-  /* 2. Fix the Button Container */
-  #stripe-monthly-container, 
-  #stripe-annual-container {
-    width: 100% !important;
-    overflow: hidden !important; /* Clips the invisible 'ghost' area of the button */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+      /* 1. Ensure the card is tight and centered */
+      .pcard,
+      .pcard.hot {
+        width: 100% !important;
+        max-width: 285px !important;
+        /* Slightly smaller for better fit */
+        padding: 20px 10px !important;
+        margin: 10px auto !important;
+        box-sizing: border-box !important;
+        overflow: visible !important;
+      }
 
-  /* 3. THE CENTER ALIGNMENT FIX */
-  stripe-buy-button {
-    /* Scale down to fit the narrow box */
-    transform: scale(0.82) !important; 
-    transform-origin: center center !important;
-    
-    /* These three lines force it to stay centered despite the scaling */
-    width: 120% !important; 
-    max-width: 120% !important;
-     
-    
-    display: block !important;
-  }
+      /* 2. Fix the Button Container */
+      #stripe-monthly-container,
+      #stripe-annual-container {
+        width: 100% !important;
+        overflow: hidden !important;
+        /* Clips the invisible 'ghost' area of the button */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-  /* 4. Pricing Text Centering */
-  .pc-price {
-    font-size: 1.5rem !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: baseline !important;
-    width: 100% !important;
-  }
+      /* 3. THE CENTER ALIGNMENT FIX */
+      stripe-buy-button {
+        /* Scale down to fit the narrow box */
+        transform: scale(0.82) !important;
+        transform-origin: center center !important;
 
-  /* 5. Badge Adjustment */
-  .pc-pop {
-    right: 5px !important;
-    top: -10px !important;
-    font-size: 9px !important;
-  }
-}
+        /* These three lines force it to stay centered despite the scaling */
+        width: 120% !important;
+        max-width: 120% !important;
 
-@media (max-width: 365px) {
-  /* Targeted fix for the badge to make it much smaller */
-   .best-value-badge {
-          
-    top: -8px !important;      /* Pulls it slightly down */
-    font-size: 9px !important;  /* Smaller text */
-    padding: 3px 8px !important; /* Thinner padding */
-    font-weight: 700 !important;
-    border-radius: 99px !important;
-    white-space: nowrap !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
-    transform: scale(0.9) !important; /* Final shrink factor */
-  }
-}
+
+        display: block !important;
+      }
+
+      /* 4. Pricing Text Centering */
+      .pc-price {
+        font-size: 1.5rem !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: baseline !important;
+        width: 100% !important;
+      }
+
+      /* 5. Badge Adjustment */
+      .pc-pop {
+        right: 5px !important;
+        top: -10px !important;
+        font-size: 9px !important;
+      }
+    }
+
+    @media (max-width: 365px) {
+
+      /* Targeted fix for the badge to make it much smaller */
+      .best-value-badge {
+
+        top: -8px !important;
+        white-space: nowrap !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+        transform: scale(0.9) !important;
+        /* Final shrink factor */
+      }
+    }
   </style>
   <!-- Stripe for payment processing -->
   <script src="https://js.stripe.com/v3/"></script>
@@ -3988,19 +4009,23 @@ stripe-buy-button {
           </div>
         </div>
         <h2>Start creating free, forever.</h2>
-        <p>Generate your first perfect episode on us—no credit card, no expiration date. Upgrade anytime if you need more.</p>
+        <p>Generate your first perfect episode on us—no credit card, no expiration date. Upgrade anytime if you need
+          more.</p>
         <form class="modal-form" onsubmit="submitModal(event)">
           <input class="modal-input" type="email" id="mEmail" placeholder="your@email.com" required
             autocomplete="email">
           <button class="modal-submit" type="submit">Get instant access →</button>
-          <p class="modal-fine"><strong>No credit card required.</strong> Free forever—generate unlimited episodes, upgrade anytime.</p>
+          <p class="modal-fine"><strong>No credit card required.</strong> Free forever—generate unlimited episodes,
+            upgrade anytime.</p>
         </form>
       </div>
       <div class="modal-ok" id="mOk">
         <div class="modal-ok-icon">🎉</div>
         <h3>You're all set! Welcome to the studio.</h3>
         <p>Your free account is active and ready. No card needed. Taking you to the studio…</p>
-        <p class="modal-fine" style="margin-top:16px;color:var(--t3);font-size:0.85em;">If you're not redirected in 2 seconds, <a href="https://studio.getpodwizard.com/login?plan=free" target="_blank" style="color:var(--acc);">click here →</a></p>
+        <p class="modal-fine" style="margin-top:16px;color:var(--t3);font-size:0.85em;">If you're not redirected in 2
+          seconds, <a href="https://studio.getpodwizard.com/login?plan=free" target="_blank"
+            style="color:var(--acc);">click here →</a></p>
       </div>
     </div>
   </div>
@@ -4606,22 +4631,25 @@ stripe-buy-button {
   <section style="text-align:center;padding:80px 20px;background:var(--surf2);margin:60px 0;">
     <div class="wrap" style="max-width:800px;margin:0 auto;">
       <h3 class="sec-h reveal" style="margin:0 0 12px;">See it in action — no signup needed</h3>
-      <p class="sec-s reveal d1" style="margin:10px auto 20px;">Type a podcast topic and see exactly what PodWizard generates for you.</p>
-      
+      <p class="sec-s reveal d1" style="margin:10px auto 20px;">Type a podcast topic and see exactly what PodWizard
+        generates for you.</p>
+
       <div style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;justify-content: center;">
-        <input id="demoTopic" type="text" placeholder="E.g., 'The Future of AI in Content Creation'" 
+        <input id="demoTopic" type="text" placeholder="E.g., 'The Future of AI in Content Creation'"
           style="flex:1;min-width:200px;padding:14px 16px;background:var(--surf);border:1px solid var(--b2);border-radius:8px;color:var(--t1);font-size:0.95em;font-family:inherit;">
-        <button onclick="showDemoOutput()" 
+        <button onclick="showDemoOutput()"
           style="padding:14px 28px;background:var(--acc);color:var(--bg);border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.95em;white-space:nowrap;transition:background 0.2s;">
           ⚡ Show Sample
         </button>
       </div>
 
-      <div id="demoOutput" style="text-align:left;background:var(--surf);padding:28px;border-radius:12px;display:none;border:1px solid var(--b2);margin-bottom:28px;">
+      <div id="demoOutput"
+        style="text-align:left;background:var(--surf);padding:28px;border-radius:12px;display:none;border:1px solid var(--b2);margin-bottom:28px;">
         <div id="demoContent" style="color:var(--t1);line-height:1.6;"></div>
         <div style="margin-top:28px;text-align:center;padding-top:28px;border-top:1px solid var(--b1);">
           <p style="color:var(--t2);font-size:0.9em;margin-bottom:16px;">Ready to generate your real episodes?</p>
-          <button onclick="openModal()" style="padding:12px 28px;background:var(--acc);color:var(--bg);border:none;border-radius:8px;cursor:pointer;font-weight:600;">
+          <button onclick="openModal()"
+            style="padding:12px 28px;background:var(--acc);color:var(--bg);border:none;border-radius:8px;cursor:pointer;font-weight:600;">
             Start Creating Free →
           </button>
         </div>
@@ -4682,17 +4710,17 @@ stripe-buy-button {
               BEST VALUE
             </div>
             <span class="annual-price" style="display:none">$19</span>
-          
+
             <div id="price-container" style="display: flex; align-items: baseline;">
               <span class="pc-cur price-currency">$</span>
               <span class="pc-amt price-amount">29</span>
             </div>
-            
+
             <span class="pc-per" id="creator-per">/mo</span>
 
-            
 
-            
+
+
           </div>
           <div style="font-size:0.8rem;color:var(--t3);margin-bottom:16px" id="pcBillLabel">billed monthly</div>
           <div class="pc-feats-1" style="margin-bottom:20px">
@@ -4729,40 +4757,38 @@ stripe-buy-button {
               <div class="pcf-ck">✓</div><span>Team Dashboard (co-hosts, editors, viewers)</span> <span
                 class="feat-new">NEW</span>
             </div>
-            
+
           </div>
 
-          
+
           <div class="pcard hot">
             <div class="pc-pop">Most Popular</div>
             <h3 class="pc-title">Creator</h3>
             <div class="pc-price" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
               <span class="annual-price" style="display:none">$19</span>
-            
+
               <div style="position: relative; display: flex; align-items: center;">
                 <span class="pc-cur price-currency">$</span>
                 <span class="pc-amt price-amount">29</span>
-                </div>
-            
+              </div>
+
               <span class="pc-per" id="creator-per">/mo</span>
             </div>
-            
+
             <div style="margin-top: 20px;" class="BuyButton-ButtonText ">
-                <div id="stripe-monthly-container">
-                    <stripe-buy-button
-                      buy-button-id="buy_btn_1TJet2As4Bs2UImHdA365Dql"
-                      publishable-key="pk_live_51TFf8FAs4Bs2UImHxYlXxOjutzLOgQUz3k5LBQWI6VZrUGeXWV9M7UqDct0YbkC9Pbtj4cNhu9loQCa6Cn5ZvBcd00JBOHaH8B">
-                    </stripe-buy-button>
-                </div>
-                <div id="stripe-annual-container" style="display: none;">
-                    <stripe-buy-button
-                      buy-button-id="buy_btn_1TJf6CAs4Bs2UImH9eDGHrX9"
-                      publishable-key="pk_live_51TFf8FAs4Bs2UImHxYlXxOjutzLOgQUz3k5LBQWI6VZrUGeXWV9M7UqDct0YbkC9Pbtj4cNhu9loQCa6Cn5ZvBcd00JBOHaH8B">
-                    </stripe-buy-button>
-                </div>
+              <div id="stripe-monthly-container">
+                <stripe-buy-button buy-button-id="buy_btn_1TJet2As4Bs2UImHdA365Dql"
+                  publishable-key="pk_live_51TFf8FAs4Bs2UImHxYlXxOjutzLOgQUz3k5LBQWI6VZrUGeXWV9M7UqDct0YbkC9Pbtj4cNhu9loQCa6Cn5ZvBcd00JBOHaH8B">
+                </stripe-buy-button>
+              </div>
+              <div id="stripe-annual-container" style="display: none;">
+                <stripe-buy-button buy-button-id="buy_btn_1TJf6CAs4Bs2UImH9eDGHrX9"
+                  publishable-key="pk_live_51TFf8FAs4Bs2UImHxYlXxOjutzLOgQUz3k5LBQWI6VZrUGeXWV9M7UqDct0YbkC9Pbtj4cNhu9loQCa6Cn5ZvBcd00JBOHaH8B">
+                </stripe-buy-button>
+              </div>
             </div>
-            </div>
-          
+          </div>
+
         </div>
       </div>
     </div>
@@ -4832,65 +4858,72 @@ stripe-buy-button {
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     /* ── MODAL ── */
-    const EMAIL_ACTION = ''; // ← paste Formspree/ConvertKit/Mailchimp URL here
-    function openModal() { document.getElementById('modal').classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(() => document.getElementById('mEmail')?.focus(), 300); }
-    function closeModal() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = ''; }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    const EMAIL_ACTION =
+      'https://app.loops.so/api/newsletter-form/cmnqf6qw107a30iyyrmap19gn';
+
+    function openModal() {
+      document.getElementById('modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('mEmail')?.focus(), 300);
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+
     async function submitModal(e) {
       e.preventDefault();
+
       const email = document.getElementById('mEmail').value.trim();
       if (!email) return;
+
       const btn = e.target.querySelector('button[type="submit"]');
-      btn.textContent = 'Setting up your studio…'; btn.disabled = true;
+      btn.textContent = 'Setting up your studio…';
+      btn.disabled = true;
+
       try {
         let signupToken = null;
-        
-        // If you have an email webhook/action setup (Zapier, Make, custom API, etc.)
-        if (EMAIL_ACTION) { 
-          const res = await fetch(EMAIL_ACTION, { 
-            method: 'POST', 
-            headers: { 'Content-Type': 'application/json' }, 
-            body: JSON.stringify({ 
-              email: email, 
-              plan: 'free',  // Important: tell backend they're on free plan
-              source: 'landing_page'
-            }) 
-          }); 
-          try {
-            const data = await res.json();
-            signupToken = data.token || data.sessionId || null;
-          } catch (e) {
-            // Webhook might not return JSON, that's ok
-          }
-        }
-        // Fallback to localStorage (development/demo mode)
-        else { 
-          const l = JSON.parse(localStorage.getItem('pp') || '[]'); 
-          if (!l.includes(email)) l.push(email); 
-          localStorage.setItem('pp', JSON.stringify(l)); 
-          signupToken = 'demo-' + Date.now();
-        }
-        
-        // Show success message immediately (fast feedback)
+
+        await fetch(EMAIL_ACTION, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `email=${encodeURIComponent(email)}`
+        });
+
+        // Store email locally (optional)
+        const l = JSON.parse(localStorage.getItem('pp') || '[]');
+        if (!l.includes(email)) l.push(email);
+        localStorage.setItem('pp', JSON.stringify(l));
+
+        signupToken = 'demo-' + Date.now();
+
         document.getElementById('mForm').style.display = 'none';
         document.getElementById('mOk').style.display = 'block';
-        
-        // Auto-redirect to studio after 1.5 seconds
-        // This gives users time to see the success message, then seamlessly takes them to the studio
+
         setTimeout(() => {
-          const studioUrl = signupToken 
+          const studioUrl = signupToken
             ? `https://studio.getpodwizard.com/login?token=${encodeURIComponent(signupToken)}&plan=free&email=${encodeURIComponent(email)}`
             : `https://studio.getpodwizard.com/signup?email=${encodeURIComponent(email)}&plan=free`;
+
           window.location.href = studioUrl;
         }, 1500);
-        
-      } catch (err) { 
+
+      } catch (err) {
         console.error('Signup error:', err);
-        btn.textContent = 'Try again →'; 
-        btn.disabled = false; 
+        btn.textContent = 'Try again →';
+        btn.disabled = false;
       }
     }
 
@@ -4941,7 +4974,7 @@ stripe-buy-button {
           resources: ['5 eye-catching thumbnails', '15 TikTok/Reels-ready clips', 'Full episode transcript', 'SEO description', 'Chapter markers']
         }
       ];
-      
+
       const sample = samples[Math.floor(Math.random() * samples.length)];
       const html = `
         <div>
@@ -4968,10 +5001,10 @@ stripe-buy-button {
           </ul>
         </div>
       `;
-      
+
       document.getElementById('demoContent').innerHTML = html;
       document.getElementById('demoOutput').style.display = 'block';
-      
+
       // Track analytics
       if (typeof gtag !== 'undefined') {
         gtag('event', 'demo_shown', {
@@ -4981,56 +5014,56 @@ stripe-buy-button {
       }
     }
 
-   
+
     // Set Billings 
     function setBilling(type) {
 
-const tm = document.getElementById('tm');
-const ta = document.getElementById('ta');
+      const tm = document.getElementById('tm');
+      const ta = document.getElementById('ta');
 
-const yearlyTotals = document.querySelectorAll('.yearly-total');
+      const yearlyTotals = document.querySelectorAll('.yearly-total');
 
-const prices = document.querySelectorAll('.price-amount');
-const currencies = document.querySelectorAll('.price-currency');
-const annualPrices = document.querySelectorAll('.annual-price');
-const savings = document.querySelectorAll('.savings-text');
+      const prices = document.querySelectorAll('.price-amount');
+      const currencies = document.querySelectorAll('.price-currency');
+      const annualPrices = document.querySelectorAll('.annual-price');
+      const savings = document.querySelectorAll('.savings-text');
 
-const monthlyBtn = document.getElementById('stripe-monthly-container');
-const annualBtn = document.getElementById('stripe-annual-container');
+      const monthlyBtn = document.getElementById('stripe-monthly-container');
+      const annualBtn = document.getElementById('stripe-annual-container');
 
-if (type === 'm') {
+      if (type === 'm') {
 
-  tm.classList.add('on');
-  ta.classList.remove('on');
+        tm.classList.add('on');
+        ta.classList.remove('on');
 
-  annualPrices.forEach(p => p.style.display = 'none');
+        annualPrices.forEach(p => p.style.display = 'none');
 
-  prices.forEach(p => p.classList.remove('price-crossed'));
-  currencies.forEach(c => c.classList.remove('price-crossed'));
+        prices.forEach(p => p.classList.remove('price-crossed'));
+        currencies.forEach(c => c.classList.remove('price-crossed'));
 
-  savings.forEach(s => s.style.display = 'none');
+        savings.forEach(s => s.style.display = 'none');
 
-  monthlyBtn.style.display = 'block';
-  annualBtn.style.display = 'none';
-  yearlyTotals.forEach(t => t.style.display = 'none');
+        monthlyBtn.style.display = 'block';
+        annualBtn.style.display = 'none';
+        yearlyTotals.forEach(t => t.style.display = 'none');
 
-} else {
+      } else {
 
-  ta.classList.add('on');
-  tm.classList.remove('on');
+        ta.classList.add('on');
+        tm.classList.remove('on');
 
-  annualPrices.forEach(p => p.style.display = 'inline-block');
+        annualPrices.forEach(p => p.style.display = 'inline-block');
 
-  prices.forEach(p => p.classList.add('price-crossed'));
-  currencies.forEach(c => c.classList.add('price-crossed'));
+        prices.forEach(p => p.classList.add('price-crossed'));
+        currencies.forEach(c => c.classList.add('price-crossed'));
 
-  savings.forEach(s => s.style.display = 'block');
+        savings.forEach(s => s.style.display = 'block');
 
-  monthlyBtn.style.display = 'none';
-  annualBtn.style.display = 'block';
-  yearlyTotals.forEach(t => t.style.display = 'block');
-}
-}
+        monthlyBtn.style.display = 'none';
+        annualBtn.style.display = 'block';
+        yearlyTotals.forEach(t => t.style.display = 'block');
+      }
+    }
 
     /* ── REVEAL ── */
     const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.07 });
@@ -5093,7 +5126,7 @@ if (type === 'm') {
 
   <!-- COOKIE CONSENT SCRIPT -->
   <script>
-    (function() {
+    (function () {
       const COOKIE_CONSENT_KEY = 'pw-cookie-consent';
       const COOKIE_CONSENT_VERSION = '1.0';
 
@@ -5125,9 +5158,9 @@ if (type === 'm') {
         script.async = true;
         script.src = 'https://www.googletagmanager.com/gtag/js?id=G-SRPD136Q8R';
         document.head.appendChild(script);
-        
+
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-SRPD136Q8R');
       }
@@ -5295,7 +5328,7 @@ if (type === 'm') {
 
       function showPreferencesModal() {
         const consent = getCookieConsent() || { essential: true, analytics: false, preferences: false };
-        
+
         const modal = document.createElement('div');
         modal.id = 'pw-cookie-modal';
         modal.innerHTML = `
@@ -5474,7 +5507,7 @@ if (type === 'm') {
         const preferencesBox = preferencesCheckbox.parentElement.querySelector('.pw-cookie-checkbox');
 
         [analyticsCheckbox, preferencesCheckbox].forEach(checkbox => {
-          checkbox.addEventListener('change', function() {
+          checkbox.addEventListener('change', function () {
             const box = this.parentElement.querySelector('.pw-cookie-checkbox');
             if (this.checked) {
               box.classList.add('checked');
@@ -5505,9 +5538,9 @@ if (type === 'm') {
       }
 
       // Initialize on page load
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         const consent = getCookieConsent();
-        
+
         if (!consent) {
           showCookieBanner();
         } else {
@@ -5519,26 +5552,26 @@ if (type === 'm') {
       });
 
       // Expose function to manage cookies from footer if needed
-      window.manageCookies = function() {
+      window.manageCookies = function () {
         showPreferencesModal();
       };
     })();
 
     function togglePricing() {
-    const isAnnual = document.getElementById('pricing-checkbox').checked;
-    const monthlyContainer = document.getElementById('stripe-monthly-container');
-    const annualContainer = document.getElementById('stripe-annual-container');
+      const isAnnual = document.getElementById('pricing-checkbox').checked;
+      const monthlyContainer = document.getElementById('stripe-monthly-container');
+      const annualContainer = document.getElementById('stripe-annual-container');
 
-    if (isAnnual) {
+      if (isAnnual) {
         // Update text labels to "Yearly"
         document.querySelectorAll('.pc-per').forEach(el => el.textContent = '/year');
         // Update the prices (your existing logic)
-        document.getElementById('creator-price').textContent = '290'; 
-        
+        document.getElementById('creator-price').textContent = '290';
+
         // SWITCH STRIPE BUTTONS
         monthlyContainer.style.display = 'none';
         annualContainer.style.display = 'block';
-    } else {
+      } else {
         // Update text labels to "Monthly"
         document.querySelectorAll('.pc-per').forEach(el => el.textContent = '/mo');
         document.getElementById('creator-price').textContent = '29';
@@ -5546,8 +5579,8 @@ if (type === 'm') {
         // SWITCH STRIPE BUTTONS
         monthlyContainer.style.display = 'block';
         annualContainer.style.display = 'none';
+      }
     }
-}
   </script>
 </body>
 
