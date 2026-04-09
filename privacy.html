@@ -1083,7 +1083,7 @@
       <span>Made for creators who don't settle.</span>
     </div>
   </footer>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     function toggleTheme() {
       const h = document.documentElement;
@@ -1510,32 +1510,4 @@
             preferences: preferencesCheckbox.checked
           });
           if (analyticsCheckbox.checked) {
-            initializeAnalytics(true);
-          }
-          modal.remove();
-          document.getElementById('pw-cookie-banner').classList.add('hidden');
-        });
-      }
-
-      // Initialize on page load
-      document.addEventListener('DOMContentLoaded', function () {
-        const consent = getCookieConsent();
-
-        if (!consent) {
-          showCookieBanner();
-        } else {
-          if (consent.analytics) {
-            initializeAnalytics(true);
-          }
-        }
-      });
-
-      // Expose function to manage cookies from footer if needed
-      window.manageCookies = function () {
-        showPreferencesModal();
-      };
-    })();
-  </script>
-</body>
-
-</html>
+      

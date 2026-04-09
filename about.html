@@ -1513,7 +1513,7 @@
       <span>Made for creators who don't settle.</span>
     </div>
   </footer>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
      /* ── MODAL ── */
     const EMAIL_ACTION = ''; // ← paste Formspree/ConvertKit/Mailchimp URL here
@@ -1959,7 +1959,7 @@
             initializeAnalytics(true);
           }
           modal.remove();
-          document.getElementById('pw-cookie-banner').classList.add('hidden');
+          const b = document.getElementById('pw-cookie-banner'); if(b) b.classList.add('hidden');
         });
       }
 
@@ -1969,18 +1969,4 @@
         if (!consent) {
           showCookieBanner();
         } else {
-          if (consent.analytics) {
-            initializeAnalytics(true);
-          }
-        }
-      });
-
-      window.manageCookies = function() {
-        showPreferencesModal();
-      };
-    })();
-  </script>
-</body>
-
-</html>
-       
+  
