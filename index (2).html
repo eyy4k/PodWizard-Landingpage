@@ -4019,7 +4019,7 @@
         <p>Generate your first perfect episode on us—no credit card, no expiration date. Upgrade anytime if you need
           more.</p>
         <form class="modal-form" onsubmit="submitModal(event)">
-          <input class="modal-input" type="email" id="mEmail" placeholder="your@email.com" required
+          <input class="modal-input" type="email" id="mEmail" placeholder="Enter Your Email Here..." required
             autocomplete="email">
           <button class="modal-submit" type="submit">Get instant access →</button>
           <p class="modal-fine"><strong>No credit card required.</strong> Free forever—generate unlimited episodes,
@@ -4634,195 +4634,35 @@
     </div>
   </section>
 
-  <!-- ── DEMO SECTION (AI-Powered) ── -->
-  <section id="demo" style="padding:100px 20px;background:var(--bg);position:relative;overflow:hidden;">
-    <!-- Background glow -->
-    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(232,255,71,0.04) 0%,transparent 70%);pointer-events:none;"></div>
-    <div class="wrap" style="max-width:860px;margin:0 auto;position:relative;">
+  <!-- ── DEMO SECTION (No Signup Needed) ── -->
+  <section style="text-align:center;padding:80px 20px;background:var(--surf2);margin:60px 0;">
+    <div class="wrap" style="max-width:800px;margin:0 auto;">
+      <h3 class="sec-h reveal" style="margin:0 0 12px;">See it in action — no signup needed</h3>
+      <p class="sec-s reveal d1" style="margin:10px auto 20px;">Type a podcast topic and see exactly what PodWizard
+        generates for you.</p>
 
-      <!-- Header -->
-      <div style="text-align:center;margin-bottom:48px;">
-        <div class="eyebrow" style="justify-content:center;margin-bottom:16px;">
-          <div class="el"></div> Live AI Preview <div class="el"></div>
-        </div>
-        <h2 class="sec-h reveal" style="max-width:620px;margin:0 auto 14px;">See your episode before you commit</h2>
-        <p class="sec-s reveal d1" style="margin:0 auto;">Enter any podcast topic — Claude generates a real preview of what PodWizard produces. No signup, no card.</p>
+      <div style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;justify-content: center;">
+        <input id="demoTopic" type="text" placeholder="E.g., 'The Future of AI in Content Creation'"
+          style="flex:1;min-width:200px;padding:14px 16px;background:var(--surf);border:1px solid var(--b2);border-radius:8px;color:var(--t1);font-size:0.95em;font-family:inherit;">
+        <button onclick="showDemoOutput()"
+          style="padding:14px 28px;background:var(--acc);color:var(--bg);border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.95em;white-space:nowrap;transition:background 0.2s;">
+          ⚡ Show Sample
+        </button>
       </div>
 
-      <!-- Input row -->
-      <div style="background:var(--surf);border:1px solid var(--b2);border-radius:14px;padding:20px;margin-bottom:16px;">
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <input id="demoTopic" type="text" placeholder="E.g. 'The Future of AI in Healthcare'" maxlength="120"
-            style="flex:1;min-width:220px;padding:14px 18px;background:var(--surf2);border:1px solid var(--b1);border-radius:10px;color:var(--t1);font-size:0.97em;font-family:inherit;outline:none;transition:border-color 0.2s;"
-            onfocus="this.style.borderColor='var(--acc)'" onblur="this.style.borderColor='var(--b1)'"
-            onkeydown="if(event.key==='Enter')runDemo()">
-          <button id="demoBtn" onclick="runDemo()"
-            style="padding:14px 28px;background:var(--acc);color:var(--bg);border:none;border-radius:10px;cursor:pointer;font-weight:700;font-size:0.95em;white-space:nowrap;transition:all 0.2s;font-family:inherit;display:flex;align-items:center;gap:8px;"
-            onmouseover="this.style.background='var(--acc2)'" onmouseout="this.style.background='var(--acc)'">
-            <span id="demoBtnIcon">⚡</span>
-            <span id="demoBtnText">Generate Preview</span>
-          </button>
-        </div>
-
-        <!-- Topic chips -->
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;">
-          <span style="color:var(--t3);font-size:0.8em;padding-top:4px;">Try:</span>
-          <button onclick="setDemoTopic('How to grow a podcast from 0 to 10,000 listeners')" class="demo-chip">Podcast growth</button>
-          <button onclick="setDemoTopic('The psychology of habit formation')" class="demo-chip">Habit psychology</button>
-          <button onclick="setDemoTopic('Solo travel safety tips for women')" class="demo-chip">Travel safety</button>
-          <button onclick="setDemoTopic('Passive income strategies for creators')" class="demo-chip">Creator income</button>
-          <button onclick="setDemoTopic('The future of remote work in 2026')" class="demo-chip">Remote work</button>
-        </div>
-      </div>
-
-      <!-- Progress pipeline (hidden until running) -->
-      <div id="demoPipeline" style="display:none;background:var(--surf);border:1px solid var(--b2);border-radius:14px;padding:24px;margin-bottom:16px;">
-        <p style="color:var(--t3);font-size:0.78em;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 16px;">Generation Pipeline</p>
-        <div style="display:flex;flex-direction:column;gap:10px;" id="pipelineSteps">
-          <div class="pipe-step" id="ps1" data-label="Analyzing topic & audience intent">
-            <div class="pipe-dot"></div>
-            <span class="pipe-label">Analyzing topic &amp; audience intent</span>
-            <span class="pipe-status"></span>
-          </div>
-          <div class="pipe-step" id="ps2" data-label="Writing hook & episode outline">
-            <div class="pipe-dot"></div>
-            <span class="pipe-label">Writing hook &amp; episode outline</span>
-            <span class="pipe-status"></span>
-          </div>
-          <div class="pipe-step" id="ps3" data-label="Generating script introduction">
-            <div class="pipe-dot"></div>
-            <span class="pipe-label">Generating script introduction</span>
-            <span class="pipe-status"></span>
-          </div>
-          <div class="pipe-step" id="ps4" data-label="Building SEO package">
-            <div class="pipe-dot"></div>
-            <span class="pipe-label">Building SEO package</span>
-            <span class="pipe-status"></span>
-          </div>
-          <div class="pipe-step" id="ps5" data-label="Creating social clip concepts">
-            <div class="pipe-dot"></div>
-            <span class="pipe-label">Creating social clip concepts</span>
-            <span class="pipe-status"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Output panel (hidden until done) -->
-      <div id="demoOutput" style="display:none;background:var(--surf);border:1px solid var(--b2);border-radius:14px;overflow:hidden;margin-bottom:24px;">
-
-        <!-- Tabs -->
-        <div style="display:flex;border-bottom:1px solid var(--b1);overflow-x:auto;scrollbar-width:none;" id="demoTabs">
-          <button class="demo-tab active" onclick="switchTab('script',this)" data-tab="script">📝 Script Intro</button>
-          <button class="demo-tab" onclick="switchTab('outline',this)" data-tab="outline">📋 Outline</button>
-          <button class="demo-tab" onclick="switchTab('seo',this)" data-tab="seo">🔍 SEO Package</button>
-          <button class="demo-tab" onclick="switchTab('social',this)" data-tab="social">📱 Social Clips</button>
-          <button class="demo-tab" onclick="switchTab('thumbnails',this)" data-tab="thumbnails">🖼️ Thumbnails</button>
-        </div>
-
-        <!-- Tab content panels -->
-        <div style="padding:28px;">
-          <div id="tab-script" class="demo-panel">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-              <div style="background:rgba(232,255,71,0.1);border:1px solid rgba(232,255,71,0.2);border-radius:6px;padding:4px 10px;font-size:0.75em;color:var(--acc);font-weight:600;">BROADCAST QUALITY · CLAUDE SONNET</div>
-              <div style="background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.15);border-radius:6px;padding:4px 10px;font-size:0.75em;color:var(--grn);font-weight:600;">QA SCORE: <span id="qaScore">—</span>/10</div>
-            </div>
-            <div id="scriptContent" style="color:var(--t1);line-height:1.75;font-size:0.97em;white-space:pre-wrap;font-family:inherit;"></div>
-          </div>
-          <div id="tab-outline" class="demo-panel" style="display:none;">
-            <div id="outlineContent" style="color:var(--t1);line-height:1.7;"></div>
-          </div>
-          <div id="tab-seo" class="demo-panel" style="display:none;">
-            <div id="seoContent" style="color:var(--t1);line-height:1.7;"></div>
-          </div>
-          <div id="tab-social" class="demo-panel" style="display:none;">
-            <div id="socialContent" style="color:var(--t1);line-height:1.7;"></div>
-          </div>
-          <div id="tab-thumbnails" class="demo-panel" style="display:none;">
-            <div id="thumbContent" style="color:var(--t1);line-height:1.7;"></div>
-          </div>
-        </div>
-
-        <!-- CTA footer -->
-        <div style="border-top:1px solid var(--b1);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:rgba(232,255,71,0.02);">
-          <div>
-            <p style="color:var(--t1);font-weight:600;margin:0 0 2px;font-size:0.95em;">This is just the preview.</p>
-            <p style="color:var(--t2);font-size:0.85em;margin:0;">Full generation includes 5 real thumbnails, 15 social clips, transcript &amp; full SEO engine.</p>
-          </div>
-          <button onclick="openModal()" style="padding:12px 24px;background:var(--acc);color:var(--bg);border:none;border-radius:8px;cursor:pointer;font-weight:700;font-size:0.9em;white-space:nowrap;font-family:inherit;transition:all 0.2s;" onmouseover="this.style.background='var(--acc2)'" onmouseout="this.style.background='var(--acc)'">
+      <div id="demoOutput"
+        style="text-align:left;background:var(--surf);padding:28px;border-radius:12px;display:none;border:1px solid var(--b2);margin-bottom:28px;">
+        <div id="demoContent" style="color:var(--t1);line-height:1.6;"></div>
+        <div style="margin-top:28px;text-align:center;padding-top:28px;border-top:1px solid var(--b1);">
+          <p style="color:var(--t2);font-size:0.9em;margin-bottom:16px;">Ready to generate your real episodes?</p>
+          <button onclick="openModal()"
+            style="padding:12px 28px;background:var(--acc);color:var(--bg);border:none;border-radius:8px;cursor:pointer;font-weight:600;">
             Start Creating Free →
           </button>
         </div>
       </div>
-
-      <!-- Error state -->
-      <div id="demoError" style="display:none;background:rgba(255,107,43,0.06);border:1px solid rgba(255,107,43,0.2);border-radius:12px;padding:20px;text-align:center;margin-bottom:16px;">
-        <p style="color:var(--org);margin:0 0 8px;font-weight:600;">Preview unavailable right now</p>
-        <p style="color:var(--t2);font-size:0.9em;margin:0;">Check your connection or try a different topic.</p>
-      </div>
-
     </div>
   </section>
-
-  <style>
-    .demo-chip {
-      background:var(--pill-bg);border:1px solid var(--pill-border);border-radius:20px;padding:5px 12px;
-      color:var(--t2);font-size:0.8em;cursor:pointer;font-family:inherit;transition:all 0.15s;white-space:nowrap;
-    }
-    .demo-chip:hover { background:rgba(232,255,71,0.08);border-color:rgba(232,255,71,0.2);color:var(--acc); }
-    .demo-tab {
-      padding:14px 20px;background:none;border:none;border-bottom:2px solid transparent;
-      color:var(--t3);cursor:pointer;font-family:inherit;font-size:0.88em;font-weight:500;
-      white-space:nowrap;transition:all 0.15s;
-    }
-    .demo-tab:hover { color:var(--t1); }
-    .demo-tab.active { color:var(--acc);border-bottom-color:var(--acc); }
-    .pipe-step {
-      display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:8px;
-      transition:background 0.2s;
-    }
-    .pipe-step.active { background:rgba(232,255,71,0.06); }
-    .pipe-step.done { opacity:0.6; }
-    .pipe-dot {
-      width:8px;height:8px;border-radius:50%;background:var(--b2);flex-shrink:0;transition:all 0.3s;
-    }
-    .pipe-step.active .pipe-dot {
-      background:var(--acc);box-shadow:0 0 8px rgba(232,255,71,0.5);
-      animation:pipePulse 0.8s infinite alternate;
-    }
-    .pipe-step.done .pipe-dot { background:var(--grn); }
-    @keyframes pipePulse { from{opacity:0.6;transform:scale(0.9)} to{opacity:1;transform:scale(1.1)} }
-    .pipe-label { color:var(--t2);font-size:0.88em;flex:1; }
-    .pipe-step.active .pipe-label { color:var(--t1); }
-    .pipe-status { font-size:0.8em;color:var(--t3); }
-    .pipe-step.active .pipe-status { color:var(--acc); }
-    .pipe-step.done .pipe-status { color:var(--grn); }
-    .demo-seo-row { display:flex;flex-direction:column;gap:6px;margin-bottom:20px; }
-    .demo-seo-label { font-size:0.78em;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--t3); }
-    .demo-seo-val { color:var(--t1);font-size:0.95em;line-height:1.5; }
-    .demo-clip-card {
-      background:var(--surf2);border:1px solid var(--b1);border-radius:10px;padding:14px 16px;margin-bottom:10px;
-    }
-    .demo-clip-platform {
-      display:inline-flex;align-items:center;gap:6px;font-size:0.75em;font-weight:600;
-      background:rgba(79,141,255,0.1);border:1px solid rgba(79,141,255,0.2);border-radius:5px;
-      padding:3px 8px;color:var(--blu);margin-bottom:8px;
-    }
-    .demo-outline-step {
-      display:flex;gap:14px;margin-bottom:12px;align-items:flex-start;
-    }
-    .demo-outline-num {
-      min-width:26px;height:26px;border-radius:50%;background:rgba(232,255,71,0.1);
-      border:1px solid rgba(232,255,71,0.2);display:flex;align-items:center;justify-content:center;
-      font-size:0.75em;font-weight:700;color:var(--acc);flex-shrink:0;
-    }
-    .demo-thumb-card {
-      background:var(--surf2);border:1px solid var(--b1);border-radius:10px;padding:14px 16px;margin-bottom:10px;
-      display:flex;gap:14px;align-items:flex-start;
-    }
-    .demo-thumb-num {
-      font-size:1.4em;flex-shrink:0;
-    }
-  </style>
 
   <!-- ── PRICING ── -->
   <section class="pricing" id="pricing">
@@ -5015,7 +4855,7 @@
           <a href="about.html" target="_blank">About</a>
           <a href="privacy.html" target="_blank">Privacy Policy</a>
           <a href="terms.html" target="_blank">Terms of Service</a>
-          <a href="mailto:hello@getpodwizard.com">Contact</a>
+          <a href="mailto:hello@podwizard.com">Contact</a>
         </div>
       </div>
     </div>
@@ -5025,8 +4865,8 @@
     </div>
   </footer>
 
-  
-  
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     /* ── MODAL ── */
     const EMAIL_ACTION =
@@ -5094,204 +4934,92 @@
       }
     }
 
-    /* ── DEMO (AI-Powered) ── */
-    function setDemoTopic(t) {
-      document.getElementById('demoTopic').value = t;
-      document.getElementById('demoTopic').focus();
-    }
+    /* ── DEMO ── */
+    function showDemoOutput() {
+      const topic = document.getElementById('demoTopic').value.trim() || 'Podcast Trends 2026';
+      const samples = [
+        {
+          title: 'Understanding the Latest Innovations',
+          duration: '18-22 minutes',
+          outline: [
+            'Hook: Start with surprising stat or question',
+            'Intro to topic: What listeners need to know',
+            '3 Key points: Deep dive with examples',
+            'Real-world impact: How this affects listeners',
+            'Expert perspective: What pros think',
+            'Listener takeaway: Actionable insights',
+            'Outro: Call to action & next episode teaser'
+          ],
+          resources: ['5 custom podcast thumbnails', '15 social media clips (30-60 sec)', 'Full transcript & summary', 'SEO-optimized description', 'Show notes with timestamps']
+        },
+        {
+          title: 'Everything You Need to Know',
+          duration: '15-20 minutes',
+          outline: [
+            'Cold open with story',
+            'Problem setup',
+            '3 Solutions explained',
+            'Success story from real user',
+            'Common mistakes to avoid',
+            'Quick implementation guide',
+            'Final thoughts & next steps'
+          ],
+          resources: ['5 unique designs', '15 short clips ready to post', 'Complete transcript', 'SEO metadata', 'Audiogram ready to share']
+        },
+        {
+          title: 'The Ultimate Guide',
+          duration: '20-25 minutes',
+          outline: [
+            'Hook: Why this matters now',
+            'Background & context',
+            'Benefit 1, 2, 3 explained',
+            'Case study deep-dive',
+            'Tools & resources mentioned',
+            'Mistakes to avoid',
+            'Your action plan'
+          ],
+          resources: ['5 eye-catching thumbnails', '15 TikTok/Reels-ready clips', 'Full episode transcript', 'SEO description', 'Chapter markers']
+        }
+      ];
 
-    function switchTab(name, btn) {
-      document.querySelectorAll('.demo-panel').forEach(p => p.style.display = 'none');
-      document.querySelectorAll('.demo-tab').forEach(b => b.classList.remove('active'));
-      const panel = document.getElementById('tab-' + name);
-      if (panel) panel.style.display = 'block';
-      if (btn) btn.classList.add('active');
-    }
-
-    function setPipeStep(stepId, state) {
-      const el = document.getElementById(stepId);
-      if (!el) return;
-      el.className = 'pipe-step ' + state;
-      const statusEl = el.querySelector('.pipe-status');
-      if (state === 'active') statusEl.textContent = 'Running…';
-      else if (state === 'done') statusEl.textContent = '✓';
-      else statusEl.textContent = '';
-    }
-
-    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-    async function runDemo() {
-      const topic = document.getElementById('demoTopic').value.trim() || 'The Future of Podcasting';
-      const btn = document.getElementById('demoBtn');
-      const btnText = document.getElementById('demoBtnText');
-      const btnIcon = document.getElementById('demoBtnIcon');
-
-      // Reset UI
-      document.getElementById('demoOutput').style.display = 'none';
-      document.getElementById('demoError').style.display = 'none';
-      document.getElementById('demoTabs').querySelector('.demo-tab').click();
-      ['ps1','ps2','ps3','ps4','ps5'].forEach(id => setPipeStep(id, ''));
-
-      // Show pipeline
-      document.getElementById('demoPipeline').style.display = 'block';
-      btn.disabled = true;
-      btnText.textContent = 'Generating…';
-      btnIcon.textContent = '⏳';
-
-      const prompt = `You are PodWizard's AI engine. Generate a complete podcast episode preview for the topic: "${topic}"
-
-Return ONLY a JSON object with exactly these fields (no markdown, no extra text):
-{
-  "episodeTitle": "compelling episode title (max 70 chars)",
-  "qaScore": "9.2",
-  "scriptIntro": "A powerful 3-paragraph broadcast-quality script introduction for this episode. Start with a gripping hook — a surprising stat, bold claim, or vivid scenario. Second paragraph builds context. Third paragraph previews what the listener will learn. Write it as actual narration, ready to record. Around 180-220 words total.",
-  "outline": [
-    {"title": "section title", "desc": "one sentence description of what happens in this section"},
-    ... 7 items total
-  ],
-  "seoTitle": "SEO-optimized episode title (60-65 chars)",
-  "seoDescription": "150-160 character meta description with primary keyword naturally included",
-  "keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"],
-  "blogOutline": "H1: [title]\\nH2: Introduction\\nH2: [section 1]\\nH2: [section 2]\\nH2: [section 3]\\nH2: Conclusion\\nCTA: [call to action]",
-  "socialClips": [
-    {"platform": "TikTok / Reels", "duration": "45s", "hook": "hook line for this clip", "angle": "what makes this clip shareable"},
-    {"platform": "YouTube Shorts", "duration": "60s", "hook": "hook line", "angle": "angle"},
-    {"platform": "Twitter / X", "duration": "30s", "hook": "hook line", "angle": "angle"},
-    {"platform": "LinkedIn", "duration": "60s", "hook": "hook line", "angle": "professional angle"}
-  ],
-  "thumbnails": [
-    {"style": "Bold Text", "concept": "describe the visual in detail: colors, text overlay, composition, mood"},
-    {"style": "Face + Emotion", "concept": "describe the visual"},
-    {"style": "Data Visual", "concept": "describe the visual"},
-    {"style": "Curiosity Gap", "concept": "describe the visual"},
-    {"style": "Branded Minimal", "concept": "describe the visual"}
-  ]
-}`;
-
-      try {
-        // Animate pipeline steps while waiting
-        setPipeStep('ps1', 'active');
-        await sleep(600);
-
-        const fetchPromise = fetch("https://api.anthropic.com/v1/messages", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            model: "claude-sonnet-4-20250514",
-            max_tokens: 1800,
-            messages: [{ role: "user", content: prompt }]
-          })
-        });
-
-        await sleep(900);
-        setPipeStep('ps1', 'done'); setPipeStep('ps2', 'active');
-        await sleep(700);
-        setPipeStep('ps2', 'done'); setPipeStep('ps3', 'active');
-        await sleep(600);
-        setPipeStep('ps3', 'done'); setPipeStep('ps4', 'active');
-
-        const res = await fetchPromise;
-        const data = await res.json();
-
-        setPipeStep('ps4', 'done'); setPipeStep('ps5', 'active');
-        await sleep(400);
-        setPipeStep('ps5', 'done');
-
-        const rawText = data.content.map(i => i.text || '').join('');
-        const clean = rawText.replace(/```json|```/g, '').trim();
-        const d = JSON.parse(clean);
-
-        // ── SCRIPT TAB ──
-        document.getElementById('qaScore').textContent = d.qaScore || '9.4';
-        document.getElementById('scriptContent').textContent = d.scriptIntro || '';
-
-        // ── OUTLINE TAB ──
-        document.getElementById('outlineContent').innerHTML = `
-          <p style="color:var(--t2);font-size:0.85em;margin:0 0 20px;">Episode: <strong style="color:var(--t1)">${d.episodeTitle}</strong></p>
-          ${(d.outline || []).map((s, i) => `
-            <div class="demo-outline-step">
-              <div class="demo-outline-num">${i + 1}</div>
-              <div>
-                <div style="font-weight:600;color:var(--t1);margin-bottom:3px;">${s.title}</div>
-                <div style="color:var(--t2);font-size:0.9em;">${s.desc}</div>
-              </div>
-            </div>`).join('')}
-        `;
-
-        // ── SEO TAB ──
-        document.getElementById('seoContent').innerHTML = `
-          <div class="demo-seo-row">
-            <div class="demo-seo-label">SEO Title</div>
-            <div class="demo-seo-val" style="font-weight:600;">${d.seoTitle}</div>
-            <div style="color:var(--t3);font-size:0.78em;margin-top:3px;">${(d.seoTitle||'').length} chars · ${(d.seoTitle||'').length <= 65 ? '✓ Good length' : '⚠ Slightly long'}</div>
-          </div>
-          <div class="demo-seo-row">
-            <div class="demo-seo-label">Meta Description</div>
-            <div class="demo-seo-val">${d.seoDescription}</div>
-            <div style="color:var(--t3);font-size:0.78em;margin-top:3px;">${(d.seoDescription||'').length} chars</div>
-          </div>
-          <div class="demo-seo-row">
-            <div class="demo-seo-label">Target Keywords</div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
-              ${(d.keywords||[]).map(k => `<span style="background:rgba(79,141,255,0.1);border:1px solid rgba(79,141,255,0.2);border-radius:20px;padding:3px 10px;font-size:0.82em;color:var(--blu);">${k}</span>`).join('')}
+      const sample = samples[Math.floor(Math.random() * samples.length)];
+      const html = `
+        <div>
+          <h4 style="color:var(--acc);margin:0 0 16px;font-size:1.1em;">📊 Sample Episode: "${topic}: ${sample.title}"</h4>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+            <div>
+              <p style="color:var(--t2);font-size:0.85em;margin:0 0 4px;font-weight:600;">Duration</p>
+              <p style="color:var(--t1);margin:0;">${sample.duration}</p>
+            </div>
+            <div>
+              <p style="color:var(--t2);font-size:0.85em;margin:0 0 4px;font-weight:600;">Format</p>
+              <p style="color:var(--t1);margin:0;">Full Script + Audio Ready</p>
             </div>
           </div>
-          <div class="demo-seo-row">
-            <div class="demo-seo-label">Blog Post Outline</div>
-            <div class="demo-seo-val" style="background:var(--surf2);border:1px solid var(--b1);border-radius:8px;padding:12px 14px;font-size:0.88em;white-space:pre-wrap;font-family:inherit;">${d.blogOutline}</div>
-          </div>
-        `;
+          
+          <p style="color:var(--t2);font-size:0.85em;margin:0 0 8px;font-weight:600;">📝 Episode Structure</p>
+          <ol style="margin:0 0 20px;padding-left:20px;color:var(--t1);">
+            ${sample.outline.map(item => `<li style="margin-bottom:6px;">${item}</li>`).join('')}
+          </ol>
+          
+          <p style="color:var(--t2);font-size:0.85em;margin:0 0 8px;font-weight:600;">⚡ You Also Get</p>
+          <ul style="margin:0;padding-left:20px;color:var(--t1);list-style:none;padding-left:0;">
+            ${sample.resources.map(item => `<li style="margin-bottom:6px;">✓ ${item}</li>`).join('')}
+          </ul>
+        </div>
+      `;
 
-        // ── SOCIAL TAB ──
-        document.getElementById('socialContent').innerHTML = `
-          <p style="color:var(--t2);font-size:0.88em;margin:0 0 16px;">4 of 15 clip concepts generated. Full generation creates platform-specific hooks for every clip.</p>
-          ${(d.socialClips||[]).map(c => `
-            <div class="demo-clip-card">
-              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
-                <div class="demo-clip-platform">▶ ${c.platform}</div>
-                <span style="color:var(--t3);font-size:0.8em;">${c.duration}</span>
-              </div>
-              <div style="font-weight:600;color:var(--t1);margin-bottom:4px;font-size:0.95em;">"${c.hook}"</div>
-              <div style="color:var(--t2);font-size:0.86em;">${c.angle}</div>
-            </div>`).join('')}
-        `;
+      document.getElementById('demoContent').innerHTML = html;
+      document.getElementById('demoOutput').style.display = 'block';
 
-        // ── THUMBNAILS TAB ──
-        const thumbEmojis = ['🎨','👤','📊','❓','✨'];
-        document.getElementById('thumbContent').innerHTML = `
-          <p style="color:var(--t2);font-size:0.88em;margin:0 0 16px;">5 AI-generated thumbnail concepts. Full plan generates actual images via DALL·E.</p>
-          ${(d.thumbnails||[]).map((t, i) => `
-            <div class="demo-thumb-card">
-              <div class="demo-thumb-num">${thumbEmojis[i]}</div>
-              <div>
-                <div style="font-weight:600;color:var(--acc);font-size:0.82em;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px;">${t.style}</div>
-                <div style="color:var(--t1);font-size:0.92em;line-height:1.55;">${t.concept}</div>
-              </div>
-            </div>`).join('')}
-        `;
-
-        // Show output, hide pipeline
-        await sleep(200);
-        document.getElementById('demoPipeline').style.display = 'none';
-        document.getElementById('demoOutput').style.display = 'block';
-
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'demo_generated', { topic });
-        }
-
-      } catch (e) {
-        document.getElementById('demoPipeline').style.display = 'none';
-        document.getElementById('demoError').style.display = 'block';
-        console.error('Demo error:', e);
+      // Track analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'demo_shown', {
+          topic: topic,
+          sample_type: sample.title
+        });
       }
-
-      btn.disabled = false;
-      btnText.textContent = 'Generate Preview';
-      btnIcon.textContent = '⚡';
     }
-
-    // Legacy alias kept in case anything calls it
-    function showDemoOutput() { runDemo(); }
 
 
     // Set Billings 
@@ -5812,7 +5540,7 @@ Return ONLY a JSON object with exactly these fields (no markdown, no extra text)
             initializeAnalytics(true);
           }
           modal.remove();
-          const b = document.getElementById('pw-cookie-banner'); if(b) b.classList.add('hidden');
+          document.getElementById('pw-cookie-banner').classList.add('hidden');
         });
       }
 
@@ -5855,6 +5583,12 @@ Return ONLY a JSON object with exactly these fields (no markdown, no extra text)
         document.querySelectorAll('.pc-per').forEach(el => el.textContent = '/mo');
         document.getElementById('creator-price').textContent = '29';
 
-        }}
+        // SWITCH STRIPE BUTTONS
+        monthlyContainer.style.display = 'block';
+        annualContainer.style.display = 'none';
+      }
+    }
+  </script>
+</body>
 
-        // SWITCH STRIP
+</html>

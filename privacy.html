@@ -94,6 +94,277 @@
       border-radius: 99px
     }
 
+    /* ── EMAIL MODAL ── */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 8000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0);
+      backdrop-filter: blur(0px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease
+    }
+
+    .modal.open {
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(16px);
+      opacity: 1;
+      pointer-events: all
+    }
+
+    .modal-box {
+      background: var(--surf);
+      border: 1px solid var(--b2);
+      border-radius: 24px;
+      padding: 48px 44px;
+      max-width: 460px;
+      width: 100%;
+      position: relative;
+      transform: translateY(28px) scale(0.96);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 60px 120px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.07)
+    }
+
+    .modal-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232, 255, 71, 0.6), transparent)
+    }
+
+    .modal.open .modal-box {
+      transform: translateY(0) scale(1)
+    }
+
+    .modal-x {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--b1);
+      color: var(--t3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all 0.2s
+    }
+
+    .modal-x:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--t1)
+    }
+
+    .modal-ico {
+      width: 54px;
+      height: 54px;
+      border-radius: 15px;
+      background: var(--acc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .modal-ico::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent)
+    }
+
+    .modal h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      margin-bottom: 8px
+    }
+
+    .modal p {
+      font-size: 0.88rem;
+      color: var(--t2);
+      line-height: 1.65;
+      margin-bottom: 26px;
+      font-weight: 300
+    }
+
+    .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .modal-input {
+      background: rgba(255, 255, 255, 0.05);
+     
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: var(--t1);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      width: 100%;
+      transition: all 0.2s
+    }
+
+    .modal-input:focus {
+      border-color: rgba(232, 255, 71, 0.45);
+      box-shadow: 0 0 0 4px rgba(232, 255, 71, 0.07)
+    }
+
+    
+
+    .modal-submit {
+      background: var(--acc);
+      color: var(--bg);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 15px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: -0.01em
+    }
+
+    .modal-submit:hover {
+      background: var(--acc2);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 30px rgba(232, 255, 71, 0.35)
+    }
+
+    .modal-fine {
+      font-size: 0.72rem;
+      color: var(--t3);
+      text-align: center;
+      margin-top: 2px
+    }
+
+    .modal-fine strong {
+      color: var(--grn)
+    }
+
+    .modal-ok {
+      display: none;
+      text-align: center;
+      padding: 16px 0
+    }
+
+    .modal-ok-icon {
+      font-size: 3.5rem;
+      margin-bottom: 10px
+    }
+
+    .modal-ok h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--grn);
+      margin-bottom: 8px
+    }
+
+    .modal-ok p {
+      font-size: 0.88rem;
+      color: var(--t2);
+      margin-bottom: 20px
+    }
+
+    .modal-ok a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--acc);
+      color: var(--bg);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 13px 26px;
+      border-radius: 100px
+    }
+
+    /* Tablet & Small Screens (below 768px) */
+@media (max-width: 768px) {
+  .modal-box {
+    padding: 40px 32px; /* Slightly tighter padding */
+    max-width: 420px;
+  }
+
+  .modal h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Mobile Devices (below 480px) */
+@media (max-width: 480px) {
+  .modal {
+    padding: 16px; /* Less wasted space on screen edges */
+  }
+
+  .modal-box {
+    padding: 32px 24px; /* Significant padding reduction for small screens */
+    border-radius: 20px;
+  }
+
+  .modal-ico {
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+  }
+
+  .modal h2 {
+    font-size: 1.45rem;
+    letter-spacing: -0.02em;
+  }
+
+  .modal p {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+
+  .modal-input, 
+  .modal-submit {
+    padding: 12px 16px; /* More comfortable for thumb-tapping */
+    font-size: 0.95rem;
+  }
+
+  .modal-x {
+    top: 12px;
+    right: 12px;
+    width: 32px; /* Slightly larger hit area for fingers */
+    height: 32px;
+  }
+}
+
+/* Landscape fix for very short phones */
+@media (max-height: 500px) and (orientation: landscape) {
+  .modal-box {
+    padding: 24px;
+    overflow-y: auto;
+    max-height: 90vh; /* Prevents modal from cutting off */
+  }
+  
+  .modal-ico {
+    display: none; /* Hide icon to save vertical space */
+  }
+}
 
     /* ── UPDATED NAV & LOGO ── */
     nav {
@@ -754,6 +1025,42 @@
 </head>
 
 <body>
+
+  <!-- ── EMAIL MODAL ── -->
+  <div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box">
+      <button class="modal-x" onclick="closeModal()">✕</button>
+      <div id="mForm">
+        <div class="modal-ico">
+          <div class="lm">
+            <div class="lm-outer">
+              <div class="lm-mid"></div>
+              <div class="lm-inner"></div>
+            </div>
+          </div>
+        </div>
+        <h2>Start creating free, forever.</h2>
+        <p>Generate your first perfect episode on us—no credit card, no expiration date. Upgrade anytime if you need
+          more.</p>
+        <form class="modal-form" onsubmit="submitModal(event)">
+          <input class="modal-input" type="email" id="mEmail" placeholder="Enter Your Email Here..." required
+            autocomplete="email">
+          <button class="modal-submit" type="submit">Get instant access →</button>
+          <p class="modal-fine"><strong>No credit card required.</strong> Free forever—generate unlimited episodes,
+            upgrade anytime.</p>
+        </form>
+      </div>
+      <div class="modal-ok" id="mOk">
+        <div class="modal-ok-icon">🎉</div>
+        <h3>You're all set! Welcome to the studio.</h3>
+        <p>Your free account is active and ready. No card needed. Taking you to the studio…</p>
+        <p class="modal-fine" style="margin-top:16px;color:var(--t3);font-size:0.85em;">If you're not redirected in 2
+          seconds, <a href="https://studio.getpodwizard.com/login?plan=free" target="_blank"
+            style="color:var(--acc);">click here →</a></p>
+      </div>
+    </div>
+  </div>
+
   <nav>
     <a href="index.html" class="nav-logo">
       <div class="lm">
@@ -774,7 +1081,7 @@
     <div class="nav-r">
       <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌓</button>
       <a href="https://studio.getpodwizard.com" class="nav-si" target="_blank">Sign in</a>
-      <a href="index.html#pricing" class="nav-trial">Start free Trial</a>
+      <button class="nav-trial" onclick="openModal()">Generate for Free</button>
     </div>
   </nav>
 
@@ -909,6 +1216,8 @@
         <li><strong>Portability:</strong> receive your data in a machine-readable format.</li>
         <li><strong>Objection:</strong> object to certain uses including direct marketing.</li>
       </ul>
+      <p>Email <a href="mailto:hello@podwizard.com"><span class="__cf_email__"
+            data-cfemail="4028252c2c2f00302f2437293a2132246e232f2d">hello@getpodwizard.com</span></a> to exercise any of
         these rights. We
         respond within 30 days.</p>
     </div>
@@ -996,7 +1305,9 @@
         cannot guarantee all partners honor them.</p>
 
       <h3>Questions about cookies?</h3>
+      <p>Contact us at <a href="mailto:hello@podwizard.com"><span
             class="__cf_email__"
+            data-cfemail="79111c1515163909161d0e1003180b1d571a1614">hello@getpodwizard.com</span></a> with any questions
         about our cookie practices.</p>
     </div>
     <div class="divider"></div>
@@ -1009,6 +1320,9 @@
         <li>Payments handled entirely by Stripe (PCI DSS Level 1 certified).</li>
         <li>Production system access limited to authorised personnel only.</li>
       </ul>
+      <p>If you believe your account is compromised, contact <a
+          href="mailto:hello@podwizard.com"><span class="__cf_email__"
+            data-cfemail="1d75787171725d6d72796a74677c6f79337e7270">hello@getpodwizard.com</span></a> immediately.</p>
     </div>
     <div class="divider"></div>
     <div class="section" id="s10">
@@ -1030,6 +1344,9 @@
       <h2>Contact us</h2>
       <ul>
 
+        <li><strong>General:</strong> <a
+            href="mailto:hello@podwizard.com"><span class="__cf_email__"
+              data-cfemail="4c24292020230c3c23283b25362d3e28622f2321">hello@getpodwizard.com<span></a></li>
 
       </ul>
     </div>
@@ -1064,6 +1381,7 @@
           <a href="about.html" target="_blank">About</a>
           <a href="privacy.html" target="_blank">Privacy Policy</a>
           <a href="terms.html" target="_blank">Terms of Service</a>
+          <a href="mailto:hello@podwizard.com">Contact</a>
         </div>
       </div>
     </div>
@@ -1072,8 +1390,77 @@
       <span>Made for creators who don't settle.</span>
     </div>
   </footer>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
+
+    /* ── MODAL ── */
+    const EMAIL_ACTION =
+      'https://app.loops.so/api/newsletter-form/cmnqf6qw107a30iyyrmap19gn';
+
+    function openModal() {
+      document.getElementById('modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('mEmail')?.focus(), 300);
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    async function submitModal(e) {
+      e.preventDefault();
+
+      const email = document.getElementById('mEmail').value.trim();
+      if (!email) return;
+
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Setting up your studio…';
+      btn.disabled = true;
+
+      try {
+        let signupToken = null;
+
+        await fetch(EMAIL_ACTION, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `email=${encodeURIComponent(email)}`
+        });
+
+        // Store email locally (optional)
+        const l = JSON.parse(localStorage.getItem('pp') || '[]');
+        if (!l.includes(email)) l.push(email);
+        localStorage.setItem('pp', JSON.stringify(l));
+
+        signupToken = 'demo-' + Date.now();
+
+        document.getElementById('mForm').style.display = 'none';
+        document.getElementById('mOk').style.display = 'block';
+
+        setTimeout(() => {
+          const studioUrl = signupToken
+            ? `https://studio.getpodwizard.com/login?token=${encodeURIComponent(signupToken)}&plan=free&email=${encodeURIComponent(email)}`
+            : `https://studio.getpodwizard.com/signup?email=${encodeURIComponent(email)}&plan=free`;
+
+          window.location.href = studioUrl;
+        }, 1500);
+
+      } catch (err) {
+        console.error('Signup error:', err);
+        btn.textContent = 'Try again →';
+        btn.disabled = false;
+      }
+    }
+
+   // Theme
+
     function toggleTheme() {
       const h = document.documentElement;
       const isLight = h.getAttribute('data-theme') === 'light';
@@ -1499,4 +1886,32 @@
             preferences: preferencesCheckbox.checked
           });
           if (analyticsCheckbox.checked) {
-      
+            initializeAnalytics(true);
+          }
+          modal.remove();
+          document.getElementById('pw-cookie-banner').classList.add('hidden');
+        });
+      }
+
+      // Initialize on page load
+      document.addEventListener('DOMContentLoaded', function () {
+        const consent = getCookieConsent();
+
+        if (!consent) {
+          showCookieBanner();
+        } else {
+          if (consent.analytics) {
+            initializeAnalytics(true);
+          }
+        }
+      });
+
+      // Expose function to manage cookies from footer if needed
+      window.manageCookies = function () {
+        showPreferencesModal();
+      };
+    })();
+  </script>
+</body>
+
+</html>
