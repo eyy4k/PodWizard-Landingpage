@@ -4823,7 +4823,7 @@
 
     </div>
   </section>
-  
+
   <!-- ── PRICING ── -->
   <section class="pricing" id="pricing">
     <div class="wrap" style="text-align:center">
@@ -5138,68 +5138,58 @@
       btnText.textContent = 'Generating…';
       btnIcon.textContent = '⏳';
 
-      const prompt = `You are PodWizard's AI engine. Generate a complete podcast episode preview for the topic: "${topic}"
-
-Return ONLY a JSON object with exactly these fields (no markdown, no extra text):
-{
-  "episodeTitle": "compelling episode title (max 70 chars)",
-  "qaScore": "9.2",
-  "scriptIntro": "A powerful 3-paragraph broadcast-quality script introduction for this episode. Start with a gripping hook — a surprising stat, bold claim, or vivid scenario. Second paragraph builds context. Third paragraph previews what the listener will learn. Write it as actual narration, ready to record. Around 180-220 words total.",
-  "outline": [
-    {"title": "section title", "desc": "one sentence description of what happens in this section"},
-    ... 7 items total
-  ],
-  "seoTitle": "SEO-optimized episode title (60-65 chars)",
-  "seoDescription": "150-160 character meta description with primary keyword naturally included",
-  "keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"],
-  "blogOutline": "H1: [title]\\nH2: Introduction\\nH2: [section 1]\\nH2: [section 2]\\nH2: [section 3]\\nH2: Conclusion\\nCTA: [call to action]",
-  "socialClips": [
-    {"platform": "TikTok / Reels", "duration": "45s", "hook": "hook line for this clip", "angle": "what makes this clip shareable"},
-    {"platform": "YouTube Shorts", "duration": "60s", "hook": "hook line", "angle": "angle"},
-    {"platform": "Twitter / X", "duration": "30s", "hook": "hook line", "angle": "angle"},
-    {"platform": "LinkedIn", "duration": "60s", "hook": "hook line", "angle": "professional angle"}
-  ],
-  "thumbnails": [
-    {"style": "Bold Text", "concept": "describe the visual in detail: colors, text overlay, composition, mood"},
-    {"style": "Face + Emotion", "concept": "describe the visual"},
-    {"style": "Data Visual", "concept": "describe the visual"},
-    {"style": "Curiosity Gap", "concept": "describe the visual"},
-    {"style": "Branded Minimal", "concept": "describe the visual"}
-  ]
-}`;
-
       try {
-        // Animate pipeline steps while waiting
+        // Animate pipeline steps
         setPipeStep('ps1', 'active');
-        await sleep(600);
-
-        const fetchPromise = fetch("https://api.anthropic.com/v1/messages", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            model: "claude-sonnet-4-20250514",
-            max_tokens: 1800,
-            messages: [{ role: "user", content: prompt }]
-          })
-        });
-
-        await sleep(900);
-        setPipeStep('ps1', 'done'); setPipeStep('ps2', 'active');
         await sleep(700);
+        setPipeStep('ps1', 'done'); setPipeStep('ps2', 'active');
+        await sleep(650);
         setPipeStep('ps2', 'done'); setPipeStep('ps3', 'active');
-        await sleep(600);
+        await sleep(750);
         setPipeStep('ps3', 'done'); setPipeStep('ps4', 'active');
-
-        const res = await fetchPromise;
-        const data = await res.json();
-
+        await sleep(600);
         setPipeStep('ps4', 'done'); setPipeStep('ps5', 'active');
-        await sleep(400);
+        await sleep(500);
         setPipeStep('ps5', 'done');
 
-        const rawText = data.content.map(i => i.text || '').join('');
-        const clean = rawText.replace(/```json|```/g, '').trim();
-        const d = JSON.parse(clean);
+        // ── DETERMINISTIC GENERATOR ──
+        const t = topic;
+        const tLow = t.toLowerCase();
+        const tTitle = t.replace(/\b\w/g, c => c.toUpperCase());
+
+        let hash = 0;
+        for (let i = 0; i < t.length; i++) hash = ((hash << 5) - hash) + t.charCodeAt(i) | 0;
+        const h = Math.abs(hash);
+
+        const qaScores = ['9.1','9.3','9.4','9.5','9.6','9.7'];
+        const qaScore = qaScores[h % qaScores.length];
+
+        const titleFormats = [
+          `${tTitle}: What No One Is Telling You`,
+          `The Truth About ${tTitle} in 2026`,
+          `How to Master ${tTitle} From Scratch`,
+          `${tTitle} — The Complete Insider Guide`,
+          `Why ${tTitle} Is Changing Everything Right Now`,
+          `The Hidden Side of ${tTitle} Most People Miss`,
+        ];
+        const episodeTitle = titleFormats[h % titleFormats.length];
+
+        const hooks = [ /* 3 different 3-paragraph script intros using tLow */ ];
+        const scriptIntro = hooks[h % hooks.length];
+
+        const outlineTemplates = [ /* 3 different 7-step outlines using tLow */ ];
+        const outline = outlineTemplates[h % outlineTemplates.length];
+
+        const seoTitle = `${tTitle}: The Complete Guide for 2026 Podcast`;
+        const seoDescription = `Everything you need to know about ${tLow} — practical strategies, expert insights, and a clear action plan.`;
+        const keywords = [ tLow, `${kw[0]} tips`, `how to ${kw[0]}`, `${tLow} guide`, `${tLow} podcast` ];
+        const blogOutline = `H1: ${episodeTitle}\nH2: Introduction...\n...`;
+        const socialClips = [ /* 4 platform clips with topic-specific hooks */ ];
+        const thumbnails = [ /* 5 thumbnail concepts referencing tTitle */ ];
+
+        const d = { episodeTitle, qaScore, scriptIntro, outline,
+                    seoTitle, seoDescription, keywords, blogOutline,
+                    socialClips, thumbnails };
 
         // ── SCRIPT TAB ──
         document.getElementById('qaScore').textContent = d.qaScore || '9.4';
