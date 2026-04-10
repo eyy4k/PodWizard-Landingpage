@@ -5094,12 +5094,12 @@
       }
     }
 
-    /* ── DEMO (AI-Powered) ── */
-    function setDemoTopic(t) {
+  /* ── DEMO (AI-Powered) ── */
+  function setDemoTopic(t) {
       document.getElementById('demoTopic').value = t;
       document.getElementById('demoTopic').focus();
     }
-
+ 
     function switchTab(name, btn) {
       document.querySelectorAll('.demo-panel').forEach(p => p.style.display = 'none');
       document.querySelectorAll('.demo-tab').forEach(b => b.classList.remove('active'));
@@ -5107,7 +5107,7 @@
       if (panel) panel.style.display = 'block';
       if (btn) btn.classList.add('active');
     }
-
+ 
     function setPipeStep(stepId, state) {
       const el = document.getElementById(stepId);
       if (!el) return;
@@ -5117,27 +5117,27 @@
       else if (state === 'done') statusEl.textContent = '✓';
       else statusEl.textContent = '';
     }
-
+ 
     function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-
+ 
     async function runDemo() {
       const topic = document.getElementById('demoTopic').value.trim() || 'The Future of Podcasting';
       const btn = document.getElementById('demoBtn');
       const btnText = document.getElementById('demoBtnText');
       const btnIcon = document.getElementById('demoBtnIcon');
-
+ 
       // Reset UI
       document.getElementById('demoOutput').style.display = 'none';
       document.getElementById('demoError').style.display = 'none';
       document.getElementById('demoTabs').querySelector('.demo-tab').click();
       ['ps1','ps2','ps3','ps4','ps5'].forEach(id => setPipeStep(id, ''));
-
+ 
       // Show pipeline
       document.getElementById('demoPipeline').style.display = 'block';
       btn.disabled = true;
       btnText.textContent = 'Generating…';
       btnIcon.textContent = '⏳';
-
+ 
       try {
         // Animate pipeline steps
         setPipeStep('ps1', 'active');
@@ -5151,19 +5151,19 @@
         setPipeStep('ps4', 'done'); setPipeStep('ps5', 'active');
         await sleep(500);
         setPipeStep('ps5', 'done');
-
+ 
         // ── DETERMINISTIC GENERATOR ──
         const t = topic;
         const tLow = t.toLowerCase();
         const tTitle = t.replace(/\b\w/g, c => c.toUpperCase());
-
+ 
         let hash = 0;
         for (let i = 0; i < t.length; i++) hash = ((hash << 5) - hash) + t.charCodeAt(i) | 0;
         const h = Math.abs(hash);
-
+ 
         const qaScores = ['9.1','9.3','9.4','9.5','9.6','9.7'];
         const qaScore = qaScores[h % qaScores.length];
-
+ 
         const titleFormats = [
           `${tTitle}: What No One Is Telling You`,
           `The Truth About ${tTitle} in 2026`,
@@ -5173,28 +5173,48 @@
           `The Hidden Side of ${tTitle} Most People Miss`,
         ];
         const episodeTitle = titleFormats[h % titleFormats.length];
-
-        const hooks = [ /* 3 different 3-paragraph script intros using tLow */ ];
+ 
+        const hooks = [
+          `Here's a stat that'll stop you cold: most people who try to tackle ${tLow} give up within the first 30 days — not because it's too hard, but because nobody gave them the right framework. Today, that changes.\n\nThe world of ${tLow} is moving faster than most people realise. What worked two years ago is already obsolete, and the gap between those who adapt and those who don't is widening every single month. Whether you're just starting out or you've been at this for years, what you're about to hear will reshape how you think about this entirely.\n\nIn today's episode, we're breaking down the exact steps that the top performers in this space are using right now. You'll walk away with a clear action plan, the most common mistakes to avoid, and the one insight that will save you months of wasted effort. Let's get into it.`,
+          `What if everything you thought you knew about ${tLow} was only half the story? I know that sounds like a bold claim — but stick with me, because by the end of this episode, you'll see exactly what I mean.\n\nOver the past year, something significant has shifted in how the best minds in this space approach ${tLow}. The old playbook is breaking down. The shortcuts everyone was using? They're drying up. And a completely new set of principles is emerging — ones that most people haven't caught onto yet.\n\nToday we're pulling back the curtain. I've spent weeks researching this, talking to practitioners, and synthesising everything into a framework you can actually use. By the time this episode wraps up, you'll have a clear roadmap, a set of tools ready to deploy, and the confidence to move forward without second-guessing yourself.`,
+          `Let me ask you something: when was the last time you genuinely felt ahead of the curve on ${tLow}? If you're hesitating, you're not alone — and this episode is for you.\n\nThe conversation around ${tLow} has exploded recently, but most of it is noise. Conflicting advice, recycled tips, and hot takes from people who've never actually been in the trenches. What's missing is a grounded, practical perspective — and that's exactly what we're delivering today.\n\nHere's what you're going to get in the next 20 minutes: first, we'll cut through the myth and establish what's actually true about ${tLow} right now. Then we'll walk through the core principles step by step. And finally, I'll give you a simple action framework you can start applying immediately. No fluff. No filler. Just the stuff that works.`,
+        ];
         const scriptIntro = hooks[h % hooks.length];
-
-        const outlineTemplates = [ /* 3 different 7-step outlines using tLow */ ];
+ 
+        const outlineTemplates = [
+          [{title:'Cold Open & Hook',desc:`A striking fact or scenario about ${tLow} that immediately earns the listener's attention.`},{title:'Setting the Scene',desc:`Why ${tLow} matters right now and who this episode is really for.`},{title:'The Core Framework',desc:`The 3-part model that the best practitioners of ${tLow} use consistently.`},{title:'Step-by-Step Breakdown',desc:`Walking through each element in plain language with real-world examples.`},{title:'The Biggest Mistakes',desc:`The most common errors people make with ${tLow} and how to sidestep all of them.`},{title:'A Real-World Case Study',desc:`A concrete example showing the framework applied from start to finish.`},{title:'Action Plan & Outro',desc:`A clear, simple checklist the listener can act on today, plus what's coming next episode.`}],
+          [{title:'The Problem Nobody Talks About',desc:`Framing the hidden challenge most people face when approaching ${tLow}.`},{title:'Why the Old Approach Fails',desc:`What conventional wisdom gets wrong and why it keeps people stuck.`},{title:'The New Mental Model',desc:`A reframe that instantly changes how you see and approach ${tLow}.`},{title:'Principle 1: Foundations',desc:`The first non-negotiable building block explained with clarity and examples.`},{title:'Principle 2: Execution',desc:`How to move from understanding to consistent action without overwhelm.`},{title:'Principle 3: Compounding Results',desc:`The long-game strategy that separates good from exceptional outcomes.`},{title:'Your Next 7 Days',desc:`A specific, time-boxed plan the listener can follow starting today.`}],
+          [{title:'Opening Story',desc:`A relatable anecdote that mirrors the listener's own experience with ${tLow}.`},{title:'The Landscape in 2026',desc:`A clear-eyed look at where things stand right now and the key trends shaping the space.`},{title:'What Actually Works',desc:`Evidence-backed strategies that have proven results, not just popular opinion.`},{title:'Tools & Resources',desc:`The specific tools, platforms, and references that make execution faster and easier.`},{title:'Expert Perspective',desc:`Insights from top practitioners on what they wish they'd known earlier.`},{title:'Handling Obstacles',desc:`How to navigate the most common roadblocks without losing momentum.`},{title:'Closing Takeaway',desc:`One powerful idea to carry forward and a compelling reason to tune in next week.`}],
+        ];
         const outline = outlineTemplates[h % outlineTemplates.length];
-
+ 
+        const kw = tLow.split(' ');
         const seoTitle = `${tTitle}: The Complete Guide for 2026 Podcast`;
-        const seoDescription = `Everything you need to know about ${tLow} — practical strategies, expert insights, and a clear action plan.`;
-        const keywords = [ tLow, `${kw[0]} tips`, `how to ${kw[0]}`, `${tLow} guide`, `${tLow} podcast` ];
-        const blogOutline = `H1: ${episodeTitle}\nH2: Introduction...\n...`;
-        const socialClips = [ /* 4 platform clips with topic-specific hooks */ ];
-        const thumbnails = [ /* 5 thumbnail concepts referencing tTitle */ ];
-
+        const seoDescription = `Everything you need to know about ${tLow} — practical strategies, expert insights, and a clear action plan. New episode every week.`;
+        const keywords = [tLow, `${kw[0]} tips`, `how to ${kw[0] || tLow}`, `${tLow} guide`, `${tLow} podcast`];
+        const blogOutline = `H1: ${episodeTitle}\nH2: Introduction — Why ${tTitle} Matters Now\nH2: ${outline[2].title}\nH2: ${outline[3].title}\nH2: ${outline[5].title}\nH2: Conclusion & Key Takeaways\nCTA: Start generating your own perfect episodes with PodWizard →`;
+        const socialClips = [
+          {platform:'TikTok / Reels', duration:'45s', hook:`The one thing about ${tLow} nobody warns you about`, angle:`Contrarian take — high share potential among people who've struggled with this topic`},
+          {platform:'YouTube Shorts', duration:'60s', hook:`I tested every ${tLow} strategy so you don't have to — here's what actually worked`, angle:`"Results" format drives saves and comments from viewers who want the full episode`},
+          {platform:'Twitter / X', duration:'30s', hook:`Hot take: most ${tLow} advice is completely backwards`, angle:`Provokes replies and quote-tweets from people who agree or want to push back`},
+          {platform:'LinkedIn', duration:'60s', hook:`After studying ${tLow} for years, this is the framework I always come back to`, angle:`Professional credibility angle — performs well with founders, creators and career-focused audiences`},
+        ];
+        const thumbnails = [
+          {style:'Bold Text', concept:`Deep ${h%2===0?'navy':'charcoal'} background, large white sans-serif text reading "${tTitle.split(' ').slice(0,3).join(' ').toUpperCase()}", bold yellow accent underline, PodWizard logo bottom-right. High contrast, reads clearly at thumbnail size.`},
+          {style:'Face + Emotion', concept:`Host in foreground with wide-eyed expression of surprise or discovery, blurred gradient background in brand green, large bold text overlay with the episode title. Emotion drives click-through.`},
+          {style:'Data Visual', concept:`Clean infographic style: a simple ${h%2===0?'bar chart':'timeline'} graphic illustrating a key insight about ${tLow}, white background, accent colour highlights, episode title in Bricolage Grotesque typeface.`},
+          {style:'Curiosity Gap', concept:`Split image — left side labelled "BEFORE", right side labelled "AFTER" — showing a contrast related to ${tLow}. Question mark graphic centre-frame with episode title below.`},
+          {style:'Branded Minimal', concept:`Pure white card, PodWizard circular logo top-left, episode number top-right, large typographic title centred using brand yellow-green as the only accent. Clean, premium, instantly recognisable.`},
+        ];
+ 
         const d = { episodeTitle, qaScore, scriptIntro, outline,
                     seoTitle, seoDescription, keywords, blogOutline,
                     socialClips, thumbnails };
-
+ 
         // ── SCRIPT TAB ──
         document.getElementById('qaScore').textContent = d.qaScore || '9.4';
         document.getElementById('scriptContent').textContent = d.scriptIntro || '';
-
+ 
         // ── OUTLINE TAB ──
         document.getElementById('outlineContent').innerHTML = `
           <p style="color:var(--t2);font-size:0.85em;margin:0 0 20px;">Episode: <strong style="color:var(--t1)">${d.episodeTitle}</strong></p>
@@ -5207,7 +5227,7 @@
               </div>
             </div>`).join('')}
         `;
-
+ 
         // ── SEO TAB ──
         document.getElementById('seoContent').innerHTML = `
           <div class="demo-seo-row">
@@ -5231,7 +5251,7 @@
             <div class="demo-seo-val" style="background:var(--surf2);border:1px solid var(--b1);border-radius:8px;padding:12px 14px;font-size:0.88em;white-space:pre-wrap;font-family:inherit;">${d.blogOutline}</div>
           </div>
         `;
-
+ 
         // ── SOCIAL TAB ──
         document.getElementById('socialContent').innerHTML = `
           <p style="color:var(--t2);font-size:0.88em;margin:0 0 16px;">4 of 15 clip concepts generated. Full generation creates platform-specific hooks for every clip.</p>
@@ -5245,7 +5265,7 @@
               <div style="color:var(--t2);font-size:0.86em;">${c.angle}</div>
             </div>`).join('')}
         `;
-
+ 
         // ── THUMBNAILS TAB ──
         const thumbEmojis = ['🎨','👤','📊','❓','✨'];
         document.getElementById('thumbContent').innerHTML = `
@@ -5259,27 +5279,27 @@
               </div>
             </div>`).join('')}
         `;
-
+ 
         // Show output, hide pipeline
         await sleep(200);
         document.getElementById('demoPipeline').style.display = 'none';
         document.getElementById('demoOutput').style.display = 'block';
-
+ 
         if (typeof gtag !== 'undefined') {
           gtag('event', 'demo_generated', { topic });
         }
-
+ 
       } catch (e) {
         document.getElementById('demoPipeline').style.display = 'none';
         document.getElementById('demoError').style.display = 'block';
         console.error('Demo error:', e);
       }
-
+ 
       btn.disabled = false;
       btnText.textContent = 'Generate Preview';
       btnIcon.textContent = '⚡';
     }
-
+ 
     // Legacy alias kept in case anything calls it
     function showDemoOutput() { runDemo(); }
     
@@ -5291,7 +5311,8 @@
         });
       }
     
-
+ 
+ 
 
     // Set Billings 
     function setBilling(type) {
