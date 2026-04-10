@@ -2327,6 +2327,67 @@
       line-height: 1.65
     }
 
+    /* -- Demo Section -- */
+
+    .demo-chip {
+      background:var(--pill-bg);border:1px solid var(--pill-border);border-radius:20px;padding:5px 12px;
+      color:var(--t2);font-size:0.8em;cursor:pointer;font-family:inherit;transition:all 0.15s;white-space:nowrap;
+    }
+    .demo-chip:hover { background:rgba(232,255,71,0.08);border-color:rgba(232,255,71,0.2);color:var(--acc); }
+    .demo-tab {
+      padding:14px 20px;background:none;border:none;border-bottom:2px solid transparent;
+      color:var(--t3);cursor:pointer;font-family:inherit;font-size:0.88em;font-weight:500;
+      white-space:nowrap;transition:all 0.15s;
+    }
+    .demo-tab:hover { color:var(--t1); }
+    .demo-tab.active { color:var(--acc);border-bottom-color:var(--acc); }
+    .pipe-step {
+      display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:8px;
+      transition:background 0.2s;
+    }
+    .pipe-step.active { background:rgba(232,255,71,0.06); }
+    .pipe-step.done { opacity:0.6; }
+    .pipe-dot {
+      width:8px;height:8px;border-radius:50%;background:var(--b2);flex-shrink:0;transition:all 0.3s;
+    }
+    .pipe-step.active .pipe-dot {
+      background:var(--acc);box-shadow:0 0 8px rgba(232,255,71,0.5);
+      animation:pipePulse 0.8s infinite alternate;
+    }
+    .pipe-step.done .pipe-dot { background:var(--grn); }
+    @keyframes pipePulse { from{opacity:0.6;transform:scale(0.9)} to{opacity:1;transform:scale(1.1)} }
+    .pipe-label { color:var(--t2);font-size:0.88em;flex:1; }
+    .pipe-step.active .pipe-label { color:var(--t1); }
+    .pipe-status { font-size:0.8em;color:var(--t3); }
+    .pipe-step.active .pipe-status { color:var(--acc); }
+    .pipe-step.done .pipe-status { color:var(--grn); }
+    .demo-seo-row { display:flex;flex-direction:column;gap:6px;margin-bottom:20px; }
+    .demo-seo-label { font-size:0.78em;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--t3); }
+    .demo-seo-val { color:var(--t1);font-size:0.95em;line-height:1.5; }
+    .demo-clip-card {
+      background:var(--surf2);border:1px solid var(--b1);border-radius:10px;padding:14px 16px;margin-bottom:10px;
+    }
+    .demo-clip-platform {
+      display:inline-flex;align-items:center;gap:6px;font-size:0.75em;font-weight:600;
+      background:rgba(79,141,255,0.1);border:1px solid rgba(79,141,255,0.2);border-radius:5px;
+      padding:3px 8px;color:var(--blu);margin-bottom:8px;
+    }
+    .demo-outline-step {
+      display:flex;gap:14px;margin-bottom:12px;align-items:flex-start;
+    }
+    .demo-outline-num {
+      min-width:26px;height:26px;border-radius:50%;background:rgba(232,255,71,0.1);
+      border:1px solid rgba(232,255,71,0.2);display:flex;align-items:center;justify-content:center;
+      font-size:0.75em;font-weight:700;color:var(--acc);flex-shrink:0;
+    }
+    .demo-thumb-card {
+      background:var(--surf2);border:1px solid var(--b1);border-radius:10px;padding:14px 16px;margin-bottom:10px;
+      display:flex;gap:14px;align-items:flex-start;
+    }
+    .demo-thumb-num {
+      font-size:1.4em;flex-shrink:0;
+    }
+
     /* ── PRICING ── */
     .pricing {
       padding: 100px 52px;
@@ -4019,7 +4080,7 @@
         <p>Generate your first perfect episode on us—no credit card, no expiration date. Upgrade anytime if you need
           more.</p>
         <form class="modal-form" onsubmit="submitModal(event)">
-          <input class="modal-input" type="email" id="mEmail" placeholder="your@email.com" required
+          <input class="modal-input" type="email" id="mEmail" placeholder="Enter Your Email Here..." required
             autocomplete="email">
           <button class="modal-submit" type="submit">Get instant access →</button>
           <p class="modal-fine"><strong>No credit card required.</strong> Free forever—generate unlimited episodes,
@@ -4762,68 +4823,7 @@
 
     </div>
   </section>
-
-  <style>
-    .demo-chip {
-      background:var(--pill-bg);border:1px solid var(--pill-border);border-radius:20px;padding:5px 12px;
-      color:var(--t2);font-size:0.8em;cursor:pointer;font-family:inherit;transition:all 0.15s;white-space:nowrap;
-    }
-    .demo-chip:hover { background:rgba(232,255,71,0.08);border-color:rgba(232,255,71,0.2);color:var(--acc); }
-    .demo-tab {
-      padding:14px 20px;background:none;border:none;border-bottom:2px solid transparent;
-      color:var(--t3);cursor:pointer;font-family:inherit;font-size:0.88em;font-weight:500;
-      white-space:nowrap;transition:all 0.15s;
-    }
-    .demo-tab:hover { color:var(--t1); }
-    .demo-tab.active { color:var(--acc);border-bottom-color:var(--acc); }
-    .pipe-step {
-      display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:8px;
-      transition:background 0.2s;
-    }
-    .pipe-step.active { background:rgba(232,255,71,0.06); }
-    .pipe-step.done { opacity:0.6; }
-    .pipe-dot {
-      width:8px;height:8px;border-radius:50%;background:var(--b2);flex-shrink:0;transition:all 0.3s;
-    }
-    .pipe-step.active .pipe-dot {
-      background:var(--acc);box-shadow:0 0 8px rgba(232,255,71,0.5);
-      animation:pipePulse 0.8s infinite alternate;
-    }
-    .pipe-step.done .pipe-dot { background:var(--grn); }
-    @keyframes pipePulse { from{opacity:0.6;transform:scale(0.9)} to{opacity:1;transform:scale(1.1)} }
-    .pipe-label { color:var(--t2);font-size:0.88em;flex:1; }
-    .pipe-step.active .pipe-label { color:var(--t1); }
-    .pipe-status { font-size:0.8em;color:var(--t3); }
-    .pipe-step.active .pipe-status { color:var(--acc); }
-    .pipe-step.done .pipe-status { color:var(--grn); }
-    .demo-seo-row { display:flex;flex-direction:column;gap:6px;margin-bottom:20px; }
-    .demo-seo-label { font-size:0.78em;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--t3); }
-    .demo-seo-val { color:var(--t1);font-size:0.95em;line-height:1.5; }
-    .demo-clip-card {
-      background:var(--surf2);border:1px solid var(--b1);border-radius:10px;padding:14px 16px;margin-bottom:10px;
-    }
-    .demo-clip-platform {
-      display:inline-flex;align-items:center;gap:6px;font-size:0.75em;font-weight:600;
-      background:rgba(79,141,255,0.1);border:1px solid rgba(79,141,255,0.2);border-radius:5px;
-      padding:3px 8px;color:var(--blu);margin-bottom:8px;
-    }
-    .demo-outline-step {
-      display:flex;gap:14px;margin-bottom:12px;align-items:flex-start;
-    }
-    .demo-outline-num {
-      min-width:26px;height:26px;border-radius:50%;background:rgba(232,255,71,0.1);
-      border:1px solid rgba(232,255,71,0.2);display:flex;align-items:center;justify-content:center;
-      font-size:0.75em;font-weight:700;color:var(--acc);flex-shrink:0;
-    }
-    .demo-thumb-card {
-      background:var(--surf2);border:1px solid var(--b1);border-radius:10px;padding:14px 16px;margin-bottom:10px;
-      display:flex;gap:14px;align-items:flex-start;
-    }
-    .demo-thumb-num {
-      font-size:1.4em;flex-shrink:0;
-    }
-  </style>
-
+  
   <!-- ── PRICING ── -->
   <section class="pricing" id="pricing">
     <div class="wrap" style="text-align:center">
@@ -5015,7 +5015,7 @@
           <a href="about.html" target="_blank">About</a>
           <a href="privacy.html" target="_blank">Privacy Policy</a>
           <a href="terms.html" target="_blank">Terms of Service</a>
-          <a href="mailto:hello@getpodwizard.com">Contact</a>
+          <a href="mailto:hello@podwizard.com">Contact</a>
         </div>
       </div>
     </div>
@@ -5025,8 +5025,8 @@
     </div>
   </footer>
 
-  
-  
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     /* ── MODAL ── */
     const EMAIL_ACTION =
@@ -5292,6 +5292,15 @@ Return ONLY a JSON object with exactly these fields (no markdown, no extra text)
 
     // Legacy alias kept in case anything calls it
     function showDemoOutput() { runDemo(); }
+    
+      // Track analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'demo_shown', {
+          topic: topic,
+          sample_type: sample.title
+        });
+      }
+    
 
 
     // Set Billings 
@@ -5812,7 +5821,7 @@ Return ONLY a JSON object with exactly these fields (no markdown, no extra text)
             initializeAnalytics(true);
           }
           modal.remove();
-          const b = document.getElementById('pw-cookie-banner'); if(b) b.classList.add('hidden');
+          document.getElementById('pw-cookie-banner').classList.add('hidden');
         });
       }
 
@@ -5855,6 +5864,12 @@ Return ONLY a JSON object with exactly these fields (no markdown, no extra text)
         document.querySelectorAll('.pc-per').forEach(el => el.textContent = '/mo');
         document.getElementById('creator-price').textContent = '29';
 
-        }}
+        // SWITCH STRIPE BUTTONS
+        monthlyContainer.style.display = 'block';
+        annualContainer.style.display = 'none';
+      }
+    }
+  </script>
+</body>
 
-        // SWITCH STRIP
+</html>
