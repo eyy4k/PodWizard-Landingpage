@@ -5,12 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — PodWizard</title>
+  <meta name="description"
+    content="PodWizard Privacy Policy — how we collect, use and protect your data on the PodWizard AI podcast generation platform.">
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="canonical" href="https://getpodwizard.com/privacy.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://getpodwizard.com/privacy.html">
+  <meta property="og:title" content="Privacy Policy — PodWizard">
+  <meta property="og:description" content="PodWizard Privacy Policy — how we handle your data.">
+  <meta property="og:image" content="https://getpodwizard.com/images/og-image.jpg">
+  <meta property="og:site_name" content="PodWizard">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="image/png" href="/images/favicon.png">
-  <link
+  <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@300;400;500&display=swap"
-    rel="stylesheet">
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@300;400;500&display=swap">
+  </noscript>
   <style>
     *,
     *::before,
@@ -212,7 +228,7 @@
 
     .modal-input {
       background: rgba(255, 255, 255, 0.05);
-     
+
       border-radius: 12px;
       padding: 14px 18px;
       color: var(--t1);
@@ -228,7 +244,7 @@
       box-shadow: 0 0 0 4px rgba(232, 255, 71, 0.07)
     }
 
-    
+
 
     .modal-submit {
       background: var(--acc);
@@ -300,71 +316,78 @@
     }
 
     /* Tablet & Small Screens (below 768px) */
-@media (max-width: 768px) {
-  .modal-box {
-    padding: 40px 32px; /* Slightly tighter padding */
-    max-width: 420px;
-  }
+    @media (max-width: 768px) {
+      .modal-box {
+        padding: 40px 32px;
+        /* Slightly tighter padding */
+        max-width: 420px;
+      }
 
-  .modal h2 {
-    font-size: 1.6rem;
-  }
-}
+      .modal h2 {
+        font-size: 1.6rem;
+      }
+    }
 
-/* Mobile Devices (below 480px) */
-@media (max-width: 480px) {
-  .modal {
-    padding: 16px; /* Less wasted space on screen edges */
-  }
+    /* Mobile Devices (below 480px) */
+    @media (max-width: 480px) {
+      .modal {
+        padding: 16px;
+        /* Less wasted space on screen edges */
+      }
 
-  .modal-box {
-    padding: 32px 24px; /* Significant padding reduction for small screens */
-    border-radius: 20px;
-  }
+      .modal-box {
+        padding: 32px 24px;
+        /* Significant padding reduction for small screens */
+        border-radius: 20px;
+      }
 
-  .modal-ico {
-    width: 48px;
-    height: 48px;
-    font-size: 1.25rem;
-    margin-bottom: 16px;
-  }
+      .modal-ico {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+        margin-bottom: 16px;
+      }
 
-  .modal h2 {
-    font-size: 1.45rem;
-    letter-spacing: -0.02em;
-  }
+      .modal h2 {
+        font-size: 1.45rem;
+        letter-spacing: -0.02em;
+      }
 
-  .modal p {
-    font-size: 0.85rem;
-    margin-bottom: 20px;
-  }
+      .modal p {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+      }
 
-  .modal-input, 
-  .modal-submit {
-    padding: 12px 16px; /* More comfortable for thumb-tapping */
-    font-size: 0.95rem;
-  }
+      .modal-input,
+      .modal-submit {
+        padding: 12px 16px;
+        /* More comfortable for thumb-tapping */
+        font-size: 0.95rem;
+      }
 
-  .modal-x {
-    top: 12px;
-    right: 12px;
-    width: 32px; /* Slightly larger hit area for fingers */
-    height: 32px;
-  }
-}
+      .modal-x {
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        /* Slightly larger hit area for fingers */
+        height: 32px;
+      }
+    }
 
-/* Landscape fix for very short phones */
-@media (max-height: 500px) and (orientation: landscape) {
-  .modal-box {
-    padding: 24px;
-    overflow-y: auto;
-    max-height: 90vh; /* Prevents modal from cutting off */
-  }
-  
-  .modal-ico {
-    display: none; /* Hide icon to save vertical space */
-  }
-}
+    /* Landscape fix for very short phones */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .modal-box {
+        padding: 24px;
+        overflow-y: auto;
+        max-height: 90vh;
+        /* Prevents modal from cutting off */
+      }
+
+      .modal-ico {
+        display: none;
+        /* Hide icon to save vertical space */
+      }
+    }
 
     /* ── UPDATED NAV & LOGO ── */
     nav {
@@ -1305,8 +1328,7 @@
         cannot guarantee all partners honor them.</p>
 
       <h3>Questions about cookies?</h3>
-      <p>Contact us at <a href="mailto:hello@podwizard.com"><span
-            class="__cf_email__"
+      <p>Contact us at <a href="mailto:hello@podwizard.com"><span class="__cf_email__"
             data-cfemail="79111c1515163909161d0e1003180b1d571a1614">hello@getpodwizard.com</span></a> with any questions
         about our cookie practices.</p>
     </div>
@@ -1320,8 +1342,8 @@
         <li>Payments handled entirely by Stripe (PCI DSS Level 1 certified).</li>
         <li>Production system access limited to authorised personnel only.</li>
       </ul>
-      <p>If you believe your account is compromised, contact <a
-          href="mailto:hello@podwizard.com"><span class="__cf_email__"
+      <p>If you believe your account is compromised, contact <a href="mailto:hello@podwizard.com"><span
+            class="__cf_email__"
             data-cfemail="1d75787171725d6d72796a74677c6f79337e7270">hello@getpodwizard.com</span></a> immediately.</p>
     </div>
     <div class="divider"></div>
@@ -1344,8 +1366,7 @@
       <h2>Contact us</h2>
       <ul>
 
-        <li><strong>General:</strong> <a
-            href="mailto:hello@podwizard.com"><span class="__cf_email__"
+        <li><strong>General:</strong> <a href="mailto:hello@podwizard.com"><span class="__cf_email__"
               data-cfemail="4c24292020230c3c23283b25362d3e28622f2321">hello@getpodwizard.com<span></a></li>
 
       </ul>
@@ -1459,7 +1480,7 @@
       }
     }
 
-   // Theme
+    // Theme
 
     function toggleTheme() {
       const h = document.documentElement;

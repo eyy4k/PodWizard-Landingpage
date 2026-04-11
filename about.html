@@ -4,14 +4,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — PodWizard</title>
+  <title>About — PodWizard | AI Podcast Episode Generator</title>
+  <meta name="description"
+    content="Learn about PodWizard — the AI-powered tool that generates full podcast episodes including scripts, thumbnails, social clips and SEO packages in minutes.">
+
+  <link rel="canonical" href="https://getpodwizard.com/about.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://getpodwizard.com/about.html">
+  <meta property="og:title" content="About PodWizard — AI Podcast Episode Generator">
+  <meta property="og:description"
+    content="Learn about PodWizard — AI-powered podcast episode generation. Free to start.">
+  <meta property="og:image" content="https://getpodwizard.com/images/og-image.jpg">
+  <meta property="og:site_name" content="PodWizard">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About PodWizard — AI Podcast Episode Generator">
+  <meta name="twitter:description" content="AI-powered podcast episode generation. Free to start.">
+  <meta name="twitter:image" content="https://getpodwizard.com/images/og-image.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="icon" type="image/png" href="/images/favicon.png">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
+  <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
-    rel="stylesheet">
-    
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap">
+  </noscript>
+
   <style>
     *,
     *::before,
@@ -213,7 +234,7 @@
 
     .modal-input {
       background: rgba(255, 255, 255, 0.05);
-     
+
       border-radius: 12px;
       padding: 14px 18px;
       color: var(--t1);
@@ -229,7 +250,7 @@
       box-shadow: 0 0 0 4px rgba(232, 255, 71, 0.07)
     }
 
-    
+
 
     .modal-submit {
       background: var(--acc);
@@ -301,77 +322,86 @@
     }
 
     /* Tablet & Small Screens (below 768px) */
-@media (max-width: 768px) {
-  .modal-box {
-    padding: 40px 32px; /* Slightly tighter padding */
-    max-width: 420px;
-  }
+    @media (max-width: 768px) {
+      .modal-box {
+        padding: 40px 32px;
+        /* Slightly tighter padding */
+        max-width: 420px;
+      }
 
-  .modal h2 {
-    font-size: 1.6rem;
-  }
-}
+      .modal h2 {
+        font-size: 1.6rem;
+      }
+    }
 
-/* Mobile Devices (below 480px) */
-@media (max-width: 480px) {
-  .modal {
-    padding: 16px; /* Less wasted space on screen edges */
-  }
+    /* Mobile Devices (below 480px) */
+    @media (max-width: 480px) {
+      .modal {
+        padding: 16px;
+        /* Less wasted space on screen edges */
+      }
 
-  .modal-box {
-    padding: 32px 24px; /* Significant padding reduction for small screens */
-    border-radius: 20px;
-  }
+      .modal-box {
+        padding: 32px 24px;
+        /* Significant padding reduction for small screens */
+        border-radius: 20px;
+      }
 
-  .modal-ico {
-    width: 48px;
-    height: 48px;
-    font-size: 1.25rem;
-    margin-bottom: 16px;
-  }
+      .modal-ico {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+        margin-bottom: 16px;
+      }
 
-  .modal h2 {
-    font-size: 1.45rem;
-    letter-spacing: -0.02em;
-  }
+      .modal h2 {
+        font-size: 1.45rem;
+        letter-spacing: -0.02em;
+      }
 
-  .modal p {
-    font-size: 0.85rem;
-    margin-bottom: 20px;
-  }
+      .modal p {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+      }
 
-  .modal-input, 
-  .modal-submit {
-    padding: 12px 16px; /* More comfortable for thumb-tapping */
-    font-size: 0.95rem;
-  }
+      .modal-input,
+      .modal-submit {
+        padding: 12px 16px;
+        /* More comfortable for thumb-tapping */
+        font-size: 0.95rem;
+      }
 
-  .modal-x {
-    top: 12px;
-    right: 12px;
-    width: 32px; /* Slightly larger hit area for fingers */
-    height: 32px;
-  }
-}
+      .modal-x {
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        /* Slightly larger hit area for fingers */
+        height: 32px;
+      }
+    }
 
-/* Landscape fix for very short phones */
-@media (max-height: 500px) and (orientation: landscape) {
-  .modal-box {
-    padding: 24px;
-    overflow-y: auto;
-    max-height: 90vh; /* Prevents modal from cutting off */
-  }
-  
-  .modal-ico {
-    display: none; /* Hide icon to save vertical space */
-  }
-}
+    /* Landscape fix for very short phones */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .modal-box {
+        padding: 24px;
+        overflow-y: auto;
+        max-height: 90vh;
+        /* Prevents modal from cutting off */
+      }
+
+      .modal-ico {
+        display: none;
+        /* Hide icon to save vertical space */
+      }
+    }
 
 
     /* ── UPDATED NAV & LOGO ── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 500;
       height: 66px;
       display: flex;
@@ -387,7 +417,9 @@
     nav::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(232, 255, 71, 0.18), transparent)
     }
@@ -406,64 +438,118 @@
     }
 
     .lm {
-      width: 30px; height: 30px; border-radius: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
       background: var(--acc);
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden; flex-shrink: 0
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0
     }
 
     .lm::before {
-      content: ''; position: absolute; inset: 0;
+      content: '';
+      position: absolute;
+      inset: 0;
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent)
     }
 
     .lm-outer {
-      width: 18px; height: 18px; border-radius: 50%;
-      background: var(--bg); display: flex; align-items: center; justify-content: center;
-      position: relative; z-index: 1
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1
     }
 
     .lm-mid {
-      position: absolute; width: 14px; height: 14px;
-      border-radius: 50%; background: var(--acc); z-index: 2
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--acc);
+      z-index: 2
     }
 
     .lm-inner {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--bg); z-index: 3; position: relative;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--bg);
+      z-index: 3;
+      position: relative;
       animation: lmpulse 2.2s ease-in-out infinite
     }
 
     @keyframes lmpulse {
-      0%, 100% { transform: scale(1) }
-      50% { transform: scale(1.4) }
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.4)
+      }
     }
 
     .v6b {
       background: rgba(232, 255, 71, 0.12);
       border: 1px solid rgba(232, 255, 71, 0.2);
-      color: var(--acc); font-size: 0.58rem; font-weight: 700;
-      padding: 2.5px 8px; border-radius: 100px; letter-spacing: 0.09em; margin-left: 4px
+      color: var(--acc);
+      font-size: 0.58rem;
+      font-weight: 700;
+      padding: 2.5px 8px;
+      border-radius: 100px;
+      letter-spacing: 0.09em;
+      margin-left: 4px
     }
 
     .nav-links {
-      display: flex; gap: 28px; list-style: none
+      display: flex;
+      gap: 28px;
+      list-style: none
     }
 
     .nav-links a {
-      color: var(--t2); font-size: 0.85rem; transition: color 0.2s; letter-spacing: -0.01em
+      color: var(--t2);
+      font-size: 0.85rem;
+      transition: color 0.2s;
+      letter-spacing: -0.01em
     }
 
-    .nav-links a:hover { color: var(--t1) }
+    .nav-links a:hover {
+      color: var(--t1)
+    }
 
-    .nav-r { display: flex; gap: 8px; align-items: center }
+    .nav-r {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
 
     /* Theme Toggle Style */
     .theme-toggle {
-      width: 38px; height: 38px; border-radius: 10px;
-      border: 1px solid var(--b2); background: rgba(255,255,255,0.04);
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; transition: all 0.2s; flex-shrink: 0; margin-right: 4px
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--b2);
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      margin-right: 4px
     }
 
     .theme-toggle:hover {
@@ -472,21 +558,35 @@
     }
 
     .nav-si {
-      color: var(--t2); font-size: 0.83rem; padding: 8px 18px;
-      border-radius: 100px; border: 1px solid var(--b2); transition: all 0.2s
+      color: var(--t2);
+      font-size: 0.83rem;
+      padding: 8px 18px;
+      border-radius: 100px;
+      border: 1px solid var(--b2);
+      transition: all 0.2s
     }
 
-    .nav-si:hover { color: var(--t1); border-color: rgba(255, 255, 255, 0.2) }
+    .nav-si:hover {
+      color: var(--t1);
+      border-color: rgba(255, 255, 255, 0.2)
+    }
 
     .nav-trial {
-      background: var(--acc); color: var(--bg); font-weight: 700;
-      font-size: 0.83rem; padding: 8px 20px; border-radius: 100px;
-      font-family: 'Bricolage Grotesque', sans-serif; cursor: pointer;
-      border: none; transition: all 0.2s
+      background: var(--acc);
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 0.83rem;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s
     }
 
     .nav-trial:hover {
-      background: var(--acc2); transform: translateY(-1px);
+      background: var(--acc2);
+      transform: translateY(-1px);
       box-shadow: 0 6px 20px rgba(232, 255, 71, 0.3)
     }
 
@@ -1186,140 +1286,143 @@
     }
 
     @media(max-width:600px) {
-  nav {
-    padding: 0 10px;
-    height: 56px;
-    gap: 8px
-  }
+      nav {
+        padding: 0 10px;
+        height: 56px;
+        gap: 8px
+      }
 
-  .nav-logo {
-    font-size: 0.9rem;
-    gap: 5px;
-    flex-shrink: 0;
-    min-width: fit-content
-  }
+      .nav-logo {
+        font-size: 0.9rem;
+        gap: 5px;
+        flex-shrink: 0;
+        min-width: fit-content
+      }
 
-  .lm {
-    width: 26px;
-    height: 26px
-  }
+      .lm {
+        width: 26px;
+        height: 26px
+      }
 
-  .v6b {
-    display: none        /* HIDES v6 badge */
-  }
+      .v6b {
+        display: none
+          /* HIDES v6 badge */
+      }
 
-  .nav-links {
-    display: none        /* HIDES nav links */
-  }
+      .nav-links {
+        display: none
+          /* HIDES nav links */
+      }
 
-  .nav-r {
-    gap: 4px;
-    flex-shrink: 0
-  }
+      .nav-r {
+        gap: 4px;
+        flex-shrink: 0
+      }
 
-  .theme-toggle {
-    font-size: 1.1rem;
-    padding: 6px;
-    line-height: 1;
-    background: none;
-    border: none;
-    cursor: pointer
-  }
+      .theme-toggle {
+        font-size: 1.1rem;
+        padding: 6px;
+        line-height: 1;
+        background: none;
+        border: none;
+        cursor: pointer
+      }
 
-  .nav-si {
-    display: none        /* HIDES sign in */
-  }
+      .nav-si {
+        display: none
+          /* HIDES sign in */
+      }
 
-  .nav-trial {
-    padding: 6px 10px;
-    font-size: 0.72rem;
-    border-radius: 20px;
-    white-space: nowrap;
-    flex-shrink: 0
-  }
+      .nav-trial {
+        padding: 6px 10px;
+        font-size: 0.72rem;
+        border-radius: 20px;
+        white-space: nowrap;
+        flex-shrink: 0
+      }
 
-  @media(max-width:400px) {
-  nav {
-    padding: 0 8px;
-    height: 52px;
-    gap: 4px
-  }
+      @media(max-width:400px) {
+        nav {
+          padding: 0 8px;
+          height: 52px;
+          gap: 4px
+        }
 
-  .nav-logo {
-    font-size: 0.85rem;
-    gap: 4px;
-    flex-shrink: 0;
-    min-width: fit-content
-  }
+        .nav-logo {
+          font-size: 0.85rem;
+          gap: 4px;
+          flex-shrink: 0;
+          min-width: fit-content
+        }
 
-  .lm {
-    width: 24px;
-    height: 24px
-  }
+        .lm {
+          width: 24px;
+          height: 24px
+        }
 
-  .v6b {
-    display: none
-  }
+        .v6b {
+          display: none
+        }
 
-  .nav-r {
-    gap: 3px;
-    flex-shrink: 0
-  }
+        .nav-r {
+          gap: 3px;
+          flex-shrink: 0
+        }
 
-  .theme-toggle {
-    font-size: 1rem;
-    padding: 4px;
-    background: none;
-    border: none
-  }
+        .theme-toggle {
+          font-size: 1rem;
+          padding: 4px;
+          background: none;
+          border: none
+        }
 
-  .nav-si {
-    display: none
-  }
+        .nav-si {
+          display: none
+        }
 
-  .nav-trial {
-    padding: 5px 8px;
-    font-size: 0.7rem;
-    flex-shrink: 0
-  }
-}
+        .nav-trial {
+          padding: 5px 8px;
+          font-size: 0.7rem;
+          flex-shrink: 0
+        }
+      }
 
-@media(max-width:320px) {
-  nav {
-    padding: 0 6px;
-    height: 50px;
-    gap: 3px
-  }
+      @media(max-width:320px) {
+        nav {
+          padding: 0 6px;
+          height: 50px;
+          gap: 3px
+        }
 
-  .nav-logo {
-    font-size: 0.8rem;
-    gap: 3px;
-    flex-shrink: 0;
-    min-width: fit-content
-  }
+        .nav-logo {
+          font-size: 0.8rem;
+          gap: 3px;
+          flex-shrink: 0;
+          min-width: fit-content
+        }
 
-  .lm {
-    width: 22px;
-    height: 22px
-  }
+        .lm {
+          width: 22px;
+          height: 22px
+        }
 
-  .v6b {
-    display: none
-  }
+        .v6b {
+          display: none
+        }
 
-  .theme-toggle {
-    font-size: 0.95rem;
-    padding: 3px;
-    background: none;
-    border: none
-  }
+        .theme-toggle {
+          font-size: 0.95rem;
+          padding: 3px;
+          background: none;
+          border: none
+        }
 
-  .nav-trial {
-    padding: 5px 8px;
-    font-size: 0.65rem;
-    flex-shrink: 0
-  }
-}
+        .nav-trial {
+          padding: 5px 8px;
+          font-size: 0.65rem;
+          flex-shrink: 0
+        }
+      }
 
     }
   </style>
@@ -1327,7 +1430,7 @@
 
 <body>
 
-   <!-- ── EMAIL MODAL ── -->
+  <!-- ── EMAIL MODAL ── -->
   <div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
     <div class="modal-box">
       <button class="modal-x" onclick="closeModal()">✕</button>
@@ -1371,13 +1474,13 @@
       </div>
       PodWizard <span class="v6b">V6</span>
     </a>
-    
+
     <ul class="nav-links">
       <li><a href="index.html#pipeline">How it works</a></li>
       <li><a href="index.html#features">Features</a></li>
       <li><a href="index.html#pricing">Pricing</a></li>
     </ul>
-    
+
     <div class="nav-r">
       <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌓</button>
       <a href="https://studio.getpodwizard.com" class="nav-si" target="_blank">Sign in</a>
@@ -1395,7 +1498,7 @@
     </h1>
     <p class="about-sub">PodWizard exists because great podcasters shouldn't spend 80% of their time on production. We
       built the studio we always wished existed.</p>
-      <button onclick="openModal()" class="btn-primary2">Generate for Free →</button>
+    <button onclick="openModal()" class="btn-primary2">Generate for Free →</button>
   </section>
 
   <section class="mission">
@@ -1586,7 +1689,7 @@
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
 
-       /* ── MODAL ── */
+    /* ── MODAL ── */
     const EMAIL_ACTION =
       'https://app.loops.so/api/newsletter-form/cmnqf6qw107a30iyyrmap19gn';
 
@@ -1652,9 +1755,9 @@
       }
     }
 
-     // Theme
+    // Theme
 
-     function toggleTheme() {
+    function toggleTheme() {
       const h = document.documentElement;
       const isLight = h.getAttribute('data-theme') === 'light';
       h.setAttribute('data-theme', isLight ? 'dark' : 'light');
@@ -1675,7 +1778,7 @@
 
   <!-- COOKIE CONSENT SCRIPT -->
   <script>
-    (function() {
+    (function () {
       const COOKIE_CONSENT_KEY = 'pw-cookie-consent';
       const COOKIE_CONSENT_VERSION = '1.0';
 
@@ -1706,9 +1809,9 @@
         script.async = true;
         script.src = 'https://www.googletagmanager.com/gtag/js?id=G-SRPD136Q8R';
         document.head.appendChild(script);
-        
+
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-SRPD136Q8R');
       }
@@ -1876,7 +1979,7 @@
 
       function showPreferencesModal() {
         const consent = getCookieConsent() || { essential: true, analytics: false, preferences: false };
-        
+
         const modal = document.createElement('div');
         modal.id = 'pw-cookie-modal';
         modal.innerHTML = `
@@ -2053,7 +2156,7 @@
         const preferencesCheckbox = document.getElementById('pw-pref-preferences');
 
         [analyticsCheckbox, preferencesCheckbox].forEach(checkbox => {
-          checkbox.addEventListener('change', function() {
+          checkbox.addEventListener('change', function () {
             const box = this.parentElement.querySelector('.pw-cookie-checkbox');
             if (this.checked) {
               box.classList.add('checked');
@@ -2083,9 +2186,9 @@
         });
       }
 
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         const consent = getCookieConsent();
-        
+
         if (!consent) {
           showCookieBanner();
         } else {
@@ -2095,7 +2198,7 @@
         }
       });
 
-      window.manageCookies = function() {
+      window.manageCookies = function () {
         showPreferencesModal();
       };
     })();
@@ -2103,4 +2206,3 @@
 </body>
 
 </html>
-       
