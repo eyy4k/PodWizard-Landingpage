@@ -5521,6 +5521,8 @@
       const monthlyBtn = document.getElementById('stripe-monthly-container');
       const annualBtn = document.getElementById('stripe-annual-container');
 
+      const billLabel = document.getElementById('pcBillLabel');
+
       if (type === 'm') {
 
         tm.classList.add('on');
@@ -5537,6 +5539,9 @@
         annualBtn.style.display = 'none';
         yearlyTotals.forEach(t => t.style.display = 'none');
 
+        // Change text to monthly
+        if (billLabel) billLabel.textContent = 'billed monthly';
+
       } else {
 
         ta.classList.add('on');
@@ -5552,6 +5557,9 @@
         monthlyBtn.style.display = 'none';
         annualBtn.style.display = 'block';
         yearlyTotals.forEach(t => t.style.display = 'block');
+
+        // 3. Set text to annually
+    if (billLabel) billLabel.textContent = 'billed annually';
       }
     }
 
